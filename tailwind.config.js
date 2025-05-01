@@ -148,6 +148,44 @@ module.exports = {
           "0%, 100%": { "background-position": "0% 50%" },
           "50%": { "background-position": "100% 50%" },
         },
+        "topToBottom": {
+          "0%": { transform: "translateY(-10%)" },
+          "50%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(-10%)" },
+        },
+        "bottomToTop": {
+          "0%": { transform: "translateY(110%)" },
+          "50%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(110%)" },
+        },
+        "leftToRight": {
+          "0%": { transform: "translateX(-10%)" },
+          "50%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-10%)" },
+        },
+        "rightToLeft": {
+          "0%": { transform: "translateX(110%)" },
+          "50%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(110%)" },
+        },
+        "diagonal1": {
+          "0%": { transform: "translate(-10%, -10%)" },
+          "50%": { transform: "translate(110%, 110%)" },
+          "100%": { transform: "translate(-10%, -10%)" },
+        },
+        "diagonal2": {
+          "0%": { transform: "translate(110%, -10%)" },
+          "50%": { transform: "translate(-10%, 110%)" },
+          "100%": { transform: "translate(110%, -10%)" },
+        },
+        "orbit": {
+          "0%": { transform: "rotate(0deg) translateX(200px) rotate(0deg)" },
+          "100%": { transform: "rotate(360deg) translateX(200px) rotate(-360deg)" }
+        },
+        "reverse-orbit": {
+          "0%": { transform: "rotate(360deg) translateX(300px) rotate(-360deg)" },
+          "100%": { transform: "rotate(0deg) translateX(300px) rotate(0deg)" }
+        },
       },
       animation: {
         ring: "ring 2.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
@@ -164,6 +202,14 @@ module.exports = {
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
         leave: "leave 150ms ease-in forwards",
         "gradient-xy": "gradient-xy 15s ease infinite",
+        "topToBottom": "topToBottom 20s linear infinite",
+        "bottomToTop": "bottomToTop 20s linear infinite",
+        "leftToRight": "leftToRight 20s linear infinite",
+        "rightToLeft": "rightToLeft 20s linear infinite",
+        "diagonal1": "diagonal1 20s linear infinite",
+        "diagonal2": "diagonal2 20s linear infinite",
+        "orbit": "orbit 30s linear infinite",
+        "reverse-orbit": "reverse-orbit 40s linear infinite",
       },
     },
   },

@@ -5,19 +5,18 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  // State for orbs with controlled orbital properties
+  // Orb state: each orb has visual and animation properties
   const [orbs, setOrbs] = useState<{ id: number, size: number, color: string, rotation: number, radius: number, animationDuration: number, reverse: boolean, initialPosition: number }[]>([]);
 
-  // Generate orbs on component mount
   useEffect(() => {
-    const orbCount = 28; // Increased from 16 to 28 orbs
+    const orbCount = 28; // Total number of orbs
     const colors = [
       'bg-blue-300', 'bg-purple-300', 'bg-pink-300', 'bg-yellow-300', 'bg-green-300',
       'bg-blue-200', 'bg-purple-200', 'bg-pink-200', 'bg-yellow-200', 'bg-green-200',
       'bg-indigo-300', 'bg-teal-300', 'bg-cyan-300', 'bg-amber-300'
     ];
 
-    // Expanded orbital paths with wider distribution
+    // Orbital paths define the distance from the center for each ring of orbs
     const orbitalPaths = [
       { minRadius: 180, maxRadius: 210 },    // Inner ring
       { minRadius: 270, maxRadius: 300 },    // Middle-inner ring
@@ -28,10 +27,10 @@ const Hero = () => {
       { minRadius: 750, maxRadius: 800 }     // Edge ring
     ];
     
-    const orbsPerPath = 4; // Keep consistent distribution
+    const orbsPerPath = 4; // Number of orbs per orbital path
 
     const newOrbs = Array.from({ length: orbCount }).map((_, index) => {
-      // Choose an orbital path based on index
+      // Assign orb to a path based on its index
       const pathIndex = Math.floor(index / orbsPerPath) % orbitalPaths.length;
       const orbitalPath = orbitalPaths[pathIndex];
 
@@ -47,10 +46,10 @@ const Hero = () => {
       const radiusStep = pathRange / orbsPerPath;
       const calculatedRadius = orbitalPath.minRadius + (radiusStep * positionInPath) + (radiusStep / 2);
 
-      // Significantly larger size range for all orbs
+      // Larger size range for orbs based on their path
       const isOuterOrb = pathIndex >= 4; // For the outer paths
-      const minSize = isOuterOrb ? 100 : 70; // Increased from 60/40 to 100/70
-      const maxSize = isOuterOrb ? 160 : 120; // Increased from 100/80 to 160/120
+      const minSize = isOuterOrb ? 100 : 70; // Minimum size
+      const maxSize = isOuterOrb ? 160 : 120; // Maximum size
       const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
 
       // Slower animation for larger orbs
@@ -75,9 +74,8 @@ const Hero = () => {
 
   return (
     <div className="h-[85vh] w-full border-b border-ui-border-base relative overflow-hidden bg-white">
-      {/* Central point for orbits */}
+      {/* Orbs are absolutely positioned around the center */}
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        {/* Animated Orbital Orbs */}
         {orbs.map((orb) => (
           <div
             key={orb.id}
@@ -89,7 +87,7 @@ const Hero = () => {
               animationDuration: `${orb.animationDuration}s`,
               transform: `rotate(${orb.initialPosition}deg) translateX(${orb.radius}px) rotate(-${orb.initialPosition}deg)`,
               animationDelay: `-${Math.floor(Math.random() * orb.animationDuration)}s`,
-              // Using CSS variables for animation
+              // CSS variables for animation (if needed in CSS)
               '--radius': `${orb.radius}px`,
               '--initial-rotation': `${orb.initialPosition}deg`,
             } as React.CSSProperties}

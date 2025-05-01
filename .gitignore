@@ -8,7 +8,7 @@ storefront_snapshot.txt
 .vscode
 
 # dependencies
-/.github/
+/.github
 /node_modules
 /.pnp
 .pnp.js

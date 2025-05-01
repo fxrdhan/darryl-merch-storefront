@@ -23,6 +23,14 @@ async function getRegionMap(cacheId: string) {
     !regionMap.keys().next().value ||
     regionMapUpdated < Date.now() - 3600 * 1000
   ) {
+    console.log("Fetch condition:", {
+      noRegionMap: !regionMap.keys().next().value,
+      cacheExpired: regionMapUpdated < Date.now() - 3600 * 1000,
+      currentTime: Date.now(),
+      regionMapUpdated: regionMapUpdated,
+      timeDiff: Date.now() - regionMapUpdated
+    });
+
     // Fetch regions from Medusa. We can't use the JS client here because middleware is running on Edge and the client needs a Node environment.
     const { regions } = await fetch(`${BACKEND_URL}/store/regions`, {
       headers: {
@@ -104,6 +112,8 @@ async function getCountryCode(
  * Middleware to handle region selection and onboarding status.
  */
 export async function middleware(request: NextRequest) {
+  console.log("Pathname:", request.nextUrl.pathname);
+
   let redirectUrl = request.nextUrl.href
 
   let response = NextResponse.redirect(redirectUrl, 307)
@@ -111,13 +121,17 @@ export async function middleware(request: NextRequest) {
   let cacheIdCookie = request.cookies.get("_medusa_cache_id")
 
   let cacheId = cacheIdCookie?.value || crypto.randomUUID()
+  console.log("Using cacheId:", cacheId);
+  console.log("Cache ID cookie:", cacheIdCookie?.value);
 
   const regionMap = await getRegionMap(cacheId)
 
   const countryCode = regionMap && (await getCountryCode(request, regionMap))
+  console.log("Determined countryCode:", countryCode);
 
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
+  console.log("URL has country code:", urlHasCountryCode);
 
   // if one of the country codes is in the url and the cache id is set, return next
   if (urlHasCountryCode && cacheIdCookie) {
@@ -146,6 +160,7 @@ export async function middleware(request: NextRequest) {
   // If no country code is set, we redirect to the relevant region.
   if (!urlHasCountryCode && countryCode) {
     redirectUrl = `${request.nextUrl.origin}/${countryCode}${redirectPath}${queryString}`
+    console.log("Redirecting to:", redirectUrl);
     response = NextResponse.redirect(`${redirectUrl}`, 307)
   }
 

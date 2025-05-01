@@ -64,6 +64,12 @@ async function getRegionMap(cacheId: string) {
       })
     })
 
+    console.log(
+      "Region map populated:",
+      regionMapCache.regionMap.size,
+      Array.from(regionMapCache.regionMap.keys())
+    );
+
     regionMapCache.regionMapUpdated = Date.now()
   }
 

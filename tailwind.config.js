@@ -97,6 +97,10 @@ module.exports = {
         },
         "fade-out-top": {
           "0%": {
+            height: "var(--radix-accordion-content-height)",
+            opacity: "1",
+          },
+          "99%": {
             height: "100%",
           },
           "99%": {
@@ -140,6 +144,10 @@ module.exports = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
         },
+        "gradient-xy": {
+          "0%, 100%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+        },
       },
       animation: {
         ring: "ring 2.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
@@ -155,6 +163,7 @@ module.exports = {
         enter: "enter 200ms ease-out",
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
         leave: "leave 150ms ease-in forwards",
+        "gradient-xy": "gradient-xy 15s ease infinite",
       },
     },
   },

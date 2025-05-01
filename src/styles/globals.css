@@ -166,4 +166,37 @@
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+
+  /* Liquid Button Animation */
+  .liquid-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 0.3s;
+    color: #111827; /* black text by default */
+  }
+  .liquid-btn .liquid-bg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(90deg, #c471f5 0%, #fa71cd 100%);
+    transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1), left 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 9999px;
+  }
+  .liquid-btn:hover .liquid-bg,
+  .liquid-btn:focus-visible .liquid-bg {
+    left: 0;
+    width: 100%;
+  }
+  .liquid-btn:hover,
+  .liquid-btn:focus-visible {
+    color: #fff !important;
+  }
+  .liquid-btn .liquid-btn-text {
+    color: inherit !important;
+    transition: color 0.3s;
+  }
 }

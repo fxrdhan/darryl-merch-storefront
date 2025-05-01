@@ -30,6 +30,50 @@
   }
   /* End Gradient Animation */
 
+  /* Orb animations for slow floating effect */
+  .animate-topToBottom {
+    animation: topToBottom 20s linear infinite;
+  }
+  
+  .animate-bottomToTop {
+    animation: bottomToTop 20s linear infinite;
+  }
+  
+  .animate-leftToRight {
+    animation: leftToRight 20s linear infinite;
+  }
+  
+  .animate-rightToLeft {
+    animation: rightToLeft 20s linear infinite;
+  }
+  
+  .animate-diagonal1 {
+    animation: diagonal1 20s linear infinite;
+  }
+  
+  .animate-diagonal2 {
+    animation: diagonal2 20s linear infinite;
+  }
+
+  /* Orbital animations for elements around the title */
+  .animate-orbit {
+    animation: orbit 30s linear infinite;
+  }
+  
+  .animate-reverse-orbit {
+    animation: reverse-orbit 40s linear infinite;
+  }
+
+  @keyframes orbit {
+    0% { transform: rotate(var(--initial-rotation, 0deg)) translateX(var(--radius, 200px)) rotate(calc(-1 * var(--initial-rotation, 0deg))); }
+    100% { transform: rotate(calc(var(--initial-rotation, 0deg) + 360deg)) translateX(var(--radius, 200px)) rotate(calc(-1 * var(--initial-rotation, 0deg) - 360deg)); }
+  }
+
+  @keyframes reverse-orbit {
+    0% { transform: rotate(var(--initial-rotation, 360deg)) translateX(var(--radius, 300px)) rotate(calc(-1 * var(--initial-rotation, 360deg))); }
+    100% { transform: rotate(calc(var(--initial-rotation, 360deg) - 360deg)) translateX(var(--radius, 300px)) rotate(calc(-1 * var(--initial-rotation, 360deg) + 360deg)); }
+  }
+
   input:focus ~ label,
   input:not(:placeholder-shown) ~ label {
     @apply -translate-y-2 text-xsmall-regular;

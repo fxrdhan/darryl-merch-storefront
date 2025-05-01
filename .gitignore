@@ -1,7 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 yarn.lock
-create_snapshot.sh
 project_snapshot.txt
 
 # IDEs

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Output file name
-OUTPUT_FILE="project_snapshot.txt"
+OUTPUT_FILE="storefront_snapshot.txt"
 # Patterns to exclude for the tree command
 TREE_EXCLUDE_PATTERN=".git|.github|.next|.yarn|node_modules|yarn.lock|.gitignore|README.md|${OUTPUT_FILE}|create_snapshot.sh|*.png|*.jpg|*.jpeg|*.gif|*.svg|*.ico"
 

@@ -9,7 +9,7 @@ const Hero = () => {
   const [orbs, setOrbs] = useState<{ id: number, size: number, color: string, rotation: number, radius: number, animationDuration: number, reverse: boolean, initialPosition: number }[]>([]);
 
   useEffect(() => {
-    const orbCount = 28; // Total number of orbs
+    const orbCount = 28; 
     const colors = [
       'bg-blue-300', 'bg-purple-300', 'bg-pink-300', 'bg-yellow-300', 'bg-green-300',
       'bg-blue-200', 'bg-purple-200', 'bg-pink-200', 'bg-yellow-200', 'bg-green-200',
@@ -46,13 +46,13 @@ const Hero = () => {
       const radiusStep = pathRange / orbsPerPath;
       const calculatedRadius = orbitalPath.minRadius + (radiusStep * positionInPath) + (radiusStep / 2);
 
-      // Larger size range for orbs based on their path
-      const isOuterOrb = pathIndex >= 4; // For the outer paths
-      const minSize = isOuterOrb ? 100 : 70; // Minimum size
-      const maxSize = isOuterOrb ? 160 : 120; // Maximum size
+      // range for orbs based on their path
+      const isOuterOrb = pathIndex >= 4;
+      const minSize = isOuterOrb ? 100 : 70;
+      const maxSize = isOuterOrb ? 160 : 120;
       const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
 
-      // Slower animation for larger orbs
+      // animation for larger orbs
       const baseAnimationDuration = isOuterOrb ? 35 : 25;
       const animationVariance = isOuterOrb ? 20 : 15;
       const animationDuration = (Math.random() * animationVariance) + baseAnimationDuration;
@@ -74,7 +74,6 @@ const Hero = () => {
 
   return (
     <div className="h-[85vh] w-full border-b border-ui-border-base relative overflow-hidden bg-white">
-      {/* Orbs are absolutely positioned around the center */}
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {orbs.map((orb) => (
           <div
@@ -87,7 +86,6 @@ const Hero = () => {
               animationDuration: `${orb.animationDuration}s`,
               transform: `rotate(${orb.initialPosition}deg) translateX(${orb.radius}px) rotate(-${orb.initialPosition}deg)`,
               animationDelay: `-${Math.floor(Math.random() * orb.animationDuration)}s`,
-              // CSS variables for animation (if needed in CSS)
               '--radius': `${orb.radius}px`,
               '--initial-rotation': `${orb.initialPosition}deg`,
             } as React.CSSProperties}
@@ -110,7 +108,16 @@ const Hero = () => {
         </Heading>
         
         <LocalizedClientLink href="/store">
-          <Button variant="primary">Explore Products</Button>
+          <span className="liquid-btn inline-block relative text-black px-6 py-2">
+            <span className="liquid-bg"></span>
+            <Button
+              variant="primary"
+              className="relative z-10 text-md bg-transparent border-none shadow-none transition-none duration-0 liquid-btn-text font-bold tracking-widest"
+              style={{ background: "none" }}
+            >
+              Explore Products
+            </Button>
+          </span>
         </LocalizedClientLink>
       </div>
     </div>

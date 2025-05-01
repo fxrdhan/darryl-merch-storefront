@@ -73,7 +73,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="h-[85vh] w-full border-b border-ui-border-base relative overflow-hidden bg-white">
+    <div className="h-screen w-full border-b border-ui-border-base relative overflow-hidden bg-white">
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {orbs.map((orb) => (
           <div
@@ -104,7 +104,7 @@ const Hero = () => {
           level="h3"
           className="text-2xl md:text-3xl leading-8 font-medium text-gray-700"
         >
-          Discover the Best Products Here
+          Belanja Merchandise Darryl disini 🥳
         </Heading>
         
         <LocalizedClientLink href="/store">

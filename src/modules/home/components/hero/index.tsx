@@ -114,7 +114,7 @@ const Hero = () => {
               className="relative z-10 text-md bg-transparent border-none shadow-none transition-none duration-0 liquid-btn-text font-bold tracking-widest"
               style={{ background: "none" }}
             >
-              Explore Products
+              <span className="shake-tilt">Explore Products</span>
             </Button>
           </span>
         </LocalizedClientLink>

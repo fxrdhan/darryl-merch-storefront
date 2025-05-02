@@ -5,7 +5,6 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  // Orb state: each orb has visual and animation properties
   const [orbs, setOrbs] = useState<{ id: number, size: number, color: string, rotation: number, radius: number, animationDuration: number, reverse: boolean, initialPosition: number }[]>([]);
 
   useEffect(() => {
@@ -16,43 +15,36 @@ const Hero = () => {
       'bg-indigo-300', 'bg-teal-300', 'bg-cyan-300', 'bg-amber-300'
     ];
 
-    // Orbital paths define the distance from the center for each ring of orbs
     const orbitalPaths = [
-      { minRadius: 180, maxRadius: 210 },    // Inner ring
-      { minRadius: 270, maxRadius: 300 },    // Middle-inner ring
-      { minRadius: 360, maxRadius: 390 },    // Middle ring
-      { minRadius: 450, maxRadius: 480 },    // Middle-outer ring
-      { minRadius: 550, maxRadius: 580 },    // Outer ring
-      { minRadius: 650, maxRadius: 700 },    // Far outer ring
-      { minRadius: 750, maxRadius: 800 }     // Edge ring
+      { minRadius: 180, maxRadius: 210 },
+      { minRadius: 270, maxRadius: 300 },
+      { minRadius: 360, maxRadius: 390 },
+      { minRadius: 450, maxRadius: 480 },
+      { minRadius: 550, maxRadius: 580 },
+      { minRadius: 650, maxRadius: 700 },
+      { minRadius: 750, maxRadius: 800 }
     ];
     
-    const orbsPerPath = 4; // Number of orbs per orbital path
+    const orbsPerPath = 4;
 
     const newOrbs = Array.from({ length: orbCount }).map((_, index) => {
-      // Assign orb to a path based on its index
       const pathIndex = Math.floor(index / orbsPerPath) % orbitalPaths.length;
       const orbitalPath = orbitalPaths[pathIndex];
 
-      // Calculate position within the path
       const positionInPath = index % orbsPerPath;
       const rotationOffset = (360 / orbsPerPath) * positionInPath;
       
-      // Random initial position (0-360 degrees) for each orb
       const initialPosition = Math.floor(Math.random() * 360);
 
-      // Calculate radius more evenly within the path range
       const pathRange = orbitalPath.maxRadius - orbitalPath.minRadius;
       const radiusStep = pathRange / orbsPerPath;
       const calculatedRadius = orbitalPath.minRadius + (radiusStep * positionInPath) + (radiusStep / 2);
 
-      // range for orbs based on their path
       const isOuterOrb = pathIndex >= 4;
       const minSize = isOuterOrb ? 100 : 70;
       const maxSize = isOuterOrb ? 160 : 120;
       const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
 
-      // animation for larger orbs
       const baseAnimationDuration = isOuterOrb ? 35 : 25;
       const animationVariance = isOuterOrb ? 20 : 15;
       const animationDuration = (Math.random() * animationVariance) + baseAnimationDuration;
@@ -96,9 +88,16 @@ const Hero = () => {
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center small:p-32 gap-8">
         <Heading
           level="h2"
-          className="text-6xl md:text-7xl leading-tight font-bold mb-6 text-gray-900"
+          className="text-6xl md:text-7xl leading-tight font-bold mb-6 text-gray-900 flex items-center justify-center flex-wrap"
         >
-          Welcome to Darryl Store
+          Welcome to Darryl&nbsp;
+          <div className="text-slide-container">
+            <div className="text-slide-wrapper">
+              <span className="animated-gradient-text-blue">Store</span>
+              <span className="animated-gradient-text-purple">Merch</span>
+              <span className="animated-gradient-text-blue">Store</span>
+            </div>
+          </div>
         </Heading>
         <Heading
           level="h3"

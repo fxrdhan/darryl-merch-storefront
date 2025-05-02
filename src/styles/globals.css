@@ -3,7 +3,6 @@
 @import "tailwindcss/utilities";
 
 @layer utilities {
-  /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -13,11 +12,10 @@
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  /* Added Gradient Animation */
   .animate-gradient-xy {
     background-size: 400% 400%;
     animation: gradient-xy 15s ease infinite;
@@ -28,9 +26,7 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-  /* End Gradient Animation */
 
-  /* Orb animations for slow floating effect */
   .animate-topToBottom {
     animation: topToBottom 20s linear infinite;
   }
@@ -55,7 +51,6 @@
     animation: diagonal2 20s linear infinite;
   }
 
-  /* Orbital animations for elements around the title */
   .animate-orbit {
     animation: orbit 30s linear infinite;
   }
@@ -72,6 +67,50 @@
   @keyframes reverse-orbit {
     0% { transform: rotate(var(--initial-rotation, 360deg)) translateX(var(--radius, 300px)) rotate(calc(-1 * var(--initial-rotation, 360deg))); }
     100% { transform: rotate(calc(var(--initial-rotation, 360deg) - 360deg)) translateX(var(--radius, 300px)) rotate(calc(-1 * var(--initial-rotation, 360deg) + 360deg)); }
+  }
+
+  .text-slide-container {
+    display: inline-block;
+    text-align: left;
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+    vertical-align: bottom;
+    font-size: inherit;
+  }
+
+  .text-slide-wrapper {
+    animation: text-slide-animation 6s linear infinite;
+  }
+
+  .text-slide-wrapper span {
+    display: block;
+    color: black;
+    padding: 0 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  @keyframes text-slide-animation {
+    0% {
+      transform: translateY(0);
+    }
+    35% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-70px);
+    }
+    85% {
+      transform: translateY(-70px);
+    }
+    100% {
+      transform: translateY(-140px);
+    }
   }
 
   input:focus ~ label,
@@ -103,6 +142,48 @@
   input[type="search"]::-webkit-search-results-button,
   input[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance: none;
+  }
+
+  .animated-gradient-text-blue {
+    background: linear-gradient(270deg, #2071f1 0%, #7f5fff 50%, #2071f1 100%);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 3s ease-in-out infinite;
+  }
+
+  .animated-gradient-text-purple {
+    background: linear-gradient(270deg, #7f5fff 0%, #a259f7 50%, #7f5fff 100%);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 3s ease-in-out infinite;
+  }
+
+  .animated-gradient-text {
+    background: linear-gradient(270deg, #7f5fff, #2071f1, #7f5fff);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 3s ease-in-out infinite;
+  }
+
+  @keyframes gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
 
@@ -167,13 +248,12 @@
     @apply text-[32px] leading-[44px] font-semibold;
   }
 
-  /* Liquid Button Animation */
   .liquid-btn {
     position: relative;
     overflow: hidden;
     z-index: 0;
     transition: color 0.3s;
-    color: #111827; /* black text by default */
+    color: #111827;
   }
   .liquid-btn .liquid-bg {
     position: absolute;

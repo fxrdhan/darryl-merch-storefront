@@ -178,6 +178,13 @@ module.exports = {
           "50%": { transform: "translate(-10%, 110%)" },
           "100%": { transform: "translate(110%, -10%)" },
         },
+        "text-slide-down": {
+          "0%": { transform: "translateY(0%)" },
+          "45%": { transform: "translateY(0%)" },
+          "50%": { transform: "translateY(-50%)" },
+          "95%": { transform: "translateY(-70%)" },
+          "100%": { transform: "translateY(-100%)" }
+        },
         "orbit": {
           "0%": { transform: "rotate(0deg) translateX(200px) rotate(0deg)" },
           "100%": { transform: "rotate(360deg) translateX(200px) rotate(-360deg)" }
@@ -208,6 +215,7 @@ module.exports = {
         "rightToLeft": "rightToLeft 20s linear infinite",
         "diagonal1": "diagonal1 20s linear infinite",
         "diagonal2": "diagonal2 20s linear infinite",
+        "text-slide": "text-slide-down 4s ease-in-out infinite",
         "orbit": "orbit 30s linear infinite",
         "reverse-orbit": "reverse-orbit 40s linear infinite",
       },

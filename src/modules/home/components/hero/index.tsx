@@ -139,11 +139,11 @@ const Hero = () => {
         </Heading>
         
         <LocalizedClientLink href="/store">
-          <span className="liquid-btn inline-block relative text-black px-6 py-2">
+          <span className="liquid-btn inline-block relative text-black px-6 py-2 outline-none border-none">
             <span className="liquid-bg"></span>
             <Button
               variant="primary"
-              className="relative z-10 text-lg bg-transparent border-none shadow-none transition-none duration-0 liquid-btn-text tracking-widest hover:font-bold font-weight-animate"
+              className="relative z-10 text-lg bg-transparent outline-none border-none shadow-none transition-none duration-0 liquid-btn-text tracking-widest hover:font-bold font-weight-animate"
               style={{ background: "none", transition: "font-weight 0.3s cubic-bezier(0.4,0,0.2,1)" }}
             >
               <span className="shake-tilt">Explore Products</span>

@@ -1,11 +1,21 @@
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
+import { HttpTypes } from "@medusajs/types"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import FooterCountrySelect from "@modules/layout/components/footer-country-select"
+import { ArrowRightMini } from "@medusajs/icons"
 
-export default async function Footer() {
+const MenuItems = {
+  Home: "/",
+  Store: "/store",
+  Account: "/account",
+  Cart: "/cart",
+}
+
+export default async function Footer({ regions }: { regions?: HttpTypes.StoreRegion[] | null }) {
   const { collections } = await listCollections({
     fields: "*products",
   })
@@ -15,13 +25,32 @@ export default async function Footer() {
     <footer className="border-t border-ui-border-base w-full bg-ui-bg-subtle dark:bg-gray-900 dark:border-gray-800"> 
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-20">
-          <div>
+          <div className="flex flex-col gap-y-4">
             <LocalizedClientLink
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base dark:text-ui-fg-muted dark:hover:text-ui-fg-base uppercase"
             >
               Darryl Store
             </LocalizedClientLink>
+            
+            <div className="mt-6">
+              <span className="txt-small-plus txt-ui-fg-base dark:text-ui-fg-base mb-4 block">
+                Navigation
+              </span>
+              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle dark:text-ui-fg-muted txt-small">
+                {Object.entries(MenuItems).map(([name, href]) => (
+                  <li key={name}>
+                    <LocalizedClientLink
+                      href={href}
+                      className="hover:text-ui-fg-base dark:hover:text-ui-fg-base"
+                      data-testid={`${name.toLowerCase()}-link`}
+                    >
+                      {name}
+                    </LocalizedClientLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
             {productCategories && productCategories?.length > 0 && (
@@ -130,6 +159,12 @@ export default async function Footer() {
               © {new Date().getFullYear()} Darryl Store. All rights reserved.
             </Text>
           </div>
+          
+          {regions && (
+            <div className="flex items-center">
+              <FooterCountrySelect regions={regions} />
+            </div>
+          )}
         </div>
       </div>
     </footer>

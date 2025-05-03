@@ -9,7 +9,7 @@
 </p>
 
 <h1 align="center">
-  Medusa Next.js Starter Template
+  Medusa Next.js e-Commerce Platform
 </h1>
 
 <p align="center">
@@ -94,7 +94,7 @@ yarn dev
 
 ### Open the code and start customizing
 
-Your site is now running at http://localhost:8000!
+Your site is now running at http://localhost:8001!
 
 # Payment integrations
 

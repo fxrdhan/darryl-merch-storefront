@@ -22,7 +22,7 @@ const ProfileDropdown = ({
 }: {
     customer?: HttpTypes.StoreCustomer | null
 }) => {
-    const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
+    const [activeTimer, setActiveTimer] = useState<NodeJS.Timeout | undefined>(
         undefined
     )
     const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)

@@ -78,7 +78,7 @@ const ProfileDropdown = ({
                 href="/account"
                 data-testid="nav-account-link"
             >
-                <User size={16} /> Account
+                <User size={16} /> <span className="ml-1 transition-all duration-300 ease-in-out group-[.navbar-shrunk]:opacity-0 group-[.navbar-shrunk]:max-w-0 group-[.navbar-shrunk]:ml-0 overflow-hidden whitespace-nowrap">Account</span>
             </LocalizedClientLink>
         )
     }
@@ -92,7 +92,7 @@ const ProfileDropdown = ({
             <Popover className="relative h-full">
                 <PopoverButton className="h-full flex items-center gap-x-2 hover:text-ui-fg-base">
                 <LocalizedClientLink href="/account" className="hover:text-ui-fg-base flex items-center gap-x-2 dark:text-gray-100 dark:hover:text-gray-400">
-                        <User size={16} /> <span className="group-[.navbar-shrunk]:hidden">Account</span>
+                        <User size={16} /> <span className="ml-1 transition-all duration-300 ease-in-out group-[.navbar-shrunk]:opacity-0 group-[.navbar-shrunk]:max-w-0 group-[.navbar-shrunk]:ml-0 overflow-hidden whitespace-nowrap">Account</span>
                     </LocalizedClientLink>
                 </PopoverButton>
                 <Transition

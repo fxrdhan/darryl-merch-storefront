@@ -36,7 +36,7 @@ const DarkModeToggle = () => {
         <Button
             onClick={toggleTheme}
             variant="transparent"
-            className="text-ui-fg-muted hover:text-ui-fg-base focus:text-ui-fg-base active:text-ui-fg-base flex items-center gap-x-1 outline-none transition-colors duration-150"
+            className="text-ui-fg-base hover:text-ui-fg-muted focus:text-ui-fg-base active:text-ui-fg-base flex items-center gap-x-1 outline-none transition-colors duration-150"
             onMouseDown={(e) => e.preventDefault()}
         >
             <Icon /> <span className="group-[.navbar-shrunk]:hidden">{text}</span>

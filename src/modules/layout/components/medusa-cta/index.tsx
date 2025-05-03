@@ -2,6 +2,8 @@ import { Text } from "@medusajs/ui"
 
 import Medusa from "../../../common/icons/medusa"
 import NextJs from "../../../common/icons/nextjs"
+import Tailwind from "../../../common/icons/tailwind"
+import ReactIcon from "../../../common/icons/react"
 
 const MedusaCTA = () => {
   return (
@@ -10,9 +12,14 @@ const MedusaCTA = () => {
       <a href="https://www.medusajs.com" target="_blank" rel="noreferrer">
         <Medusa fill="#9ca3af" className="fill-[#9ca3af]" />
       </a>
-      &
       <a href="https://nextjs.org" target="_blank" rel="noreferrer">
         <NextJs fill="#9ca3af" />
+      </a>
+      <a href="https://tailwindcss.com" target="_blank" rel="noreferrer">
+        <Tailwind fill="#9ca3af" />
+      </a>
+      <a href="https://reactjs.org" target="_blank" rel="noreferrer">
+        <ReactIcon fill="#9ca3af" />
       </a>
     </Text>
   )

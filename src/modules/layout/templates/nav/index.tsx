@@ -7,7 +7,6 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import ProfileDropdown from "@modules/layout/components/profile-dropdown"
 import DarkModeToggle from "@modules/layout/components/dark-mode-toggle"
-import SideMenu from "@modules/layout/components/side-menu"
 import NavbarScroll from "@modules/layout/components/navbar-scroll"
 
 export default async function Nav() {
@@ -20,9 +19,6 @@ export default async function Nav() {
         <header className="relative h-16 mx-auto border-b duration-200 border-ui-border-base dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-lg rounded-lg">
           <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
             <div className="flex-1 basis-0 h-full flex items-center">
-              <div className="h-full">
-                <SideMenu regions={regions} />
-              </div>
             </div>
 
             <div className="flex items-center h-full">

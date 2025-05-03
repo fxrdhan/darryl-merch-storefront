@@ -567,7 +567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:^2.2.0":
+"@headlessui/react@npm:^2.2.2":
   version: 2.2.2
   resolution: "@headlessui/react@npm:2.2.2"
   dependencies:
@@ -7828,7 +7828,7 @@ __metadata:
   resolution: "medusa-next@workspace:."
   dependencies:
     "@babel/core": ^7.27.1
-    "@headlessui/react": ^2.2.0
+    "@headlessui/react": ^2.2.2
     "@medusajs/js-sdk": ^2.7.1
     "@medusajs/types": ^2.7.1
     "@medusajs/ui": ^4.0.9

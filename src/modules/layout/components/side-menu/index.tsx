@@ -65,18 +65,18 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
               as={Fragment}
               enter="transition ease-out duration-300"
               enterFrom="opacity-0 transform -translate-x-full"
-              enterTo="opacity-100 transform translate-x-0 backdrop-blur-2xl"
+              enterTo="opacity-100 transform translate-x-0"
               leave="transition ease-in-out duration-300"
-              leaveFrom="opacity-100 transform translate-x-0 backdrop-blur-2xl"
+              leaveFrom="opacity-100 transform translate-x-0"
               leaveTo="opacity-0 transform -translate-x-full"
             >
               <PopoverPanel
                 static
-                className="flex flex-col fixed top-0 left-0 h-[calc(100vh-1rem)] w-4/5 max-w-xs sm:w-1/3 2xl:w-1/4 sm:min-w-min z-50 text-sm text-ui-fg-on-color m-2 backdrop-blur-2xl transition-all duration-300 ease-in-out"
+                className="flex flex-col fixed top-0 left-0 h-[calc(100vh-1rem)] w-4/5 max-w-xs sm:w-1/3 2xl:w-1/4 sm:min-w-min z-50 text-sm text-ui-fg-on-color m-2 transition-all duration-300 ease-in-out"
               >
                 <div
                   data-testid="nav-menu-popup"
-                  className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] rounded-rounded justify-between p-6 transform transition-transform duration-300 ease-in-out"
+                  className="flex flex-col h-full bg-ui-bg-base rounded-rounded justify-between p-6 transform transition-transform duration-300 ease-in-out"
                 >
                   <div className="flex justify-end" id="xmark">
                     <button 

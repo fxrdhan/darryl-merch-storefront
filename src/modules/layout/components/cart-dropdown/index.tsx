@@ -88,8 +88,8 @@ const CartDropdown = ({
             data-testid="nav-cart-link"
           >
             <div className="flex items-center gap-x-1">
-              <ShoppingCart />
-              <span className="ml-1 group-[.navbar-shrunk]:hidden">Cart</span>
+              <ShoppingCart/>
+              <span className="ml-1 transition-all duration-300 ease-in-out group-[.navbar-shrunk]:opacity-0 group-[.navbar-shrunk]:max-w-0 group-[.navbar-shrunk]:ml-0 overflow-hidden whitespace-nowrap">Cart</span>
               <span>({totalItems})</span>
             </div>
           </LocalizedClientLink>

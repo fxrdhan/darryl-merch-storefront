@@ -63,7 +63,7 @@ const ProfileDropdown = ({
             }
         }
     }, [activeTimer])
-    
+
     if (pathname.includes("/account") || pathname.includes("/checkout")) {
         return (
             <LocalizedClientLink
@@ -84,7 +84,9 @@ const ProfileDropdown = ({
         >
             <Popover className="relative h-full">
                 <PopoverButton className="h-full flex items-center gap-x-2 hover:text-ui-fg-base">
-                    <User size={16} /> Account
+                    <LocalizedClientLink href="/account" className="hover:text-ui-fg-base flex items-center gap-x-2">
+                        <User size={16} /> Account
+                    </LocalizedClientLink>
                 </PopoverButton>
                 <Transition
                     show={profileDropdownOpen}

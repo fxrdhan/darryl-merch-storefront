@@ -124,11 +124,13 @@ export default async function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted dark:text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Darryl Store. All rights reserved.
-          </Text>
-          <MedusaCTA />
+        <div className="flex w-full mb-8 justify-between text-ui-fg-muted dark:text-ui-fg-muted">
+          <div className="flex flex-col gap-y-8">
+            <MedusaCTA />
+            <Text className="txt-compact-small">
+              © {new Date().getFullYear()} Darryl Store. All rights reserved.
+            </Text>
+          </div>
           <DarkModeToggle />
         </div>
       </div>

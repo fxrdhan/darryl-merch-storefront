@@ -2,77 +2,91 @@
 
 import { Button, Heading } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Hero = () => {
-  const [orbs, setOrbs] = useState<{ id: number, size: number, color: string, rotation: number, radius: number, animationDuration: number, reverse: boolean, initialPosition: number }[]>([]);
+  const [orbs, setOrbs] = useState<{ id: number, size: number, color: string, rotation: number, radius: number, animationDuration: number, reverse: boolean, initialPosition: number, animationDelay: number }[]>([]);
   const emotes = ["🥳", "🤩", "😎", "😋", "🙌", "🔥", "🎉", "🫶"];
   const [currentEmote, setCurrentEmote] = useState(emotes[0]);
   const [animate, setAnimate] = useState(false);
+  const orbsInitialized = useRef(false);
 
   const handleEmoteClick = () => {
     setAnimate(true);
-    const currentIndex = emotes.indexOf(currentEmote);
-    const nextIndex = (currentIndex + 1) % emotes.length;
-    setCurrentEmote(emotes[nextIndex]);
+
+    setCurrentEmote(prevEmote => {
+      const currentIndex = emotes.indexOf(prevEmote);
+      const nextIndex = (currentIndex + 1) % emotes.length;
+      return emotes[nextIndex];
+    });
+
     setTimeout(() => setAnimate(false), 500);
   };
 
   useEffect(() => {
-    const orbCount = 28; 
-    const colors = [
-      'bg-blue-300', 'bg-purple-300', 'bg-pink-300', 'bg-yellow-300', 'bg-green-300',
-      'bg-blue-200', 'bg-purple-200', 'bg-pink-200', 'bg-yellow-200', 'bg-green-200',
-      'bg-indigo-300', 'bg-teal-300', 'bg-cyan-300', 'bg-amber-300'
-    ];
-
-    const orbitalPaths = [
-      { minRadius: 180, maxRadius: 210 },
-      { minRadius: 270, maxRadius: 300 },
-      { minRadius: 360, maxRadius: 390 },
-      { minRadius: 450, maxRadius: 480 },
-      { minRadius: 550, maxRadius: 580 },
-      { minRadius: 650, maxRadius: 700 },
-      { minRadius: 750, maxRadius: 800 }
-    ];
+    if (orbsInitialized.current) return;
     
-    const orbsPerPath = 4;
+    const initializeOrbs = () => {
+      const orbCount = 28; 
+      const colors = [
+        'bg-blue-300', 'bg-purple-300', 'bg-pink-300', 'bg-yellow-300', 'bg-green-300',
+        'bg-blue-200', 'bg-purple-200', 'bg-pink-200', 'bg-yellow-200', 'bg-green-200',
+        'bg-indigo-300', 'bg-teal-300', 'bg-cyan-300', 'bg-amber-300'
+      ];
 
-    const newOrbs = Array.from({ length: orbCount }).map((_, index) => {
-      const pathIndex = Math.floor(index / orbsPerPath) % orbitalPaths.length;
-      const orbitalPath = orbitalPaths[pathIndex];
-
-      const positionInPath = index % orbsPerPath;
-      const rotationOffset = (360 / orbsPerPath) * positionInPath;
+      const orbitalPaths = [
+        { minRadius: 180, maxRadius: 210 },
+        { minRadius: 270, maxRadius: 300 },
+        { minRadius: 360, maxRadius: 390 },
+        { minRadius: 450, maxRadius: 480 },
+        { minRadius: 550, maxRadius: 580 },
+        { minRadius: 650, maxRadius: 700 },
+        { minRadius: 750, maxRadius: 800 }
+      ];
       
-      const initialPosition = Math.floor(Math.random() * 360);
+      const orbsPerPath = 4;
 
-      const pathRange = orbitalPath.maxRadius - orbitalPath.minRadius;
-      const radiusStep = pathRange / orbsPerPath;
-      const calculatedRadius = orbitalPath.minRadius + (radiusStep * positionInPath) + (radiusStep / 2);
+      const newOrbs = Array.from({ length: orbCount }).map((_, index) => {
+        const pathIndex = Math.floor(index / orbsPerPath) % orbitalPaths.length;
+        const orbitalPath = orbitalPaths[pathIndex];
 
-      const isOuterOrb = pathIndex >= 4;
-      const minSize = isOuterOrb ? 100 : 70;
-      const maxSize = isOuterOrb ? 160 : 120;
-      const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
+        const positionInPath = index % orbsPerPath;
+        const rotationOffset = (360 / orbsPerPath) * positionInPath;
+        
+        const initialPosition = Math.floor(Math.random() * 360);
 
-      const baseAnimationDuration = isOuterOrb ? 35 : 25;
-      const animationVariance = isOuterOrb ? 20 : 15;
-      const animationDuration = (Math.random() * animationVariance) + baseAnimationDuration;
+        const pathRange = orbitalPath.maxRadius - orbitalPath.minRadius;
+        const radiusStep = pathRange / orbsPerPath;
+        const calculatedRadius = orbitalPath.minRadius + (radiusStep * positionInPath) + (radiusStep / 2);
 
-      return {
-        id: index,
-        size: size,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        rotation: rotationOffset + (pathIndex * 10),
-        radius: calculatedRadius,
-        animationDuration: animationDuration,
-        reverse: (index % 2 === 0),
-        initialPosition: initialPosition
-      };
-    });
+        const isOuterOrb = pathIndex >= 4;
+        const minSize = isOuterOrb ? 100 : 70;
+        const maxSize = isOuterOrb ? 160 : 120;
+        const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
 
-    setOrbs(newOrbs);
+        const baseAnimationDuration = isOuterOrb ? 35 : 25;
+        const animationVariance = isOuterOrb ? 20 : 15;
+        const animationDuration = (Math.random() * animationVariance) + baseAnimationDuration;
+        const animationDelay = Math.random() * animationDuration;
+
+        return {
+          id: index,
+          size: size,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: rotationOffset + (pathIndex * 10),
+          radius: calculatedRadius,
+          animationDuration: animationDuration,
+          animationDelay: animationDelay,
+          reverse: (index % 2 === 0),
+          initialPosition: initialPosition
+        };
+      });
+
+      setOrbs(newOrbs);
+      orbsInitialized.current = true;
+    };
+
+    initializeOrbs();
   }, []);
 
   return (
@@ -87,8 +101,8 @@ const Hero = () => {
               height: `${orb.size}px`,
               transformOrigin: 'center center',
               animationDuration: `${orb.animationDuration}s`,
+              animationDelay: `-${orb.animationDelay}s`,
               transform: `rotate(${orb.initialPosition}deg) translateX(${orb.radius}px) rotate(-${orb.initialPosition}deg)`,
-              animationDelay: `-${Math.floor(Math.random() * orb.animationDuration)}s`,
               '--radius': `${orb.radius}px`,
               '--initial-rotation': `${orb.initialPosition}deg`,
             } as React.CSSProperties}

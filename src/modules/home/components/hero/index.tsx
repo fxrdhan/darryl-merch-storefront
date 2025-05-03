@@ -90,7 +90,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full border-b border-ui-border-base relative overflow-hidden bg-white">
+    <div className="h-screen w-full border-b border-ui-border-base relative overflow-hidden bg-white select-none">
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {orbs.map((orb) => (
           <div

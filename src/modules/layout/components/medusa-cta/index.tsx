@@ -6,6 +6,7 @@ import Medusa from "../../../common/icons/medusa"
 import NextJs from "../../../common/icons/nextjs"
 import Tailwind from "../../../common/icons/tailwind"
 import ReactIcon from "../../../common/icons/react"
+import TypeScript from "../../../common/icons/typescript"
 
 const MedusaCTA = () => {
   return (
@@ -22,6 +23,9 @@ const MedusaCTA = () => {
       </a>
       <a href="https://reactjs.org" target="_blank" rel="noreferrer">
         <ReactIcon fill="#9ca3af" />
+      </a>
+      <a href="https://www.typescriptlang.org" target="_blank" rel="noreferrer">
+        <TypeScript fill="#9ca3af" />
       </a>
     </Text>
   )

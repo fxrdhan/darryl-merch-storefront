@@ -165,7 +165,10 @@ const ProfileDropdown = ({
             <ConfirmationModal
                 isOpen={isModalOpen}
                 onClose={closeModal}
-                onConfirm={handleLogout}
+                onConfirm={() => {
+                    closeModal()
+                    handleLogout()
+                }}
                 title="Konfirmasi Logout"
                 message="Apakah Anda yakin ingin logout?"
                 confirmText="Logout"

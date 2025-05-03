@@ -37,7 +37,7 @@ const NavbarScroll = ({ children }: NavbarScrollProps) => {
             <div
                 className={`transition-all duration-300 ${isNavbarShrunk
                     ? 'rounded-lg shadow-md mx-2 mt-2 overflow-hidden border border-ui-border-base dark:border-gray-700'
-                    : ''
+                    : 'border-b border-transparent' 
                 }`}
             >
                 {children}

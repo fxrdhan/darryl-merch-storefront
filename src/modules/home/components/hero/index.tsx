@@ -88,7 +88,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center small:p-32 gap-8">
         <Heading
           level="h2"
-          className="text-6xl md:text-7xl leading-tight font-bold mb-6 text-gray-900 flex items-center justify-center flex-wrap"
+          className="text-7xl md:text-8xl leading-tight font-bold mb-6 text-gray-900 flex items-center justify-center flex-wrap"
         >
           Welcome to Darryl&nbsp;
           <div className="text-slide-container">
@@ -111,7 +111,7 @@ const Hero = () => {
             <span className="liquid-bg"></span>
             <Button
               variant="primary"
-              className="relative z-10 text-md bg-transparent border-none shadow-none transition-none duration-0 liquid-btn-text font-bold tracking-widest"
+              className="relative z-10 text-lg bg-transparent border-none shadow-none transition-none duration-0 liquid-btn-text tracking-widest"
               style={{ background: "none" }}
             >
               <span className="shake-tilt">Explore Products</span>

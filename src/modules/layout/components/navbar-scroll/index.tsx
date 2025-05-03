@@ -1,31 +1,41 @@
 'use client'
 
-import { useEffect, useState, ReactNode } from 'react'
+import { useEffect, useState, ReactNode, useRef } from 'react'
 
 type NavbarScrollProps = {
     children: ReactNode
 }
 
 const NavbarScroll = ({ children }: NavbarScrollProps) => {
-    const [isScrolled, setIsScrolled] = useState(false)
+    const [isNavbarShrunk, setIsNavbarShrunk] = useState(false)
+    const lastScrollY = useRef(0)
+    const shrinkThreshold = 50
+    const expandThreshold = 150
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 20) {
-                setIsScrolled(true)
-            } else {
-                setIsScrolled(false)
+            const currentScrollY = window.scrollY
+
+            if (currentScrollY > lastScrollY.current && currentScrollY > shrinkThreshold) {
+                setIsNavbarShrunk(true)
+            } else if (currentScrollY < lastScrollY.current) {
+                if (currentScrollY < expandThreshold) {
+                    setIsNavbarShrunk(false)
+                }
+            } else if (currentScrollY <= shrinkThreshold) {
+                setIsNavbarShrunk(false)
             }
+            lastScrollY.current = currentScrollY
         }
 
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    }, [shrinkThreshold, expandThreshold])
 
     return (
-        <div className={`transition-all duration-300 ${isScrolled ? 'px-4' : ''}`}>
+        <div className={`transition-all duration-300 ${isNavbarShrunk ? 'px-4' : ''}`}>
             <div
-                className={`transition-all duration-300 ${isScrolled
+                className={`transition-all duration-300 ${isNavbarShrunk
                     ? 'rounded-lg shadow-md mx-2 mt-2 overflow-hidden border border-ui-border-base dark:border-gray-700'
                     : ''
                 }`}

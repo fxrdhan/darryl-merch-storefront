@@ -13,7 +13,7 @@ module.exports = {
   theme: {
     extend: {
       transitionProperty: {
-        width: "width margin",
+        width: "width max-width margin opacity",
         height: "height",
         bg: "background-color",
         display: "display opacity",

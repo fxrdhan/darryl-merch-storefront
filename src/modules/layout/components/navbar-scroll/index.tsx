@@ -37,7 +37,9 @@ const NavbarScroll = ({ children }: NavbarScrollProps) => {
             {isNavbarShrunk && (
                 <div className="h-4 transition-all duration-300" />
             )}
-            <div className={`transition-all duration-300 ${isNavbarShrunk ? 'px-4' : ''}`}>
+            <div
+                className={`transition-all duration-300 ${isNavbarShrunk ? 'px-4 navbar-shrunk' : ''} group`}
+            >
                 <div
                     className={`transition-all duration-300 ${isNavbarShrunk
                         ? 'rounded-lg shadow-md mx-2 mt-2 overflow-hidden border border-ui-border-base dark:border-gray-700'

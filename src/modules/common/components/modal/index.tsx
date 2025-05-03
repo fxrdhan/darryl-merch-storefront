@@ -8,7 +8,7 @@ import X from "@modules/common/icons/x"
 type ModalProps = {
   isOpen: boolean
   close: () => void
-  size?: "small" | "medium" | "large"
+  size?: "xsmall" | "small" | "medium" | "large"
   search?: boolean
   children: React.ReactNode
   'data-testid'?: string
@@ -61,6 +61,7 @@ const Modal = ({
                 className={clx(
                   "flex flex-col justify-start w-full transform p-5 text-left align-middle transition-all max-h-[75vh] h-fit",
                   {
+                    "max-w-xs": size === "xsmall",
                     "max-w-md": size === "small",
                     "max-w-xl": size === "medium",
                     "max-w-3xl": size === "large",

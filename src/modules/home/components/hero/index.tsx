@@ -27,7 +27,6 @@ const Hero = () => {
     if (orbsInitialized.current) return;
     
     const initializeOrbs = () => {
-      const orbCount = 28; 
       const colors = [
         'bg-blue-300', 'bg-purple-300', 'bg-pink-300', 'bg-yellow-300', 'bg-green-300',
         'bg-blue-200', 'bg-purple-200', 'bg-pink-200', 'bg-yellow-200', 'bg-green-200',
@@ -35,52 +34,59 @@ const Hero = () => {
       ];
 
       const orbitalPaths = [
-        { minRadius: 180, maxRadius: 210 },
-        { minRadius: 270, maxRadius: 300 },
-        { minRadius: 360, maxRadius: 390 },
-        { minRadius: 450, maxRadius: 480 },
-        { minRadius: 550, maxRadius: 580 },
-        { minRadius: 650, maxRadius: 700 },
-        { minRadius: 750, maxRadius: 800 }
+        { minRadius: 150, maxRadius: 180, orbCount: 3 },
+        { minRadius: 220, maxRadius: 250, orbCount: 4 },
+        { minRadius: 290, maxRadius: 320, orbCount: 5 },
+        { minRadius: 360, maxRadius: 390, orbCount: 6 },
+        { minRadius: 430, maxRadius: 460, orbCount: 7 },
+        { minRadius: 500, maxRadius: 530, orbCount: 8 },
+        { minRadius: 570, maxRadius: 600, orbCount: 9 },
+        { minRadius: 650, maxRadius: 680, orbCount: 10 },
+        { minRadius: 730, maxRadius: 760, orbCount: 11 },
+        { minRadius: 810, maxRadius: 840, orbCount: 12 },
+        { minRadius: 890, maxRadius: 920, orbCount: 13 }
       ];
       
-      const orbsPerPath = 4;
-
-      const newOrbs = Array.from({ length: orbCount }).map((_, index) => {
-        const pathIndex = Math.floor(index / orbsPerPath) % orbitalPaths.length;
+      const totalOrbs = orbitalPaths.reduce((sum, path) => sum + path.orbCount, 0);
+      
+      let orbIndex = 0;
+      const newOrbs = [];
+      
+      for (let pathIndex = 0; pathIndex < orbitalPaths.length; pathIndex++) {
         const orbitalPath = orbitalPaths[pathIndex];
-
-        const positionInPath = index % orbsPerPath;
-        const rotationOffset = (360 / orbsPerPath) * positionInPath;
-        
-        const initialPosition = Math.floor(Math.random() * 360);
-
+        const orbsInCurrentPath = orbitalPath.orbCount;
         const pathRange = orbitalPath.maxRadius - orbitalPath.minRadius;
-        const radiusStep = pathRange / orbsPerPath;
-        const calculatedRadius = orbitalPath.minRadius + (radiusStep * positionInPath) + (radiusStep / 2);
-
-        const isOuterOrb = pathIndex >= 4;
-        const minSize = isOuterOrb ? 100 : 70;
-        const maxSize = isOuterOrb ? 160 : 120;
-        const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
-
-        const baseAnimationDuration = isOuterOrb ? 35 : 25;
-        const animationVariance = isOuterOrb ? 20 : 15;
-        const animationDuration = (Math.random() * animationVariance) + baseAnimationDuration;
-        const animationDelay = Math.random() * animationDuration;
-
-        return {
-          id: index,
-          size: size,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          rotation: rotationOffset + (pathIndex * 10),
-          radius: calculatedRadius,
-          animationDuration: animationDuration,
-          animationDelay: animationDelay,
-          reverse: (index % 2 === 0),
-          initialPosition: initialPosition
-        };
-      });
+        
+        for (let i = 0; i < orbsInCurrentPath; i++) {
+          const rotationOffset = (360 / orbsInCurrentPath) * i;
+          const initialPosition = Math.floor(Math.random() * 360);
+          
+          const radiusStep = pathRange / orbsInCurrentPath;
+          const calculatedRadius = orbitalPath.minRadius + (radiusStep * i) + (radiusStep / 2);
+          
+          const isOuterOrb = pathIndex >= 5;
+          const minSize = isOuterOrb ? 100 : 70;
+          const maxSize = isOuterOrb ? 160 : 120;
+          const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
+          
+          const baseAnimationDuration = isOuterOrb ? 35 : 25;
+          const animationVariance = isOuterOrb ? 20 : 15;
+          const animationDuration = (Math.random() * animationVariance) + baseAnimationDuration;
+          const animationDelay = Math.random() * animationDuration;
+          
+          newOrbs.push({
+            id: orbIndex++,
+            size: size,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            rotation: rotationOffset + (pathIndex * 10),
+            radius: calculatedRadius,
+            animationDuration: animationDuration,
+            animationDelay: animationDelay,
+            reverse: (orbIndex % 2 === 0),
+            initialPosition: initialPosition
+          });
+        }
+      }
 
       setOrbs(newOrbs);
       orbsInitialized.current = true;

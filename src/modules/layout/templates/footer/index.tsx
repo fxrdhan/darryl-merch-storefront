@@ -14,7 +14,7 @@ export default async function Footer() {
   return (
     <footer className="border-t border-ui-border-base w-full bg-ui-bg-subtle dark:bg-gray-900 dark:border-gray-800"> 
       <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-20">
           <div>
             <LocalizedClientLink
               href="/"
@@ -124,7 +124,7 @@ export default async function Footer() {
           </div>
         </div>
         <div className="flex w-full mb-8 justify-between text-ui-fg-muted dark:text-ui-fg-muted">
-          <div className="flex flex-col gap-y-8">
+          <div className="flex flex-col gap-y-4">
             <MedusaCTA />
             <Text className="txt-compact-small">
               © {new Date().getFullYear()} Darryl Store. All rights reserved.

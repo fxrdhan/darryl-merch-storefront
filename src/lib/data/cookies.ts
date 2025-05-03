@@ -1,4 +1,4 @@
-import "server-only"
+// import "server-only" // Disabled because it caused build errors when the module was imported by a non-server context (middleware)
 import { cookies as nextCookies } from "next/headers"
 
 export const getAuthHeaders = async (): Promise<

@@ -6,6 +6,7 @@ import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import ProfileDropdown from "@modules/layout/components/profile-dropdown"
+import DarkModeToggle from "@modules/layout/components/dark-mode-toggle"
 import SideMenu from "@modules/layout/components/side-menu"
 
 export default async function Nav() {
@@ -35,6 +36,7 @@ export default async function Nav() {
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
               <ProfileDropdown customer={customer} />
+              <DarkModeToggle />
             </div>
             <Suspense
               fallback={

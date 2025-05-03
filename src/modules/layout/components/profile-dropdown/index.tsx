@@ -107,7 +107,7 @@ const ProfileDropdown = ({
                 >
                     <PopoverPanel
                         static
-                        className="rounded-b-lg shadow-xl hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[280px] text-ui-fg-base"
+                        className="rounded-b-lg shadow-xl hidden small:block absolute top-[calc(100%+1px)] left-1/2 transform -translate-x-1/2 bg-white border-x border-b border-gray-200 w-[280px] text-ui-fg-base"
                         data-testid="nav-profile-dropdown"
                     >
                         <div className="p-4 flex flex-col gap-y-2">

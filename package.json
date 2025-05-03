@@ -33,7 +33,7 @@
     "webpack": "^5"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
+    "@babel/core": "^7.27.1",
     "@medusajs/types": "latest",
     "@medusajs/ui-preset": "latest",
     "@tailwindcss/postcss": "^4.1.5",

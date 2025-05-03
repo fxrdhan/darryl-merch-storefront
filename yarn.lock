@@ -189,7 +189,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.17.5":
+"@babel/core@npm:^7.27.1":
   version: 7.27.1
   resolution: "@babel/core@npm:7.27.1"
   dependencies:
@@ -7538,7 +7538,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "medusa-next@workspace:."
   dependencies:
-    "@babel/core": ^7.17.5
+    "@babel/core": ^7.27.1
     "@headlessui/react": ^2.2.0
     "@medusajs/js-sdk": latest
     "@medusajs/types": latest

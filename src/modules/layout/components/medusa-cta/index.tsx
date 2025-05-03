@@ -18,7 +18,7 @@ const MedusaCTA = () => {
       <a href="https://nextjs.org" target="_blank" rel="noreferrer">
         <NextJs fill="#9ca3af" />
       </a>
-      <a href="https://tailwindcss.com" target="_blank" rel="noreferrer">
+      <a href="https://v3.tailwindcss.com" target="_blank" rel="noreferrer">
         <Tailwind fill="#9ca3af" />
       </a>
       <a href="https://reactjs.org" target="_blank" rel="noreferrer">

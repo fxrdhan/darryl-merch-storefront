@@ -29,7 +29,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center small:p-32 gap-10">
         <Heading
           level="h2"
-          className="text-7xl md:text-8xl leading-tight font-bold mb-6 text-gray-900 dark:text-white flex items-center justify-center flex-wrap"
+          className="text-6xl md:text-8xl leading-tight font-bold mb-6 text-gray-900 dark:text-white flex items-center justify-center flex-wrap"
         >
           Welcome to Darryl&nbsp;
           <div className="text-slide-container">
@@ -42,12 +42,12 @@ const Hero = () => {
         </Heading>
         <Heading
           level="h3"
-          className="text-2xl md:text-3xl leading-8 font-medium text-gray-700 dark:text-gray-300"
+          className="text-xl md:text-3xl leading-8 font-medium text-gray-700 dark:text-gray-300 flex flex-wrap justify-center items-center"
         >
           Belanja Merchandise Darryl disini{" "}
           <span 
             onClick={handleEmoteClick} 
-            className={`cursor-pointer inline-block ${animate ? 'animate-bounce' : ''}`}
+            className={`cursor-pointer inline-block ${animate ? 'animate-bounce' : ''} md:inline block w-full mt-2 md:mt-0 md:w-auto`}
             style={{ transition: "transform 0.3s" }}
           >
             {currentEmote}
@@ -59,7 +59,7 @@ const Hero = () => {
             <span className="liquid-bg"></span>
             <Button
               variant="primary"
-              className="relative z-10 text-lg bg-transparent outline-none border-none shadow-none transition-duration-0 liquid-btn-text tracking-widest font-weight-animate"
+              className="relative z-10 text-base md:text-lg bg-transparent outline-none border-none shadow-none transition-duration-0 liquid-btn-text tracking-widest font-weight-animate"
               style={{ background: "none", transition: "font-weight 0.3s cubic-bezier(0.4,0,0.2,1)" }}
             >
               <span className="shake-tilt text-black dark:text-white group-hover:font-bold group-hover:text-white dark:group-hover:text-zinc-200">Explore Products</span>

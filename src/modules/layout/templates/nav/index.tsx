@@ -16,8 +16,8 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <NavbarScroll>
-        <header className="relative h-16 mx-auto border-b duration-200 border-ui-border-base dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-lg rounded-lg">
-        <nav className="content-container txt-xsmall-plus md:text-base-regular text-ui-fg-subtle dark:text-ui-fg-muted flex items-center justify-between w-full h-full">
+        <header className="relative h-12 md:h-16 mx-auto border-b duration-200 border-ui-border-base dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-lg rounded-lg">
+          <nav className="content-container txt-xsmall-plus md:text-base-regular text-ui-fg-subtle dark:text-ui-fg-muted flex items-center justify-between w-full h-full">
             <div className="flex-1 basis-0 h-full flex items-center">
               <Suspense
                 fallback={
@@ -37,7 +37,7 @@ export default async function Nav() {
             <div className="flex items-center h-full">
               <LocalizedClientLink
                 href="/"
-                className="txt-compact-xlarge-plus hover:text-ui-fg-base dark:text-white dark:hover:text-gray-500 uppercase"
+                className="txt-compact-large-plus md:txt-compact-xlarge-plus hover:text-ui-fg-base dark:text-white dark:hover:text-gray-500 uppercase"
                 data-testid="nav-store-link"
               >
                 Darryl Store

@@ -154,17 +154,16 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
         </div>
         <div className="flex w-full mb-8 justify-between text-ui-fg-muted dark:text-ui-fg-muted">
           <div className="flex flex-col gap-y-4">
+            {regions && (
+              <div className="flex items-center pb-8">
+                <FooterCountrySelect regions={regions} />
+              </div>
+            )}
             <MedusaCTA />
             <Text className="txt-compact-small">
               © {new Date().getFullYear()} Darryl Store. All rights reserved.
             </Text>
           </div>
-          
-          {regions && (
-            <div className="flex items-center">
-              <FooterCountrySelect regions={regions} />
-            </div>
-          )}
         </div>
       </div>
     </footer>

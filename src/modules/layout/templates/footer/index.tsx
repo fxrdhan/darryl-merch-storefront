@@ -4,7 +4,6 @@ import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
-import DarkModeToggle from "@modules/layout/components/dark-mode-toggle";
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -131,7 +130,6 @@ export default async function Footer() {
               © {new Date().getFullYear()} Darryl Store. All rights reserved.
             </Text>
           </div>
-          <DarkModeToggle />
         </div>
       </div>
     </footer>

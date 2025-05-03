@@ -36,7 +36,6 @@ export default async function Nav() {
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
               <ProfileDropdown customer={customer} />
-              <DarkModeToggle />
             </div>
             <Suspense
               fallback={
@@ -51,6 +50,7 @@ export default async function Nav() {
             >
               <CartButton />
             </Suspense>
+            <DarkModeToggle />
           </div>
         </nav>
       </header>

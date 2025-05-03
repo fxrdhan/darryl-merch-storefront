@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Sun, Moon } from '@medusajs/icons'; // Asumsi ikon tersedia
+import { Sun, Moon } from '@medusajs/icons';
 import { IconButton } from '@medusajs/ui';
 
 const DarkModeToggle = () => {
     const [theme, setTheme] = useState<string>('light');
 
     useEffect(() => {
-        // Baca tema dari localStorage saat komponen dimuat di client
         const storedTheme = localStorage.getItem('theme');
         const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         setTheme(initialTheme);
@@ -29,11 +28,6 @@ const DarkModeToggle = () => {
             document.documentElement.classList.remove('dark');
         }
     };
-
-    // Jangan render di server, tunggu hingga client-side hydration
-    if (typeof window === 'undefined') {
-        return null;
-    }
 
     return (
         <IconButton onClick={toggleTheme} variant="transparent" className="text-ui-fg-muted hover:text-ui-fg-base">

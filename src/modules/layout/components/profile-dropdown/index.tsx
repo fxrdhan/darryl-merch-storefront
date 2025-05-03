@@ -14,6 +14,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import User from "@modules/common/icons/user"
 import { ArrowRightOnRectangle } from "@medusajs/icons"
 import { signout } from "@lib/data/customer"
+import ConfirmationModal from "@modules/common/components/confirmation-modal"
+import useToggleState from "@lib/hooks/use-toggle-state"
 
 const ProfileDropdown = ({
     customer,
@@ -24,6 +26,8 @@ const ProfileDropdown = ({
         undefined
     )
     const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
+    const { state: isModalOpen, open: openModal, close: closeModal } = useToggleState(false)
+    const [isLoggingOut, setIsLoggingOut] = useState(false)
 
     const { countryCode } = useParams() as { countryCode: string }
     const pathname = usePathname()
@@ -32,8 +36,11 @@ const ProfileDropdown = ({
     const close = () => setProfileDropdownOpen(false)
 
     const handleLogout = async () => {
+        setIsLoggingOut(true)
         await signout(countryCode)
         close()
+        closeModal()
+        setIsLoggingOut(false)
     }
 
     const timedOpen = () => {
@@ -123,7 +130,7 @@ const ProfileDropdown = ({
                                     <hr className="my-2 border-gray-200" />
                                     <button
                                         className="block w-full text-left text-rose-500 hover:text-rose-600 px-2 py-1 rounded transition-colors flex items-center"
-                                        onClick={handleLogout}
+                                        onClick={openModal}
                                         data-testid="logout-button"
                                         type="button"
                                     >
@@ -146,6 +153,16 @@ const ProfileDropdown = ({
                     </PopoverPanel>
                 </Transition>
             </Popover>
+            <ConfirmationModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onConfirm={handleLogout}
+                title="Konfirmasi Logout"
+                message="Apakah Anda yakin ingin logout?"
+                confirmText="Logout"
+                cancelText="Batal"
+                isLoading={isLoggingOut}
+            />
         </div>
     )
 }

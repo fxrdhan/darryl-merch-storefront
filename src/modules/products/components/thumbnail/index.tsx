@@ -1,6 +1,8 @@
+"use client"
+
 import { Container, clx } from "@medusajs/ui"
 import Image from "next/image"
-import React from "react"
+import React, { useState } from "react"
 
 import PlaceholderImage from "@modules/common/icons/placeholder-image"
 
@@ -23,12 +25,14 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   "data-testid": dataTestid,
 }) => {
   const initialImage = thumbnail || images?.[0]?.url
+  const [loading, setLoading] = useState(true)
 
   return (
     <Container
       className={clx(
         "relative w-full overflow-hidden p-4 bg-ui-bg-subtle shadow-elevation-card-rest rounded-large group-hover:shadow-elevation-card-hover transition-shadow ease-in-out duration-150",
         className,
+        { "animate-pulse": loading && initialImage },
         {
           "aspect-[11/14]": isFeatured,
           "aspect-[9/16]": !isFeatured && size !== "square",
@@ -41,7 +45,11 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
       )}
       data-testid={dataTestid}
     >
-      <ImageOrPlaceholder image={initialImage} size={size} />
+      <ImageOrPlaceholder
+        image={initialImage}
+        size={size}
+        setLoading={setLoading}
+      />
     </Container>
   )
 }
@@ -49,13 +57,18 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 const ImageOrPlaceholder = ({
   image,
   size,
-}: Pick<ThumbnailProps, "size"> & { image?: string }) => {
+  setLoading,
+}: Pick<ThumbnailProps, "size"> & {
+  image?: string
+  setLoading: (loading: boolean) => void
+}) => {
   return image ? (
     <Image
       src={image}
       alt="Thumbnail"
       className="absolute inset-0 object-cover object-center"
       draggable={false}
+      onLoad={() => setLoading(false)}
       quality={50}
       sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
       fill

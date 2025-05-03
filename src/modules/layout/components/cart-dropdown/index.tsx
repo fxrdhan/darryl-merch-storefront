@@ -89,6 +89,7 @@ const CartDropdown = ({
           >
             <div className="flex items-center gap-x-1">
               <ShoppingCart />
+              <span className="ml-1 group-[.navbar-shrunk]:hidden">Cart</span>
               <span>({totalItems})</span>
             </div>
           </LocalizedClientLink>

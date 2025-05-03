@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Sun, Moon } from '@medusajs/icons';
-import { IconButton } from '@medusajs/ui';
+import { Button, clx } from '@medusajs/ui';
 
 const DarkModeToggle = () => {
     const [theme, setTheme] = useState<string>('light');
@@ -29,10 +29,17 @@ const DarkModeToggle = () => {
         }
     };
 
+    const Icon = theme === 'light' ? Moon : Sun;
+    const text = theme === 'light' ? 'Light' : 'Dark';
+
     return (
-        <IconButton onClick={toggleTheme} variant="transparent" className="text-ui-fg-muted hover:text-ui-fg-base">
-            {theme === 'light' ? <Moon /> : <Sun />}
-        </IconButton>
+        <Button
+            onClick={toggleTheme}
+            variant="transparent"
+            className="text-ui-fg-muted hover:text-ui-fg-base flex items-center gap-x-1"
+        >
+            <Icon /> <span className="group-[.navbar-shrunk]:hidden">{text}</span>
+        </Button>
     );
 };
 

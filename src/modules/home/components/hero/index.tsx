@@ -6,6 +6,17 @@ import { useEffect, useState } from "react";
 
 const Hero = () => {
   const [orbs, setOrbs] = useState<{ id: number, size: number, color: string, rotation: number, radius: number, animationDuration: number, reverse: boolean, initialPosition: number }[]>([]);
+  const emotes = ["🥳", "🤩", "😎", "😋", "🙌", "🔥", "🎉", "🫶"];
+  const [currentEmote, setCurrentEmote] = useState(emotes[0]);
+  const [animate, setAnimate] = useState(false);
+
+  const handleEmoteClick = () => {
+    setAnimate(true);
+    const currentIndex = emotes.indexOf(currentEmote);
+    const nextIndex = (currentIndex + 1) % emotes.length;
+    setCurrentEmote(emotes[nextIndex]);
+    setTimeout(() => setAnimate(false), 500);
+  };
 
   useEffect(() => {
     const orbCount = 28; 
@@ -103,7 +114,14 @@ const Hero = () => {
           level="h3"
           className="text-2xl md:text-3xl leading-8 font-medium text-gray-700"
         >
-          Belanja Merchandise Darryl disini 🥳
+          Belanja Merchandise Darryl disini{" "}
+          <span 
+            onClick={handleEmoteClick} 
+            className={`cursor-pointer inline-block ${animate ? 'animate-bounce' : ''}`}
+            style={{ transition: "transform 0.3s" }}
+          >
+            {currentEmote}
+          </span>
         </Heading>
         
         <LocalizedClientLink href="/store">

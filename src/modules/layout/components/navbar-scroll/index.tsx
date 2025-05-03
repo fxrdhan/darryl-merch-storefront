@@ -26,9 +26,9 @@ const NavbarScroll = ({ children }: NavbarScrollProps) => {
         <div className={`transition-all duration-300 ${isScrolled ? 'px-4' : ''}`}>
             <div
                 className={`transition-all duration-300 ${isScrolled
-                        ? 'rounded-lg shadow-md mx-2 mt-2 border border-ui-border-base dark:border-gray-700'
-                        : ''
-                    }`}
+                    ? 'rounded-lg shadow-md mx-2 mt-2 overflow-hidden border border-ui-border-base dark:border-gray-700'
+                    : ''
+                }`}
             >
                 {children}
             </div>

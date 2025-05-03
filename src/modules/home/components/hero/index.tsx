@@ -90,7 +90,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full border-b border-ui-border-base relative overflow-hidden bg-white select-none">
+    <div className="h-screen w-full border-b border-ui-border-base relative overflow-hidden bg-white dark:bg-gray-900 select-none">
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {orbs.map((orb) => (
           <div
@@ -113,7 +113,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center small:p-32 gap-10">
         <Heading
           level="h2"
-          className="text-7xl md:text-8xl leading-tight font-bold mb-6 text-gray-900 flex items-center justify-center flex-wrap"
+          className="text-7xl md:text-8xl leading-tight font-bold mb-6 text-gray-900 dark:text-white flex items-center justify-center flex-wrap"
         >
           Welcome to Darryl&nbsp;
           <div className="text-slide-container">
@@ -126,7 +126,7 @@ const Hero = () => {
         </Heading>
         <Heading
           level="h3"
-          className="text-2xl md:text-3xl leading-8 font-medium text-gray-700"
+          className="text-2xl md:text-3xl leading-8 font-medium text-gray-700 dark:text-gray-300"
         >
           Belanja Merchandise Darryl disini{" "}
           <span 
@@ -138,15 +138,15 @@ const Hero = () => {
           </span>
         </Heading>
         
-        <LocalizedClientLink href="/store">
-          <span className="liquid-btn inline-block relative text-black px-6 py-2 outline-none border-none">
+        <LocalizedClientLink href="/store" className="relative group">
+          <span className="liquid-btn inline-block relative text-black dark:text-white px-6 py-2 outline-none border-none">
             <span className="liquid-bg"></span>
             <Button
               variant="primary"
-              className="relative z-10 text-lg bg-transparent outline-none border-none shadow-none transition-none duration-0 liquid-btn-text tracking-widest hover:font-bold font-weight-animate"
+              className="relative z-10 text-lg bg-transparent outline-none border-none shadow-none transition-duration-0 liquid-btn-text tracking-widest font-weight-animate"
               style={{ background: "none", transition: "font-weight 0.3s cubic-bezier(0.4,0,0.2,1)" }}
             >
-              <span className="shake-tilt">Explore Products</span>
+              <span className="shake-tilt text-black dark:text-white group-hover:font-bold group-hover:text-white dark:group-hover:text-zinc-200">Explore Products</span>
             </Button>
           </span>
         </LocalizedClientLink>

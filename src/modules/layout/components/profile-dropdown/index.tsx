@@ -31,6 +31,7 @@ const ProfileDropdown = ({
 
     const { countryCode } = useParams() as { countryCode: string }
     const pathname = usePathname()
+    const currentPath = usePathname()
 
     const open = () => setProfileDropdownOpen(true)
     const close = () => setProfileDropdownOpen(false)
@@ -63,6 +64,12 @@ const ProfileDropdown = ({
             }
         }
     }, [activeTimer])
+
+    useEffect(() => {
+        if (profileDropdownOpen) {
+            close()
+        }
+    }, [currentPath])
 
     if (pathname.includes("/account") || pathname.includes("/checkout")) {
         return (

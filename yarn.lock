@@ -7778,7 +7778,7 @@ __metadata:
     tailwindcss: ^3.4.17
     tailwindcss-radix: ^2.8.0
     typescript: ^5.8.3
-    webpack: ^5
+    webpack: ^5.99.7
   languageName: unknown
   linkType: soft
 
@@ -10324,7 +10324,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5":
+"webpack@npm:^5.99.7":
   version: 5.99.7
   resolution: "webpack@npm:5.99.7"
   dependencies:

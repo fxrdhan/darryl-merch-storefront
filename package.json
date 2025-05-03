@@ -30,7 +30,7 @@
     "react-dom": "19.1.0",
     "server-only": "^0.0.1",
     "tailwindcss-radix": "^2.8.0",
-    "webpack": "^5"
+    "webpack": "^5.99.7"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",

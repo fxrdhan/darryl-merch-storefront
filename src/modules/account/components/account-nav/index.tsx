@@ -1,13 +1,15 @@
 "use client"
 
 import { clx } from "@medusajs/ui"
-import { ArrowRightOnRectangle } from "@medusajs/icons"
+import { ArrowRightOnRectangle, CheckCircleSolid, XCircleSolid } from "@medusajs/icons"
 import { useParams, usePathname } from "next/navigation"
+import { useState, Fragment } from "react"
 
 import ChevronDown from "@modules/common/icons/chevron-down"
 import User from "@modules/common/icons/user"
 import MapPin from "@modules/common/icons/map-pin"
 import Package from "@modules/common/icons/package"
+import ConfirmationModal from "@modules/common/components/confirmation-modal"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 import { signout } from "@lib/data/customer"
@@ -20,8 +22,13 @@ const AccountNav = ({
   const route = usePathname()
   const { countryCode } = useParams() as { countryCode: string }
 
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
   const handleLogout = async () => {
+    setIsLoggingOut(true)
     await signout(countryCode)
+    setIsLoggingOut(false)
   }
 
   return (
@@ -92,7 +99,7 @@ const AccountNav = ({
                   <button
                     type="button"
                     className="flex items-center justify-between py-4 border-b border-gray-200 px-8 w-full"
-                    onClick={handleLogout}
+                    onClick={() => setShowLogoutConfirmation(true)}
                     data-testid="logout-button"
                   >
                     <div className="flex items-center gap-x-2">
@@ -153,7 +160,7 @@ const AccountNav = ({
               <li className="text-grey-700">
                 <button
                   type="button"
-                  onClick={handleLogout}
+                  onClick={() => setShowLogoutConfirmation(true)}
                   data-testid="logout-button"
                 >
                   Log out
@@ -163,6 +170,15 @@ const AccountNav = ({
           </div>
         </div>
       </div>
+      <ConfirmationModal
+        isOpen={showLogoutConfirmation}
+        onClose={() => setShowLogoutConfirmation(false)}
+        onConfirm={handleLogout}
+        title="Konfirmasi Logout"
+        message="Apakah Anda yakin ingin logout?"
+        confirmText="Logout"
+        isLoading={isLoggingOut}
+      />
     </div>
   )
 }

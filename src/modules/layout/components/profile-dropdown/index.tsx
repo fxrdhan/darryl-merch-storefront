@@ -107,21 +107,21 @@ const ProfileDropdown = ({
                 >
                     <PopoverPanel
                         static
-                        className="rounded-b-lg shadow-xl hidden small:block absolute top-[calc(100%+1px)] left-1/2 transform -translate-x-1/2 bg-white border-x border-b border-gray-200 w-[280px] text-ui-fg-base"
+                        className="rounded-b-lg shadow-xl hidden small:block absolute top-[calc(100%+1px)] left-1/2 transform -translate-x-1/2 bg-white border-x border-b border-gray-200 w-[280px] text-ui-fg-base dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
                         data-testid="nav-profile-dropdown"
                     >
                         <div className="p-4 flex flex-col gap-y-2">
                             {customer ? (
                                 <>
                                     <div className="flex flex-col">
-                                        <Text className="text-sm font-semibold">
+                                        <Text className="text-sm font-semibold dark:text-gray-100">
                                             {customer.first_name} {customer.last_name}
                                         </Text>
                                         <Text className="text-xs text-gray-500">
                                             {customer.email}
                                         </Text>
                                     </div>
-                                    <hr className="my-2 border-gray-200" />
+                                    <hr className="my-2 border-gray-200 dark:border-gray-700" />
                                     <LocalizedClientLink
                                         href="/account/profile"
                                         passHref
@@ -136,7 +136,7 @@ const ProfileDropdown = ({
                                     >
                                         <span className="text-sm">Orders</span>
                                     </LocalizedClientLink>
-                                    <hr className="my-2 border-gray-200" />
+                                    <hr className="my-2 border-gray-200 dark:border-gray-700" />
                                     <button
                                         className="block w-full text-left text-rose-500 hover:text-rose-600 px-2 py-1 rounded transition-colors flex items-center"
                                         onClick={openModal}
@@ -148,7 +148,7 @@ const ProfileDropdown = ({
                                 </>
                             ) : (
                                 <>
-                                    <Text className="text-sm text-gray-500">
+                                    <Text className="text-sm text-gray-500 dark:text-gray-400">
                                         Sign in for a better experience.
                                     </Text>
                                     <LocalizedClientLink href="/account" passHref>

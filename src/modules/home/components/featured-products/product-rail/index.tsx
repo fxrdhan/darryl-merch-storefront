@@ -1,5 +1,5 @@
 import { listProducts } from "@lib/data/products"
-import { HttpTypes } from "@medusajs/types"
+import { FindParams, HttpTypes, StoreProductParams } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
 
 import InteractiveLink from "@modules/common/components/interactive-link"
@@ -17,9 +17,9 @@ export default async function ProductRail({
   } = await listProducts({
     regionId: region.id,
     queryParams: {
-      collection_id: collection.id,
+      collection_id: [collection.id],
       fields: "*variants.calculated_price",
-    },
+    } as FindParams & StoreProductParams & { collection_id?: string[] },
   })
 
   if (!pricedProducts) {

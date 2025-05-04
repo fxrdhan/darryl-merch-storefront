@@ -1,4 +1,5 @@
 import { HttpTypes } from "@medusajs/types"
+import { getProductPrice } from "@lib/util/get-product-price"
 import ProductRail from "@modules/home/components/featured-products/product-rail"
 import ProductCarousel from "@modules/home/components/featured-products/product-carousel"
 
@@ -11,11 +12,19 @@ export default async function FeaturedProducts({
   products?: HttpTypes.StoreProduct[]
   region: HttpTypes.StoreRegion
 }) {
-  if (products) {
+  if (products && products.length > 0) {
+    const productsWithPrice = products.map(product => {
+      const { cheapestPrice } = getProductPrice({ product });
+      return {
+        ...product,
+        cheapestPrice,
+      };
+    });
+
     return (
       <div className="content-container py-12 small:py-24" data-testid="featured-products-container">
         <h2 className="text-2xl-semi mb-8">Check out our products</h2>
-        <ProductCarousel products={products} region={region} />
+        <ProductCarousel products={productsWithPrice} region={region} />
       </div>
     )
   } else if (collections) {

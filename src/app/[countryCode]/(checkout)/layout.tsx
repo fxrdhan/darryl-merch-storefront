@@ -8,12 +8,12 @@ export default function CheckoutLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="w-full bg-white relative small:min-h-screen">
-      <div className="h-16 bg-white border-b ">
+    <div className="w-full bg-ui-bg-base dark:bg-gray-900 relative small:min-h-screen text-ui-fg-base dark:text-gray-200">
+      <div className="h-16 bg-white/80 dark:bg-gray-900/80 border-b border-ui-border-base dark:border-gray-700 backdrop-blur-md">
         <nav className="flex h-full items-center content-container justify-between">
           <LocalizedClientLink
             href="/cart"
-            className="text-small-semi text-ui-fg-base flex items-center gap-x-2 uppercase flex-1 basis-0"
+            className="text-small-semi text-ui-fg-base dark:text-gray-200 flex items-center gap-x-2 uppercase flex-1 basis-0"
             data-testid="back-to-cart-link"
           >
             <ChevronDown className="rotate-90" size={16} />
@@ -26,7 +26,7 @@ export default function CheckoutLayout({
           </LocalizedClientLink>
           <LocalizedClientLink
             href="/"
-            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base dark:text-gray-200 dark:hover:text-gray-100 uppercase"
             data-testid="store-link"
           >
             Darryl Store

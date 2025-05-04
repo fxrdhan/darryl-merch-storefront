@@ -46,7 +46,6 @@ const EditAddress: React.FC<EditAddressProps> = ({
     if (successState) {
       close()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successState])
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
     <>
       <div
         className={clx(
-          "border rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
+          "border dark:border-gray-700 rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
           {
             "border-gray-900": isActive,
           }
@@ -81,13 +80,13 @@ const EditAddress: React.FC<EditAddressProps> = ({
           </Heading>
           {address.company && (
             <Text
-              className="txt-compact-small text-ui-fg-base"
+              className="txt-compact-small text-ui-fg-base dark:text-ui-fg-muted"
               data-testid="address-company"
             >
               {address.company}
             </Text>
           )}
-          <Text className="flex flex-col text-left text-base-regular mt-2">
+          <Text className="flex flex-col text-left text-base-regular mt-2 dark:text-ui-fg-muted">
             <span data-testid="address-address">
               {address.address_1}
               {address.address_2 && <span>, {address.address_2}</span>}

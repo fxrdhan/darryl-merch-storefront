@@ -29,7 +29,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
             </span>
           </span>
         </div>
-        <div className="flex flex-col py-8 border-t border-gray-200">
+        <div className="flex flex-col py-8 border-t border-neutral-200 dark:border-neutral-700">
           <div className="flex flex-col gap-y-4 h-full col-span-1 row-span-2 flex-1">
             <div className="flex items-start gap-x-16 mb-6">
               <div className="flex flex-col gap-y-4">
@@ -85,7 +85,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                           href={`/account/orders/details/${order.id}`}
                         >
                           <Container className="bg-gray-50 flex justify-between items-center p-4">
-                            <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1">
+                            <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1 dark:text-gray-800">
                               <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">
                                 Order number

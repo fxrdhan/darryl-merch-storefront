@@ -106,7 +106,7 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="rounded-b-lg shadow-xl hidden small:block absolute top-[calc(100%+1px)] left-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
+            className="rounded-b-lg shadow-xl hidden small:block absolute top-[calc(100%+1px)] left-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
@@ -183,7 +183,7 @@ const CartDropdown = ({
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
-                    <span className="text-ui-fg-base font-semibold">
+                    <span className="text-ui-fg-base dark:text-gray-300 font-semibold">
                       Subtotal{" "}
                       <span className="font-normal">(excl. taxes)</span>
                     </span>
@@ -211,7 +211,7 @@ const CartDropdown = ({
               </>
             ) : (
               <div>
-                <div className="flex py-16 flex-col gap-y-4 items-center justify-center">
+                <div className="flex py-16 flex-col gap-y-4 items-center justify-center text-gray-900 dark:text-gray-300">
                   <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
                     <span>0</span>
                   </div>

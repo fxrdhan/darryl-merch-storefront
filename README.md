@@ -94,7 +94,7 @@ yarn dev
 
 ### Open the code and start customizing
 
-Your site is now running at http://localhost:8001!
+Your site is now running at http://localhost:8000!
 
 # Payment integrations
 

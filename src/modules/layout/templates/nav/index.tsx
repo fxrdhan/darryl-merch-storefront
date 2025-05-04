@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, MouseEvent } from "react"
 
 import { listRegions } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
@@ -25,6 +25,11 @@ export default async function Nav() {
                     className="hover:text-ui-fg-base flex gap-2"
                     href="/cart"
                     data-testid="nav-cart-link"
+                    onClick={() => {
+                      if (document.activeElement instanceof HTMLElement) {
+                        document.activeElement.blur();
+                      }
+                    }}
                   >
                     Cart (0)
                   </LocalizedClientLink>

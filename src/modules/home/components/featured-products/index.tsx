@@ -1,6 +1,6 @@
 import { HttpTypes } from "@medusajs/types"
 import ProductRail from "@modules/home/components/featured-products/product-rail"
-import ProductPreview from "@modules/products/components/product-preview"
+import ProductCarousel from "@modules/home/components/featured-products/product-carousel"
 
 export default async function FeaturedProducts({
   collections,
@@ -13,15 +13,9 @@ export default async function FeaturedProducts({
 }) {
   if (products) {
     return (
-      <div className="content-container py-12 small:py-24">
+      <div className="content-container py-12 small:py-24" data-testid="featured-products-container">
         <h2 className="text-2xl-semi mb-8">Check out our products</h2>
-        <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
-          {products.map((product) => (
-            <li key={product.id}>
-              <ProductPreview product={product} region={region} />
-            </li>
-          ))}
-        </ul>
+        <ProductCarousel products={products} region={region} />
       </div>
     )
   } else if (collections) {

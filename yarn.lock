@@ -4168,6 +4168,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@splidejs/react-splide@npm:^0.7.12":
+  version: 0.7.12
+  resolution: "@splidejs/react-splide@npm:0.7.12"
+  dependencies:
+    "@splidejs/splide": ^4.1.3
+  checksum: 715517b0ac03a7f9f7048909e99b76c00ed9cbc01b7cd9eb1689a683ae74086785ae908bf90f3881903094903e7d74c9cd5ef47a2b38d49b19e47ca91e045fc8
+  languageName: node
+  linkType: hard
+
+"@splidejs/splide@npm:^4.1.3":
+  version: 4.1.4
+  resolution: "@splidejs/splide@npm:4.1.4"
+  checksum: 919f6e1e5da1ebdfe6df77592fab25d0dd52b1809ac61723157cf1c8dd1804bf7739a28e2bb7a22257c5f7628eacba0439ff1268e9bab8577f638f5376fd4b5e
+  languageName: node
+  linkType: hard
+
 "@stripe/react-stripe-js@npm:^3.7.0":
   version: 3.7.0
   resolution: "@stripe/react-stripe-js@npm:3.7.0"
@@ -7767,6 +7783,7 @@ __metadata:
     "@medusajs/ui": ^4.0.9
     "@medusajs/ui-preset": ^2.7.1
     "@radix-ui/react-accordion": ^1.2.8
+    "@splidejs/react-splide": ^0.7.12
     "@stripe/react-stripe-js": ^3.7.0
     "@stripe/stripe-js": ^7.3.0
     "@tailwindcss/postcss": ^4.1.5

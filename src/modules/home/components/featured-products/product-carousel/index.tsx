@@ -4,7 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css'
 import ProductPreview from '@modules/products/components/product-preview'
 import { HttpTypes } from '@medusajs/types'
-import { VariantPrice } from "types/global" // Assuming VariantPrice type exists
+import { VariantPrice } from "types/global"
 
 type ProductWithPrice = HttpTypes.StoreProduct & { cheapestPrice?: VariantPrice | null }
 
@@ -17,7 +17,7 @@ export default function ProductCarousel({ products, region }: { products: Produc
                 autoplay: true,
                 gap: "1rem",
                 pagination: false,
-                breakpoints: { 640: { perPage: 1 }, 768: { perPage: 2 } },
+                breakpoints: { 640: { perPage: 2 }, 768: { perPage: 2 } },
             }}
             aria-label="Featured Products"
         >

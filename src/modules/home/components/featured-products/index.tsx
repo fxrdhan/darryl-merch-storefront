@@ -23,7 +23,7 @@ export default async function FeaturedProducts({
 
     return (
       <div className="content-container py-12 small:py-24" data-testid="featured-products-container">
-        <h2 className="text-2xl-semi mb-8">Check out our products</h2>
+        <h2 className="text-2xl-regular mb-8 lg:text-4xl">Check out our products</h2>
         <ProductCarousel products={productsWithPrice} region={region} />
       </div>
     )

@@ -44,7 +44,7 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           data-testid="shipping-contact-summary"
         >
           <Text className="txt-medium-plus text-ui-fg-base mb-1">Contact</Text>
-          <Text className="txt-medium text-ui-fg-subtle">
+          <Text className="txt-medium text-ui-fg-subtle dark:text-gray-400">
             {order.shipping_address?.phone}
           </Text>
           <Text className="txt-medium text-ui-fg-subtle">{order.email}</Text>
@@ -55,7 +55,7 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           data-testid="shipping-method-summary"
         >
           <Text className="txt-medium-plus text-ui-fg-base mb-1">Method</Text>
-          <Text className="txt-medium text-ui-fg-subtle">
+          <Text className="txt-medium text-ui-fg-subtle dark:text-gray-400">
             {(order as any).shipping_methods[0]?.name} (
             {convertToLocale({
               amount: order.shipping_methods?.[0].total ?? 0,

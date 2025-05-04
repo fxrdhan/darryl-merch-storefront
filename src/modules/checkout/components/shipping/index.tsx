@@ -16,12 +16,24 @@ import { useEffect, useState } from "react"
 const PICKUP_OPTION_ON = "__PICKUP_ON"
 const PICKUP_OPTION_OFF = "__PICKUP_OFF"
 
+// Extend the type to include the custom properties we're using
+type ExtendedShippingOption = HttpTypes.StoreCartShippingOption & {
+  service_zone?: {
+    fulfillment_set?: {
+      type?: string
+      location?: {
+        address: any
+      }
+    }
+  }
+}
+
 type ShippingProps = {
   cart: HttpTypes.StoreCart
   availableShippingMethods: HttpTypes.StoreCartShippingOption[] | null
 }
 
-function formatAddress(address) {
+function formatAddress(address: { address_1: any; address_2: any; postal_code: any; city: any; country_code: string }) {
   if (!address) {
     return ""
   }
@@ -71,11 +83,11 @@ const Shipping: React.FC<ShippingProps> = ({
   const isOpen = searchParams.get("step") === "delivery"
 
   const _shippingMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone?.fulfillment_set?.type !== "pickup"
+    (sm) => (sm as ExtendedShippingOption).service_zone?.fulfillment_set?.type !== "pickup"
   )
 
   const _pickupMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone?.fulfillment_set?.type === "pickup"
+    (sm) => (sm as ExtendedShippingOption).service_zone?.fulfillment_set?.type === "pickup"
   )
 
   const hasPickupOptions = !!_pickupMethods?.length
@@ -86,14 +98,21 @@ const Shipping: React.FC<ShippingProps> = ({
     if (_shippingMethods?.length) {
       const promises = _shippingMethods
         .filter((sm) => sm.price_type === "calculated")
-        .map((sm) => calculatePriceForShippingOption(sm.id, cart.id))
+        .map((sm) => {
+          if (!cart?.id) throw new Error("Cart ID is missing");
+          return calculatePriceForShippingOption(sm.id, cart.id)
+        })
 
       if (promises.length) {
         Promise.allSettled(promises).then((res) => {
           const pricesMap: Record<string, number> = {}
           res
             .filter((r) => r.status === "fulfilled")
-            .forEach((p) => (pricesMap[p.value?.id || ""] = p.value?.amount!))
+            .forEach((p) => {
+              if ('value' in p && p.value?.id) {
+                pricesMap[p.value.id] = p.value.amount!
+              }
+            })
 
           setCalculatedPricesMap(pricesMap)
           setIsLoadingPrices(false)
@@ -133,9 +152,15 @@ const Shipping: React.FC<ShippingProps> = ({
       return id
     })
 
-    await setShippingMethod({ cartId: cart.id, shippingMethodId: id })
+    await setShippingMethod({ 
+      cartId: cart.id, 
+      shippingMethodId: id 
+    })
       .catch((err) => {
-        setShippingMethodId(currentId)
+        setShippingMethodId((prev) => {
+          // Only revert if currentId was not null
+          return currentId !== null ? currentId : prev
+        })
 
         setError(err.message)
       })
@@ -149,7 +174,7 @@ const Shipping: React.FC<ShippingProps> = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm">
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
@@ -188,7 +213,7 @@ const Shipping: React.FC<ShippingProps> = ({
               <span className="font-medium txt-medium text-ui-fg-base">
                 Shipping method
               </span>
-              <span className="mb-4 text-ui-fg-muted txt-medium">
+              <span className="mb-4 text-ui-fg-muted dark:text-gray-400 txt-medium">
                 How would you like you order delivered
               </span>
             </div>
@@ -211,7 +236,7 @@ const Shipping: React.FC<ShippingProps> = ({
                       value={PICKUP_OPTION_ON}
                       data-testid="delivery-option-radio"
                       className={clx(
-                        "flex items-center justify-between text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active",
+                        "flex items-center justify-between text-small-regular cursor-pointer py-4 border dark:border-gray-700 rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active dark:hover:border-gray-500",
                         {
                           "border-ui-border-interactive":
                             showPickupOptions === PICKUP_OPTION_ON,
@@ -222,11 +247,11 @@ const Shipping: React.FC<ShippingProps> = ({
                         <MedusaRadio
                           checked={showPickupOptions === PICKUP_OPTION_ON}
                         />
-                        <span className="text-base-regular">
+                        <span className="text-base-regular dark:text-gray-300">
                           Pick up your order
                         </span>
                       </div>
-                      <span className="justify-self-end text-ui-fg-base">
+                      <span className="justify-self-end text-ui-fg-base dark:text-gray-300">
                         -
                       </span>
                     </Radio>
@@ -234,7 +259,9 @@ const Shipping: React.FC<ShippingProps> = ({
                 )}
                 <RadioGroup
                   value={shippingMethodId}
-                  onChange={(v) => handleSetShippingMethod(v, "shipping")}
+                  onChange={(v) => {
+                    if (v) handleSetShippingMethod(v, "shipping")
+                  }}
                 >
                   {_shippingMethods?.map((option) => {
                     const isDisabled =
@@ -262,11 +289,11 @@ const Shipping: React.FC<ShippingProps> = ({
                           <MedusaRadio
                             checked={option.id === shippingMethodId}
                           />
-                          <span className="text-base-regular">
+                          <span className="text-base-regular dark:text-gray-300">
                             {option.name}
                           </span>
                         </div>
-                        <span className="justify-self-end text-ui-fg-base">
+                        <span className="justify-self-end text-ui-fg-base dark:text-gray-300">
                           {option.price_type === "flat" ? (
                             convertToLocale({
                               amount: option.amount!,
@@ -305,7 +332,9 @@ const Shipping: React.FC<ShippingProps> = ({
                 <div className="pb-8 md:pt-0 pt-2">
                   <RadioGroup
                     value={shippingMethodId}
-                    onChange={(v) => handleSetShippingMethod(v, "pickup")}
+                    onChange={(v) => {
+                      if (v) handleSetShippingMethod(v, "pickup")
+                    }}
                   >
                     {_pickupMethods?.map((option) => {
                       return (
@@ -324,21 +353,16 @@ const Shipping: React.FC<ShippingProps> = ({
                             }
                           )}
                         >
-                          <div className="flex items-start gap-x-4">
-                            <MedusaRadio
-                              checked={option.id === shippingMethodId}
-                            />
-                            <div className="flex flex-col">
-                              <span className="text-base-regular">
-                                {option.name}
-                              </span>
-                              <span className="text-base-regular text-ui-fg-muted">
-                                {formatAddress(
-                                  option.service_zone?.fulfillment_set?.location
-                                    ?.address
-                                )}
-                              </span>
-                            </div>
+                          <div className="flex flex-col">
+                            <span className="text-base-regular">
+                              {option.name}
+                            </span>
+                            <span className="text-base-regular text-ui-fg-muted">
+                              {formatAddress(
+                                (option as ExtendedShippingOption).service_zone?.fulfillment_set?.location
+                                  ?.address || {}
+                              ) ?? "Address not available"}
+                            </span>
                           </div>
                           <span className="justify-self-end text-ui-fg-base">
                             {convertToLocale({
@@ -365,7 +389,7 @@ const Shipping: React.FC<ShippingProps> = ({
               className="mt"
               onClick={handleSubmit}
               isLoading={isLoading}
-              disabled={!cart.shipping_methods?.[0]}
+              disabled={!cart?.shipping_methods?.[0]}
               data-testid="submit-delivery-option-button"
             >
               Continue to payment
@@ -375,24 +399,26 @@ const Shipping: React.FC<ShippingProps> = ({
       ) : (
         <div>
           <div className="text-small-regular">
-            {cart && (cart.shipping_methods?.length ?? 0) > 0 && (
+            {cart && cart?.shipping_methods && cart.shipping_methods.length > 0 && (
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
                   Method
                 </Text>
                 <Text className="txt-medium text-ui-fg-subtle">
-                  {cart.shipping_methods?.at(-1)?.name}{" "}
-                  {convertToLocale({
-                    amount: cart.shipping_methods.at(-1)?.amount!,
-                    currency_code: cart?.currency_code,
-                  })}
+                  {cart?.shipping_methods?.at(-1)?.name}{" "}
+                  {cart.shipping_methods.at(-1)?.amount !== undefined && 
+                    convertToLocale({
+                      amount: cart.shipping_methods.at(-1)!.amount!,
+                      currency_code: cart?.currency_code,
+                    })
+                  }
                 </Text>
               </div>
             )}
           </div>
         </div>
       )}
-      <Divider className="mt-8" />
+      <Divider className="mt-8 dark:border-gray-700" />
     </div>
   )
 }

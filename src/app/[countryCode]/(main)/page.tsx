@@ -4,6 +4,7 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
+import { listProducts } from "@lib/data/products"
 
 export const metadata: Metadata = {
   title: "Darryl Store - Welcome!",
@@ -20,20 +21,30 @@ export default async function Home(props: {
   const region = await getRegion(countryCode)
 
   const { collections } = await listCollections({
-    fields: "id, handle, title",
+    fields: "id, handle, title, *products",
   })
 
-  if (!collections || !region) {
+  const collectionsWithProducts = collections.filter((col) => (col.products?.length ?? 0) > 0)
+
+  let fallbackProducts = null
+  if (collectionsWithProducts.length === 0) {
+    const { response } = await listProducts({ regionId: region?.id})
+    fallbackProducts = response.products
+  }
+
+  if (!region) {
     return null
   }
 
   return (
     <>
       <Hero />
-      <div className="py-0">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
+      <div>
+        {fallbackProducts ? (
+          <FeaturedProducts products={fallbackProducts} region={region} />
+        ) : (
+          <FeaturedProducts collections={collectionsWithProducts} region={region} />
+        )}
       </div>
     </>
   )

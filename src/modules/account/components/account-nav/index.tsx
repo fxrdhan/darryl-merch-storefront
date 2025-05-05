@@ -104,7 +104,7 @@ const AccountNav = ({
                   >
                     <div className="flex items-center gap-x-2">
                       <ArrowRightOnRectangle />
-                      <span>Log out</span>
+                      <span className=" text-rose-500 hover:text-rose-600">Log out</span>
                     </div>
                     <ChevronDown className="transform -rotate-90" />
                   </button>
@@ -157,7 +157,7 @@ const AccountNav = ({
                   Orders
                 </AccountNavLink>
               </li>
-              <li className="text-grey-700">
+              <li className=" text-rose-500 hover:text-rose-600">
                 <button
                   type="button"
                   onClick={() => setShowLogoutConfirmation(true)}

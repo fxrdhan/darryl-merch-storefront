@@ -5,6 +5,7 @@ import { retrieveCustomer } from "@lib/data/customer"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
+import User from "@modules/common/icons/user"
 import ProfileDropdown from "@modules/layout/components/profile-dropdown"
 import DarkModeToggle from "@modules/layout/components/dark-mode-toggle"
 import NavbarScroll from "@modules/layout/components/navbar-scroll"
@@ -49,9 +50,14 @@ export default async function Nav() {
               </LocalizedClientLink>
             </div>
 
-            <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+            <div className="flex items-center gap-x-1 sm:gap-x-6 h-full flex-1 basis-0 justify-end">
               <div className="hidden small:flex items-center gap-x-6 h-full">
                 <ProfileDropdown customer={customer} />
+              </div>
+              <div className="small:hidden px-1">
+                <LocalizedClientLink href="/account" className="hover:text-ui-fg-base dark:text-gray-100 dark:hover:text-gray-400">
+                  <User size={20} />
+                </LocalizedClientLink>
               </div>
               <DarkModeToggle />
             </div>

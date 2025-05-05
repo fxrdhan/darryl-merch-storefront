@@ -37,7 +37,7 @@ export default async function Home(props: {
   }
 
   return (
-    <>
+    <div className="bg-white dark:bg-gray-900">
       <Hero />
       <div>
         {fallbackProducts ? (
@@ -46,6 +46,6 @@ export default async function Home(props: {
           <FeaturedProducts collections={collectionsWithProducts} region={region} />
         )}
       </div>
-    </>
+    </div>
   )
 }

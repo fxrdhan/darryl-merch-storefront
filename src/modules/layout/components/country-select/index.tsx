@@ -75,9 +75,9 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
       >
         <ListboxButton className="py-1 w-full">
           <div className="txt-compact-small flex items-start gap-x-2">
-            <span>Shipping to:</span>
+            <span className="md:text-base">Shipping to:</span>
             {current && (
-              <span className="txt-compact-small flex items-center gap-x-2">
+              <span className="txt-compact-small flex items-center gap-x-2 md:text-base">
                 {/* @ts-ignore */}
                 <ReactCountryFlag
                   svg
@@ -111,16 +111,18 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
                     value={o}
                     className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
                   >
-                    {/* @ts-ignore */}
-                    <ReactCountryFlag
-                      svg
-                      style={{
-                        width: "16px",
-                        height: "16px",
-                      }}
-                      countryCode={o?.country ?? ""}
-                    />{" "}
-                    {o?.label}
+                    <span className="md:text-base flex items-center gap-x-2">
+                      {/* @ts-ignore */}
+                      <ReactCountryFlag
+                        svg
+                        style={{
+                          width: "16px",
+                          height: "16px",
+                        }}
+                        countryCode={o?.country ?? ""}
+                      />{" "}
+                      {o?.label}
+                    </span>
                   </ListboxOption>
                 )
               })}

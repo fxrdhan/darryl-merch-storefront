@@ -9,7 +9,7 @@
     @apply bg-gray-900 text-gray-200;
   }
   body {
-    @apply bg-ui-bg-base text-ui-fg-base transition-colors duration-200 ease-in-out;
+    @apply bg-ui-bg-base text-ui-fg-base;
     @apply dark:bg-gray-800 dark:text-ui-fg-on-color;
   }
 }
@@ -205,7 +205,7 @@
   }
 
   .contrast-btn {
-    @apply px-4 py-2 rounded-full bg-black text-white transition-colors duration-200 ease-in hover:bg-gray-800 dark:bg-black dark:text-white dark:hover:bg-gray-700;
+    @apply px-4 py-2 rounded-full bg-black text-white hover:bg-gray-800 dark:bg-black dark:text-white dark:hover:bg-gray-700;
   }
 
   .text-xsmall-regular {

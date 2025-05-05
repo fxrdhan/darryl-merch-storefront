@@ -329,4 +329,37 @@
       background-position: 200% center;
     }
   }
+  
+  /* Custom dotted pagination for Splide carousels */
+  .dotted-pagination {
+    display: flex;
+    gap: 0.5rem;
+    /* Removed margin-top and justify-center to allow positioning within flex container */
+  }
+  
+  .splide__pagination__page {
+    width: 2rem;
+    height: 0.25rem !important;
+    background: transparent !important;
+    border-top: 3px dotted #d1d5db;
+    opacity: 0.7;
+    border-radius: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .dark .splide__pagination__page {
+    border-top-color: #6b7280;
+  }
+  
+  .splide__pagination__page.is-active {
+    transform: scale(1) !important;
+    opacity: 1;
+    border-top-color: #7f5fff;
+    background: transparent !important;
+  }
+  
+  .dark .splide__pagination__page.is-active {
+    border-top-color: #a259f7;
+  }
 }

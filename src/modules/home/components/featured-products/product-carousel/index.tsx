@@ -1,12 +1,12 @@
 'use client'
 
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide'
+import { AutoScroll } from '@splidejs/splide-extension-auto-scroll'
 import { useRef } from 'react';
 import '@splidejs/react-splide/css'
 import ProductPreview from '@modules/products/components/product-preview'
 import { HttpTypes } from '@medusajs/types'
 import { VariantPrice } from "types/global"
-import { ChevronLeftMini, ChevronRightMini } from "@medusajs/icons"
 import { IconButton } from "@medusajs/ui"
 
 type ProductWithPrice = HttpTypes.StoreProduct & { cheapestPrice?: VariantPrice | null }
@@ -27,13 +27,21 @@ export default function ProductCarousel({ products, region }: { products: Produc
                 hasTrack={false}
                 options={{
                     type: "loop",
+                    drag: "free",
+                    focus: "center",
                     perPage: 3,
-                    autoplay: true,
-                    pagination: false,
+                    pagination: true,
                     arrows: false,
                     gap: "1.5rem",
                     breakpoints: { 640: { perPage: 2 }, 768: { perPage: 2 } },
+                    autoScroll: {
+                        speed: 0.5,
+                    },
+                    classes: {
+                        pagination: 'splide__pagination dotted-pagination',
+                    },
                 }}
+                extensions={{ AutoScroll }}
                 aria-label="Featured Products"
             >
                 <SplideTrack>
@@ -47,22 +55,34 @@ export default function ProductCarousel({ products, region }: { products: Produc
                     ))}
                 </SplideTrack>
             </Splide>
-            <div className="flex justify-center items-center mt-4 gap-x-4">
+            <div className="flex justify-between items-center mt-6">
                 <IconButton
                     onClick={handlePrev}
                     variant="transparent"
-                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-1"
+                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-2"
                     aria-label="Previous slide"
                 >
-                    <ChevronLeftMini />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m12 19-7-7 7-7"/>
+                        <path d="M25 12H5"/>
+                    </svg>
                 </IconButton>
+                
+                {/* Place pagination here to align with arrows */}
+                <div className="flex-grow flex justify-center items-center">
+                    <div className="splide__pagination dotted-pagination"></div>
+                </div>
+                
                 <IconButton
                     onClick={handleNext}
                     variant="transparent"
-                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-1"
+                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-2"
                     aria-label="Next slide"
                 >
-                    <ChevronRightMini />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(180deg)' }}>
+                        <path d="m12 19-7-7 7-7"/>
+                        <path d="M25 12H5"/>
+                    </svg>
                 </IconButton>
             </div>
         </div>

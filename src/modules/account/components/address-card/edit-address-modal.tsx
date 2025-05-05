@@ -64,7 +64,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
     <>
       <div
         className={clx(
-          "border dark:border-gray-700 rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
+          "border dark:border-gray-700 rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between",
           {
             "border-gray-900": isActive,
           }

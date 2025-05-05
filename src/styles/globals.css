@@ -326,7 +326,7 @@
 
   /* Carousel Styling */
   .product-carousel-container {
-    @apply content-container py-4 relative;
+    @apply relative py-10 mx-auto;
   }
 
   /* Slick Carousel Adjustments */
@@ -363,6 +363,8 @@
 
   .slick-track {
     @apply flex items-stretch;
+    margin-left: -10px;
+    margin-right: -10px;
   }
 
   .slick-slide {
@@ -371,5 +373,20 @@
 
   .slick-slide > div {
     @apply h-full;
+  }
+
+  /* Add responsive spacing for carousel items */
+  @media (min-width: 768px) {
+    .slick-track {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .slick-track {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
   }
 }

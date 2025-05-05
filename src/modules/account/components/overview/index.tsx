@@ -84,8 +84,8 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                         <LocalizedClientLink
                           href={`/account/orders/details/${order.id}`}
                         >
-                          <Container className="bg-gray-50 flex justify-between items-center p-4">
-                            <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1 dark:text-gray-800">
+                          <Container className="bg-gray-50 flex justify-between items-center p-4 dark:bg-gray-700 rounded-md border border-gray-200 dark:border-gray-600">
+                            <div className="grid grid-cols-3 grid-rows-2 text-small-regular gap-x-4 flex-1 dark:text-gray-200 dark:bg-gray-700">
                               <span className="font-semibold">Date placed</span>
                               <span className="font-semibold">
                                 Order number

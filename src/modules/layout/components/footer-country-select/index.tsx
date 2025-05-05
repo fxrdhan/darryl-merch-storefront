@@ -1,4 +1,3 @@
-// src/modules/layout/components/footer-country-select/index.tsx
 "use client"
 
 import { HttpTypes } from "@medusajs/types"

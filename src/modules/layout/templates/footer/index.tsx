@@ -34,7 +34,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
             </LocalizedClientLink>
             
             <div className="mt-6">
-              <span className="txt-small-plus txt-ui-fg-base dark:text-ui-fg-base mb-4 block">
+              <span className="txt-small-plus md:text-base txt-ui-fg-base dark:text-ui-fg-base mb-4 block">
                 Navigation
               </span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle dark:text-ui-fg-muted txt-small">
@@ -42,7 +42,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
                   <li key={name}>
                     <LocalizedClientLink
                       href={href}
-                      className="hover:text-ui-fg-base dark:hover:text-ui-fg-base"
+                      className="hover:text-ui-fg-base dark:hover:text-ui-fg-base md:text-base"
                       data-testid={`${name.toLowerCase()}-link`}
                     >
                       {name}
@@ -55,7 +55,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base dark:text-ui-fg-base">
+                <span className="txt-small-plus md:text-base txt-ui-fg-base dark:text-ui-fg-base">
                   Categories
                 </span>
                 <ul
@@ -81,7 +81,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
                       >
                         <LocalizedClientLink
                           className={clx(
-                            "hover:text-ui-fg-base",
+                            "hover:text-ui-fg-base md:text-base",
                             children && "txt-small-plus"
                           )}
                           href={`/categories/${c.handle}`}
@@ -95,7 +95,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
                               children.map((child) => (
                                 <li key={child.id}>
                                   <LocalizedClientLink
-                                    className="hover:text-ui-fg-base dark:hover:text-ui-fg-base"
+                                    className="hover:text-ui-fg-base dark:hover:text-ui-fg-base md:text-base"
                                     href={`/categories/${child.handle}`}
                                     data-testid="category-link"
                                   >
@@ -113,7 +113,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
             )}
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
+                <span className="txt-small-plus md:text-base txt-ui-fg-base">
                   Collections
                 </span>
                 <ul
@@ -125,7 +125,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
+                        className="hover:text-ui-fg-base md:text-base"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -136,14 +136,14 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base dark:text-ui-fg-base">Darryl</span>
+              <span className="txt-small-plus md:text-base txt-ui-fg-base dark:text-ui-fg-base">Darryl</span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle dark:text-ui-fg-muted txt-small">
                 <li>
                   <a
                     href="https://www.instagram.com/darrylstr/"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-ui-fg-base dark:hover:text-ui-fg-base"
+                    className="hover:text-ui-fg-base dark:hover:text-ui-fg-base md:text-base"
                   >
                     Instagram
                   </a>
@@ -160,7 +160,7 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
               </div>
             )}
             <MedusaCTA />
-            <Text className="txt-compact-small">
+            <Text className="txt-compact-small md:text-base">
               © {new Date().getFullYear()} Darryl Store. All rights reserved.
             </Text>
           </div>

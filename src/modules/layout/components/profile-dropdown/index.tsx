@@ -125,20 +125,20 @@ const ProfileDropdown = ({
                                     <LocalizedClientLink
                                         href="/account/profile"
                                         passHref
-                                        className="block w-full text-left text-ui-fg-base hover:text-ui-fg-interactive px-2 py-1 rounded transition-colors"
+                                        className="block w-full text-left text-ui-fg-base hover:text-ui-fg-interactive px-2 py-1 rounded"
                                     >
                                         <span className="text-sm">Profile</span>
                                     </LocalizedClientLink>
                                     <LocalizedClientLink
                                         href="/account/orders"
                                         passHref
-                                        className="block w-full text-left text-ui-fg-base hover:text-ui-fg-interactive px-2 py-1 rounded transition-colors"
+                                        className="block w-full text-left text-ui-fg-base hover:text-ui-fg-interactive px-2 py-1 rounded"
                                     >
                                         <span className="text-sm">Orders</span>
                                     </LocalizedClientLink>
                                     <hr className="my-2 border-gray-200 dark:border-gray-700" />
                                     <button
-                                        className="block w-full text-left text-rose-500 hover:text-rose-600 px-2 py-1 rounded transition-colors flex items-center"
+                                        className="block w-full text-left text-rose-500 hover:text-rose-600 px-2 py-1 rounded flex items-center"
                                         onClick={openModal}
                                         data-testid="logout-button"
                                         type="button"
@@ -152,7 +152,7 @@ const ProfileDropdown = ({
                                         Sign in for a better experience.
                                     </Text>
                                     <LocalizedClientLink href="/account" passHref>
-                                        <Button variant="primary" className="w-full">
+                                        <Button variant="primary" className="w-full dark:bg-white dark:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white">
                                             Sign In
                                         </Button>
                                     </LocalizedClientLink>

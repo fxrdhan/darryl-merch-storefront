@@ -42,7 +42,7 @@ export default async function Nav() {
             <div className="flex items-center h-full">
               <LocalizedClientLink
                 href="/"
-                className="txt-compact-large-plus md:txt-compact-xlarge-plus text-ui-fg-subtle dark:text-gray-200 transition-colors duration-150 active:text-ui-fg-base active:dark:text-gray-100 @media (hover: hover) {hover:text-ui-fg-base hover:dark:text-gray-100} uppercase"
+                className="txt-compact-large-plus md:txt-compact-xlarge-plus text-ui-fg-subtle dark:text-gray-200 active:text-ui-fg-base active:dark:text-gray-100 @media (hover: hover) {hover:text-ui-fg-base hover:dark:text-gray-100} uppercase"
                 data-testid="nav-store-link"
               >
                 Darryl Store

@@ -47,7 +47,7 @@ const Hero = () => {
           Belanja Merchandise Darryl disini{" "}
           <span 
             onClick={handleEmoteClick} 
-            className={`cursor-pointer inline-block ${animate ? 'animate-bounce' : ''} md:inline block w-full mt-2 md:mt-0 md:w-auto`}
+            className={`cursor-pointer inline-block ${animate ? 'animate-bounce' : ''} md:inline block w-full mt-2 md:mt-0 md:w-auto ml-2`}
             style={{ transition: "transform 0.3s" }}
           >
             {currentEmote}

@@ -1,3 +1,6 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -319,5 +322,54 @@
   .liquid-btn:hover .shake-tilt,
   .liquid-btn:focus-visible .shake-tilt {
     animation: none;
+  }
+
+  /* Carousel Styling */
+  .product-carousel-container {
+    @apply content-container py-4 relative;
+  }
+
+  /* Slick Carousel Adjustments */
+  .slick-prev, .slick-next {
+    @apply z-10 w-10 h-10;
+  }
+
+  .slick-prev {
+    @apply left-0;
+  }
+
+  .slick-next {
+    @apply right-0;
+  }
+
+  .slick-prev:before, .slick-next:before {
+    @apply text-2xl text-gray-800 dark:text-gray-200;
+    opacity: 0.8;
+  }
+
+  .slick-dots {
+    @apply bottom-[-25px];
+  }
+
+  .slick-dots li button:before {
+    @apply text-gray-800 dark:text-gray-200;
+    opacity: 0.5;
+  }
+
+  .slick-dots li.slick-active button:before {
+    @apply text-gray-800 dark:text-gray-200;
+    opacity: 1;
+  }
+
+  .slick-track {
+    @apply flex items-stretch;
+  }
+
+  .slick-slide {
+    @apply h-auto;
+  }
+
+  .slick-slide > div {
+    @apply h-full;
   }
 }

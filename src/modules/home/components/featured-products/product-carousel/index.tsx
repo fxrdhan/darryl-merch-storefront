@@ -14,7 +14,6 @@ interface ProductCarouselProps {
 const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, region }) => {
     const [mounted, setMounted] = useState(false);
     
-    // Add prices to products
     const productsWithPrice = products.map(product => {
         const { cheapestPrice } = getProductPrice({ product });
         return { ...product, cheapestPrice };
@@ -27,7 +26,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, region }) =
     const settings = {
         dots: false,
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
         speed: 2000, 
@@ -35,6 +34,9 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, region }) =
         cssEase: "linear",
         pauseOnHover: false,
         arrows: false,
+        swipe: false,
+        draggable: false,
+        touchMove: false,
         responsive: [
             {
                 breakpoint: 1280,
@@ -64,7 +66,6 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, region }) =
         return null;
     }
 
-    // Don't render until client-side to avoid hydration issues
     if (!mounted) {
         return (
             <div className="product-carousel-container">
@@ -80,10 +81,18 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ products, region }) =
     }
 
     return (
-        <div className="product-carousel-container" data-testid="featured-products-carousel">
+        <div className="product-carousel-container relative overflow-hidden" data-testid="featured-products-carousel">
+            <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 lg:w-64 z-10 pointer-events-none
+                            bg-gradient-to-r from-white to-transparent
+                            dark:from-gray-900 dark:to-transparent">
+            </div>
+            <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 lg:w-64 z-10 pointer-events-none
+                            bg-gradient-to-l from-white to-transparent
+                            dark:from-gray-900 dark:to-transparent">
+            </div>
             <Slider {...settings}>
                 {productsWithPrice.map((product) => (
-                    <div key={product.id} className="px-2 py-2">
+                    <div key={product.id} className="px-2 md:px-3 lg:px-4 py-2">
                         <div className="h-full">
                             <ProductPreview product={product} region={region} isFeatured />
                         </div>

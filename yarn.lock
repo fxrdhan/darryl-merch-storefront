@@ -7830,6 +7830,7 @@ __metadata:
     react-dom: 19.1.0
     react-splide-ts: ^0.7.14
     server-only: ^0.0.1
+    slick-carousel: ^1.8.1
     tailwindcss: ^3.4.17
     tailwindcss-radix: ^2.8.0
     typescript: ^5.8.3
@@ -9593,6 +9594,15 @@ __metadata:
   dependencies:
     is-arrayish: ^0.3.1
   checksum: a7f3f2ab5c76c4472d5c578df892e857323e452d9f392e1b5cf74b74db66e6294a1e1b8b390b519fa1b96b5b613f2a37db6cffef52c3f1f8f3c5ea64eb2d54c0
+  languageName: node
+  linkType: hard
+
+"slick-carousel@npm:^1.8.1":
+  version: 1.8.1
+  resolution: "slick-carousel@npm:1.8.1"
+  peerDependencies:
+    jquery: ">=1.8.0"
+  checksum: acaad391e4d8bc1c7fdb8d361faa1f1d60829b31d618b54bc38c0550a59b26de36537e0ab4bc0364176ec11d1a61d0cf11e99d8d5b1285d656673c9a1a719257
   languageName: node
   linkType: hard
 

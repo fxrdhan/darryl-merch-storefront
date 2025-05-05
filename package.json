@@ -33,6 +33,7 @@
     "react-dom": "19.1.0",
     "react-splide-ts": "^0.7.14",
     "server-only": "^0.0.1",
+    "slick-carousel": "^1.8.1",
     "tailwindcss-radix": "^2.8.0",
     "webpack": "^5.99.7"
   },

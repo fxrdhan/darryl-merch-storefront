@@ -12,16 +12,11 @@ export default function ProductPreview({
   isFeatured,
   region,
 }: {
-  product: HttpTypes.StoreProduct // Consider renaming or clarifying this prop if it doesn't contain calculated price yet
+  product: HttpTypes.StoreProduct
   isFeatured?: boolean
   region: HttpTypes.StoreRegion
 }) {
-  // Price calculation should happen in the parent Server Component
-  // Assume 'product' prop now potentially includes pre-calculated price info
-  // or a separate prop like 'cheapestPriceData' is passed
   const { cheapestPrice } = getProductPrice({ product: initialProduct });
-  // If price isn't pre-calculated, this might return null or inaccurate data on client.
-  // Prefer passing calculated price data as a prop.
 
   return (
     <LocalizedClientLink href={`/products/${initialProduct.handle}`} className="group">
@@ -32,11 +27,11 @@ export default function ProductPreview({
           size="full"
           isFeatured={isFeatured}
         />
-        <div className="flex txt-compact-medium mt-4 justify-between">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
+        <div className="flex flex-col md:flex-row md:justify-between txt-compact-medium mt-4">
+          <Text className="text-ui-fg-subtle text-sm md:text-base" data-testid="product-title">
             {initialProduct.title}
           </Text>
-          <div className="flex items-center gap-x-2" data-testid="price-container">
+          <div className="flex items-center gap-x-2 mt-1 md:mt-0 self-start text-xs md:text-sm" data-testid="price-container">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>

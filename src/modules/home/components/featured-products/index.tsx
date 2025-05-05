@@ -1,7 +1,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { getProductPrice } from "@lib/util/get-product-price"
-import ProductRail from "@modules/home/components/featured-products/product-rail"
 import ProductPreview from "@modules/products/components/product-preview"
+import ProductCarousel from "./product-carousel";
 
 export default async function FeaturedProducts({
   collections,
@@ -22,28 +22,25 @@ export default async function FeaturedProducts({
     });
 
     return (
-      <div className="content-container py-12 small:py-24" data-testid="featured-products-container">
-        <h2 className="text-2xl-regular mb-8 lg:text-4xl">Check out our products</h2>
-        <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
-          {productsWithPrice &&
-            productsWithPrice.map((product) => (
-              <li key={product.id}>
-                <ProductPreview product={product} region={region} isFeatured />
-              </li>
-            ))}
-        </ul>
+      <div className="py-12">
+        <ProductCarousel products={productsWithPrice} region={region} />
       </div>
-    )
-  } else if (collections) {
+    );
+  } else if (collections && collections.length > 0) {
+    const firstCollectionWithProducts = collections.find(col => (col.products?.length ?? 0) > 0);
+
+    if (!firstCollectionWithProducts || !firstCollectionWithProducts.products) {
+      return null;
+    }
+
     return (
-      <ul className="flex flex-col gap-y-6">
-        {collections.map((collection) => (
-          <li key={collection.id}>
-            <ProductRail collection={collection} region={region} />
-          </li>
-        ))}
-      </ul>
-    )
+      <div className="py-12">
+        <div className="content-container">
+          <h2 className="text-2xl-regular mb-8 lg:text-4xl text-center">{firstCollectionWithProducts.title}</h2>
+        </div>
+        <ProductCarousel products={firstCollectionWithProducts.products as HttpTypes.StoreProduct[]} region={region} />
+      </div>
+    );
   }
   return null
 }

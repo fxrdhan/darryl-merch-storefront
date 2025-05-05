@@ -30,16 +30,17 @@ const DarkModeToggle = () => {
     };
 
     const Icon = theme === 'light' ? Moon : Sun;
-    const text = theme === 'light' ? 'Light' : 'Dark';
 
     return (
         <Button
             onClick={toggleTheme}
             variant="transparent"
-            className="text-ui-fg-base hover:text-ui-fg-muted focus:text-ui-fg-base active:text-ui-fg-base flex items-center gap-x-1 outline-none"
+            className="text-ui-fg-base flex items-center gap-x-1 outline-none group-[.navbar-shrunk]:px-2 hover:bg-transparent active:bg-transparent focus:shadow-none"
             onMouseDown={(e) => e.preventDefault()}
+            tabIndex={0}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
-            <Icon /> <span className="ml-1 transition-all duration-300 ease-in-out group-[.navbar-shrunk]:opacity-0 group-[.navbar-shrunk]:max-w-0 group-[.navbar-shrunk]:ml-0 overflow-hidden whitespace-nowrap">{text}</span>
+            <Icon />
         </Button>
     );
 };

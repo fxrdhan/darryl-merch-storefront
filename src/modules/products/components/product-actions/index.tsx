@@ -150,7 +150,7 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="w-full h-10 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white"
+          className="w-full h-10 dark:bg-white dark:hover:bg-gray-700 dark:text-gray-900 dark:border-gray-200 dark:hover:text-white"
           isLoading={isAdding}
           data-testid="add-product-button"
         >

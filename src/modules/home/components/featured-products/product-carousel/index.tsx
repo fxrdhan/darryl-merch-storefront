@@ -51,7 +51,7 @@ export default function ProductCarousel({ products, region }: { products: Produc
                 <IconButton
                     onClick={handlePrev}
                     variant="transparent"
-                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-1 transition-colors"
+                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-1"
                     aria-label="Previous slide"
                 >
                     <ChevronLeftMini />
@@ -59,7 +59,7 @@ export default function ProductCarousel({ products, region }: { products: Produc
                 <IconButton
                     onClick={handleNext}
                     variant="transparent"
-                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-1 transition-colors"
+                    className="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:border dark:hover:border-gray-500 rounded-full p-1"
                     aria-label="Next slide"
                 >
                     <ChevronRightMini />

@@ -15,6 +15,7 @@
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@headlessui/react": "^2.2.2",
     "@medusajs/js-sdk": "^2.7.1",
     "@medusajs/ui": "^4.0.9",

@@ -22,7 +22,7 @@ export default async function FeaturedProducts({
     });
 
     return (
-      <div className="py-12">
+      <div className="py-8 md:py-12">
         <ProductCarousel products={productsWithPrice} region={region} />
       </div>
     );
@@ -34,7 +34,7 @@ export default async function FeaturedProducts({
     }
 
     return (
-      <div className="py-12">
+      <div className="py-0 md:py-12">
         <div className="content-container">
           <h2 className="text-2xl-regular mb-8 lg:text-4xl text-center">{firstCollectionWithProducts.title}</h2>
         </div>

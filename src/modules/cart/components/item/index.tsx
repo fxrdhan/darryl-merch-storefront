@@ -1,6 +1,7 @@
 "use client"
 
 import { Table, Text, clx } from "@medusajs/ui"
+import { motion } from "framer-motion"
 import { updateLineItem } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import CartItemSelect from "@modules/cart/components/cart-item-select"
@@ -13,6 +14,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Spinner from "@modules/common/icons/spinner"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { useState } from "react"
+
+const MotionRow = motion(Table.Row)
 
 type ItemProps = {
   item: HttpTypes.StoreCartLineItem
@@ -45,7 +48,13 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
   const maxQuantity = item.variant?.manage_inventory ? 10 : maxQtyFromInventory
 
   return (
-    <Table.Row className="w-full dark:bg-gray-800" data-testid="product-row">
+    <MotionRow
+      layout // Enable layout animation
+      initial={{ opacity: 1, height: 'auto' }} // Start visible with auto height
+      animate={{ opacity: 1, height: 'auto' }} // Stay visible
+      exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }} // Fade out and collapse height
+      className="w-full dark:bg-gray-800" data-testid="product-row"
+    >
       <Table.Cell className="!pl-0 p-4 w-24">
         <LocalizedClientLink
           href={`/products/${item.product_handle}`}
@@ -141,7 +150,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           <DeleteButton id={item.id} data-testid="product-delete-button" />
         </Table.Cell>
       )}
-    </Table.Row>
+    </MotionRow>
   )
 }
 

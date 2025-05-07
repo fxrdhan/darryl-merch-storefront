@@ -9,7 +9,7 @@ import {
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 import { Button, clx } from "@medusajs/ui"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingCart } from "@medusajs/icons"
 import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
@@ -137,73 +137,78 @@ const CartDropdown = ({
             {cartState && cartState.items?.length ? (
               <>
                 <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar p-px">
-                  {cartState.items
-                    .sort((a, b) => {
-                      return (a.created_at ?? "") > (b.created_at ?? "")
-                        ? -1
-                        : 1
-                    })
-                    .map((item) => (
-                      <div
-                        className="grid grid-cols-[100px_1fr] gap-x-4"
-                        key={item.id}
-                        data-testid="cart-item"
-                      >
-                        <LocalizedClientLink
-                          href={`/products/${item.product_handle}`}
-                          className="w-24"
+                  <AnimatePresence>
+                    {cartState.items
+                      .sort((a, b) => {
+                        return (a.created_at ?? "") > (b.created_at ?? "")
+                          ? -1
+                          : 1
+                      })
+                      .map((item) => (
+                        <motion.div
+                          layout
+                          key={item.id}
+                          className="grid grid-cols-[100px_1fr] gap-x-4"
+                          data-testid="cart-item"
+                          initial={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -50, transition: { duration: 0.3 } }}
                         >
-                          <Thumbnail
-                            thumbnail={item.thumbnail}
-                            images={item.variant?.product?.images}
-                            size="square"
-                          />
-                        </LocalizedClientLink>
-                        <div className="flex flex-col justify-between flex-1">
-                          <div className="flex flex-col flex-1">
-                            <div className="flex items-start justify-between">
-                              <div className="flex flex-col overflow-ellipsis whitespace-nowrap w-[180px]">
-                                <h3 className="text-base-regular overflow-hidden text-ellipsis">
-                                  <LocalizedClientLink
-                                    href={`/products/${item.product_handle}`}
-                                    data-testid="product-link"
+                          <LocalizedClientLink
+                            href={`/products/${item.product_handle}`}
+                            className="w-24"
+                          >
+                            <Thumbnail
+                              thumbnail={item.thumbnail}
+                              images={item.variant?.product?.images}
+                              size="square"
+                            />
+                          </LocalizedClientLink>
+                          <div className="flex flex-col justify-between flex-1">
+                            <div className="flex flex-col flex-1">
+                              <div className="flex items-start justify-between">
+                                <div className="flex flex-col overflow-ellipsis whitespace-nowrap w-[180px]">
+                                  <h3 className="text-base-regular overflow-hidden text-ellipsis">
+                                    <LocalizedClientLink
+                                      href={`/products/${item.product_handle}`}
+                                      data-testid="product-link"
+                                    >
+                                      {item.title}
+                                    </LocalizedClientLink>
+                                  </h3>
+                                  <LineItemOptions
+                                    variant={item.variant}
+                                    data-testid="cart-item-variant"
+                                    data-value={item.variant}
+                                  />
+                                  <span
+                                    data-testid="cart-item-quantity"
+                                    data-value={item.quantity}
                                   >
-                                    {item.title}
-                                  </LocalizedClientLink>
-                                </h3>
-                                <LineItemOptions
-                                  variant={item.variant}
-                                  data-testid="cart-item-variant"
-                                  data-value={item.variant}
-                                />
-                                <span
-                                  data-testid="cart-item-quantity"
-                                  data-value={item.quantity}
-                                >
-                                  Quantity: {item.quantity}
-                                </span>
-                              </div>
-                              <div className="flex justify-end">
-                                <DeleteButton
-                                  id={item.id}
-                                  className="mt-1"
-                                  data-testid="cart-item-remove-button"
-                                >
-                                  Remove
-                                </DeleteButton>
+                                    Quantity: {item.quantity}
+                                  </span>
+                                </div>
+                                <div className="flex justify-end">
+                                  <DeleteButton
+                                    id={item.id}
+                                    className="mt-1"
+                                    data-testid="cart-item-remove-button"
+                                  >
+                                    Remove
+                                  </DeleteButton>
+                                </div>
                               </div>
                             </div>
+                            <div className="flex justify-end mt-1">
+                              <LineItemPrice
+                                item={item}
+                                style="tight"
+                                currencyCode={cartState.currency_code}
+                              />
+                            </div>
                           </div>
-                          <div className="flex justify-end mt-1">
-                            <LineItemPrice
-                              item={item}
-                              style="tight"
-                              currencyCode={cartState.currency_code}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                        </motion.div>
+                      ))}
+                  </AnimatePresence>
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">

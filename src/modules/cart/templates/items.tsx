@@ -20,9 +20,9 @@ const ItemsTemplate = ({ cart }: ItemsTemplateProps) => {
         <Table.Header className="border-t-0">
           <Table.Row className="text-ui-fg-subtle txt-medium-plus dark:bg-gray-900">
             <Table.HeaderCell className="!pl-0 text-center">Item</Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell className="hidden small:table-cell">
+            <Table.HeaderCell className="!p-1 md:!p-4"></Table.HeaderCell>
+            <Table.HeaderCell className="!px-1 md:!px-4">Quantity</Table.HeaderCell>
+            <Table.HeaderCell className="hidden small:table-cell !px-1 md:!px-4">
               Price
             </Table.HeaderCell>
             <Table.HeaderCell className="!pr-0 text-center">

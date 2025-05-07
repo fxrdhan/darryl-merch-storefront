@@ -392,12 +392,20 @@
 
   /* iPhone 12 Pro specific adjustments for cart item table */
   @media (max-width: 390px) {
+    .cart-item-table th,
+    .cart-item-table td {
+      padding-left: 0.25rem !important;
+      padding-right: 0.25rem !important;
+    }
+    
+    .cart-item-table th:first-child,
+    .cart-item-table td:first-child {
+      padding-left: 0 !important;
+    }
+    
     .cart-item-table th:last-child,
     .cart-item-table td:last-child {
-      padding-right: 0.5rem;
-    }
-    .cart-item-table th, .cart-item-table td {
-      padding-left: 0.5rem;
+      padding-right: 0 !important;
     }
   }
 }

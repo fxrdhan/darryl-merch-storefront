@@ -9,6 +9,7 @@ import {
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 import { Button, clx } from "@medusajs/ui"
+import { motion } from "framer-motion"
 import { ShoppingCart } from "@medusajs/icons"
 import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
@@ -27,6 +28,7 @@ const CartDropdown = ({
     undefined
   )
   const [cartDropdownOpen, setCartDropdownOpen] = useState(false)
+  const [animateCartIcon, setAnimateCartIcon] = useState(false)
 
   const open = () => setCartDropdownOpen(true)
   const close = () => setCartDropdownOpen(false)
@@ -55,7 +57,6 @@ const CartDropdown = ({
     open()
   }
 
-  // Clean up the timer when the component unmounts
   useEffect(() => {
     return () => {
       if (activeTimer) {
@@ -66,12 +67,12 @@ const CartDropdown = ({
 
   const pathname = usePathname()
 
-  // open cart dropdown when modifying the cart items, but only if we're not on the cart page
   useEffect(() => {
-    if (itemRef.current !== totalItems && !pathname.includes("/cart")) {
-      timedOpen()
+    if (totalItems > itemRef.current) {
+      setAnimateCartIcon(true)
+      setTimeout(() => setAnimateCartIcon(false), 600) // Updated timeout
+      itemRef.current = totalItems
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalItems, itemRef.current])
 
   return (
@@ -87,11 +88,30 @@ const CartDropdown = ({
             href="/cart"
             data-testid="nav-cart-link"
           >
-            <div className="flex items-center gap-x-1">
-              <ShoppingCart/>
-              <span className="ml-1 transition-all duration-300 ease-in-out group-[.navbar-shrunk]:opacity-0 group-[.navbar-shrunk]:max-w-0 group-[.navbar-shrunk]:ml-0 overflow-hidden whitespace-nowrap md:block hidden">Cart</span>
+            <motion.div
+              className="flex items-center gap-x-1"
+              animate={
+                animateCartIcon
+                  ? {
+                      scale: [1, 1.3, 1.3, 1.3, 1.3, 1.3, 1],
+                      rotate: [0, 0, -10, 10, -10, 10, 0],
+                    }
+                  : { scale: 1, rotate: 0 }
+              }
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                times: animateCartIcon
+                  ? [0, 0.15, 0.3, 0.45, 0.6, 0.75, 1]
+                  : undefined,
+              }}
+            >
+              <ShoppingCart />
+              <span className="ml-1 transition-all duration-300 ease-in-out group-[.navbar-shrunk]:opacity-0 group-[.navbar-shrunk]:max-w-0 group-[.navbar-shrunk]:ml-0 overflow-hidden whitespace-nowrap md:block hidden">
+                Cart
+              </span>
               <span>({totalItems})</span>
-            </div>
+            </motion.div>
           </LocalizedClientLink>
         </PopoverButton>
         <Transition

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@medusajs/ui';
-import { ArrowsPointingOut } from '@medusajs/icons';
+import { TbMaximize, TbMinimize } from "react-icons/tb";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const FullScreenToggle = () => {
     const [isFullScreen, setIsFullScreen] = useState(false);
@@ -59,7 +60,6 @@ const FullScreenToggle = () => {
         }
     };
 
-    const Icon = ArrowsPointingOut;
     const label = isFullScreen ? 'Exit full screen' : 'Enter full screen';
 
     return (
@@ -73,7 +73,18 @@ const FullScreenToggle = () => {
             aria-pressed={isFullScreen}
             data-testid="fullscreen-toggle-button"
         >
-            <Icon />
+            <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                    key={isFullScreen ? 'minimize' : 'maximize'}
+                    initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-lg"
+                >
+                    {isFullScreen ? <TbMinimize /> : <TbMaximize />}
+                </motion.div>
+            </AnimatePresence>
         </Button>
     );
 };

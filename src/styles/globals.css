@@ -1,14 +1,58 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
-
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --scrollbar-thumb-bg-light: rgba(0,0,0,0.7);
+  --scrollbar-thumb-hover-bg-light: rgba(0,0,0,0.9);
+  --scrollbar-thumb-shadow-light: 0 0 6px rgba(0,0,0,0.6), 0 0 12px rgba(0,0,0,0.5);
+  --scrollbar-thumb-hover-shadow-light: 0 0 8px rgba(0,0,0,0.8), 0 0 16px rgba(0,0,0,0.7);
+  --scrollbar-thumb-bg-actual: var(--scrollbar-thumb-bg-light);
+  --scrollbar-thumb-hover-bg-actual: var(--scrollbar-thumb-hover-bg-light);
+  --scrollbar-thumb-shadow-actual: var(--scrollbar-thumb-shadow-light);
+  --scrollbar-thumb-hover-shadow-actual: var(--scrollbar-thumb-hover-shadow-light);
+  --scrollbar-track-bg: transparent;
+}
+
+html.dark {
+  --scrollbar-thumb-bg-actual: rgba(255,255,255,0.7);
+  --scrollbar-thumb-hover-bg-actual: rgba(255,255,255,0.9);
+  --scrollbar-thumb-shadow-actual: 0 0 6px rgba(255,255,255,0.6), 0 0 12px rgba(255,255,255,0.5);
+  --scrollbar-thumb-hover-shadow-actual: 0 0 8px rgba(255,255,255,0.8), 0 0 16px rgba(255,255,255,0.7);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg-actual);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-track-bg);
+  box-shadow: var(--scrollbar-thumb-shadow-actual);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover-bg-actual);
+  box-shadow: var(--scrollbar-thumb-hover-shadow-actual);
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-bg-actual) var(--scrollbar-track-bg);
+}
+
 @layer base {
   html.dark {
     color-scheme: dark;
-    /* Ensure smooth transitions and proper color application */
     @apply bg-gray-900 text-gray-200;
   }
   body {
@@ -21,69 +65,54 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-
   .no-scrollbar::-webkit-scrollbar-track {
     background-color: transparent;
   }
-
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
   .animate-gradient-xy {
     background-size: 400% 400%;
     animation: gradient-xy 15s ease infinite;
   }
-
   @keyframes gradient-xy {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-
   .animate-topToBottom {
     animation: topToBottom 20s linear infinite;
   }
-  
   .animate-bottomToTop {
     animation: bottomToTop 20s linear infinite;
   }
-  
   .animate-leftToRight {
     animation: leftToRight 20s linear infinite;
   }
-  
   .animate-rightToLeft {
     animation: rightToLeft 20s linear infinite;
   }
-  
   .animate-diagonal1 {
     animation: diagonal1 20s linear infinite;
   }
-  
   .animate-diagonal2 {
     animation: diagonal2 20s linear infinite;
   }
-
   .animate-orbit {
     animation: orbit 30s linear infinite;
   }
-  
   .animate-reverse-orbit {
     animation: reverse-orbit 40s linear infinite;
   }
-
   @keyframes orbit {
     0% { transform: rotate(var(--initial-rotation, 0deg)) translateX(var(--radius, 200px)) rotate(calc(-1 * var(--initial-rotation, 0deg))); }
     100% { transform: rotate(calc(var(--initial-rotation, 0deg) + 360deg)) translateX(var(--radius, 200px)) rotate(calc(-1 * var(--initial-rotation, 0deg) - 360deg)); }
   }
-
   @keyframes reverse-orbit {
     0% { transform: rotate(var(--initial-rotation, 360deg)) translateX(var(--radius, 300px)) rotate(calc(-1 * var(--initial-rotation, 360deg))); }
     100% { transform: rotate(calc(var(--initial-rotation, 360deg) - 360deg)) translateX(var(--radius, 300px)) rotate(calc(-1 * var(--initial-rotation, 360deg) + 360deg)); }
   }
-
   .text-slide-container {
     display: inline-block;
     text-align: left;
@@ -93,11 +122,9 @@
     vertical-align: bottom;
     font-size: inherit;
   }
-
   .text-slide-wrapper {
     animation: text-slide-animation 6s linear infinite;
   }
-
   .text-slide-wrapper span {
     display: block;
     color: black;
@@ -109,34 +136,20 @@
     height: 80px;
     line-height: 80px;
   }
-
   @keyframes text-slide-animation {
-    0% {
-      transform: translateY(0);
-    }
-    35% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-80px);
-    }
-    85% {
-      transform: translateY(-80px);
-    }
-    100% {
-      transform: translateY(-160px);
-    }
+    0% { transform: translateY(0); }
+    35% { transform: translateY(0); }
+    50% { transform: translateY(-80px); }
+    85% { transform: translateY(-80px); }
+    100% { transform: translateY(-160px); }
   }
-
   input:focus ~ label,
   input:not(:placeholder-shown) ~ label {
     @apply -translate-y-2 text-xsmall-regular;
   }
-
   input:focus ~ label {
     @apply left-0;
   }
-
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -151,14 +164,12 @@
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
     transition: background-color 5000s ease-in-out 0s;
   }
-
   input[type="search"]::-webkit-search-decoration,
   input[type="search"]::-webkit-search-cancel-button,
   input[type="search"]::-webkit-search-results-button,
   input[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance: none;
   }
-
   .animated-gradient-text-blue {
     background: linear-gradient(270deg, #2071f1 0%, #7f5fff 50%, #2071f1 100%);
     background-size: 200% 200%;
@@ -168,7 +179,6 @@
     -webkit-text-fill-color: transparent;
     animation: gradient-move 3s ease-in-out infinite;
   }
-
   .animated-gradient-text-purple {
     background: linear-gradient(270deg, #7f5fff 0%, #a259f7 50%, #7f5fff 100%);
     background-size: 200% 200%;
@@ -178,7 +188,6 @@
     -webkit-text-fill-color: transparent;
     animation: gradient-move 3s ease-in-out infinite;
   }
-
   .animated-gradient-text {
     background: linear-gradient(270deg, #7f5fff, #2071f1, #7f5fff);
     background-size: 200% 200%;
@@ -188,17 +197,10 @@
     -webkit-text-fill-color: transparent;
     animation: gradient-move 3s ease-in-out infinite;
   }
-
   @keyframes gradient-move {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }
 
@@ -206,63 +208,48 @@
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-6;
   }
-
   .contrast-btn {
     @apply px-4 py-2 rounded-full bg-black text-white hover:bg-gray-800 dark:bg-black dark:text-white dark:hover:bg-gray-700;
   }
-
   .text-xsmall-regular {
     @apply text-[10px] leading-4 font-normal;
   }
-
   .text-small-regular {
     @apply text-xs leading-5 font-normal;
   }
-
   .text-small-semi {
     @apply text-xs leading-5 font-semibold;
   }
-
   .text-base-regular {
     @apply text-sm leading-6 font-normal;
   }
-
   .text-base-semi {
     @apply text-sm leading-6 font-semibold;
   }
-
   .text-large-regular {
     @apply text-base leading-6 font-normal;
   }
-
   .text-large-semi {
     @apply text-base leading-6 font-semibold;
   }
-
   .text-xl-regular {
     @apply text-2xl leading-[36px] font-normal;
   }
-
   .text-xl-semi {
     @apply text-2xl leading-[36px] font-semibold;
   }
-
   .text-2xl-regular {
     @apply text-[30px] leading-[48px] font-normal;
   }
-
   .text-2xl-semi {
     @apply text-[30px] leading-[48px] font-semibold;
   }
-
   .text-3xl-regular {
     @apply text-[32px] leading-[44px] font-normal;
   }
-
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
-
   .liquid-btn {
     position: relative;
     overflow: hidden;
@@ -294,8 +281,6 @@
     color: inherit !important;
     transition: color 0.3s;
   }
-
-  /* Shake animation for button text */
   @keyframes shake-tilt {
     0% { transform: rotate(0deg); }
     30% { transform: rotate(0deg); }
@@ -311,98 +296,75 @@
     80% { transform: rotate(0deg); }
     100% { transform: rotate(0deg); }
   }
-
   .shake-tilt {
     animation: shake-tilt 2.5s infinite;
     display: inline-block;
     transition: none;
   }
-
-  /* Remove shake on hover/focus */
   .liquid-btn:hover .shake-tilt,
   .liquid-btn:focus-visible .shake-tilt {
     animation: none;
   }
-
-  /* Carousel Styling */
   .product-carousel-container {
     @apply relative py-10 mx-auto;
   }
-
-  /* Slick Carousel Adjustments */
   .slick-prev, .slick-next {
     @apply z-10 w-10 h-10;
   }
-
   .slick-prev {
     @apply left-0;
   }
-
   .slick-next {
     @apply right-0;
   }
-
   .slick-prev:before, .slick-next:before {
     @apply text-2xl text-gray-800 dark:text-gray-200;
     opacity: 0.8;
   }
-
   .slick-dots {
     @apply bottom-[-25px];
   }
-
   .slick-dots li button:before {
     @apply text-gray-800 dark:text-gray-200;
     opacity: 0.5;
   }
-
   .slick-dots li.slick-active button:before {
     @apply text-gray-800 dark:text-gray-200;
     opacity: 1;
   }
-
   .slick-track {
     @apply flex items-stretch;
     margin-left: -10px;
     margin-right: -10px;
   }
-
   .slick-slide {
     @apply h-auto;
   }
-
   .slick-slide > div {
     @apply h-full;
   }
-
-  /* Add responsive spacing for carousel items */
   @media (min-width: 768px) {
     .slick-track {
       margin-left: -15px;
       margin-right: -15px;
     }
   }
-
   @media (min-width: 1024px) {
     .slick-track {
       margin-left: -20px;
       margin-right: -20px;
     }
   }
-
-  /* iPhone 12 Pro specific adjustments for cart item table */
   @media (max-width: 390px) {
     .cart-item-table th,
     .cart-item-table td {
       padding-left: 0.25rem !important;
       padding-right: 0.25rem !important;
     }
-    
     .cart-item-table th:first-child,
     .cart-item-table td:first-child {
       padding-left: 0 !important;
     }
-    
     .cart-item-table th:last-child,
     .cart-item-table td:last-child {
       padding-right: 0 !important;

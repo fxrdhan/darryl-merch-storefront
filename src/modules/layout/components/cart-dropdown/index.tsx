@@ -67,13 +67,14 @@ const CartDropdown = ({
 
   const pathname = usePathname()
 
+  // Trigger animation when totalItems increases, but only if the dropdown is closed
   useEffect(() => {
-    if (totalItems > itemRef.current) {
+    if (totalItems > itemRef.current && !cartDropdownOpen) {
       setAnimateCartIcon(true)
-      setTimeout(() => setAnimateCartIcon(false), 600) // Updated timeout
-      itemRef.current = totalItems
+      setTimeout(() => setAnimateCartIcon(false), 600)
     }
-  }, [totalItems, itemRef.current])
+    itemRef.current = totalItems
+  }, [totalItems, cartDropdownOpen])
 
   return (
     <div

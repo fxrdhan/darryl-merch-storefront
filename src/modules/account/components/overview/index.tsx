@@ -1,9 +1,12 @@
-import { Container } from "@medusajs/ui"
+"use client"
 
+import { Container } from "@medusajs/ui"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
+import { motion, animate } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 
 type OverviewProps = {
   customer: HttpTypes.StoreCustomer | null
@@ -11,6 +14,26 @@ type OverviewProps = {
 }
 
 const Overview = ({ customer, orders }: OverviewProps) => {
+  const profileCompletion = getProfileCompletion(customer)
+  const nodeRef = useRef<HTMLSpanElement>(null)
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false)
+
+  useEffect(() => {
+    const node = nodeRef.current
+    if (node) {
+      const controls = animate(0, profileCompletion, {
+        duration: 1,
+        onUpdate(value) {
+          node.textContent = Math.round(value).toString()
+        },
+        onComplete() {
+          setIsAnimationComplete(true)
+        },
+      })
+      return () => controls.stop()
+    }
+  }, [profileCompletion])
+
   return (
     <div data-testid="overview-page-wrapper">
       <div className="hidden small:block">
@@ -35,16 +58,33 @@ const Overview = ({ customer, orders }: OverviewProps) => {
               <div className="flex flex-col gap-y-4">
                 <h3 className="text-large-semi">Profile</h3>
                 <div className="flex items-end gap-x-2">
-                  <span
+                  <motion.span
                     className="text-3xl-semi leading-none"
                     data-testid="customer-profile-completion"
-                    data-value={getProfileCompletion(customer)}
+                    data-value={profileCompletion}
+                    ref={nodeRef}
                   >
-                    {getProfileCompletion(customer)}%
-                  </span>
-                  <span className="uppercase text-base-regular text-ui-fg-subtle">
-                    Completed
-                  </span>
+                    {/* Initial value, will be updated by animation */}
+                    0
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1, duration: 0.5, ease: "easeInOut" }}
+                    className="text-3xl-semi leading-none"
+                  >
+                    %
+                  </motion.span>
+                  {isAnimationComplete && (
+                    <motion.span
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="uppercase text-base-regular text-ui-fg-subtle"
+                    >
+                      Completed
+                    </motion.span>
+                  )}
                 </div>
               </div>
 

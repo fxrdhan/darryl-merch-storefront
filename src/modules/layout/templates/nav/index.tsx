@@ -9,6 +9,7 @@ import User from "@modules/common/icons/user"
 import ProfileDropdown from "@modules/layout/components/profile-dropdown"
 import DarkModeToggle from "@modules/layout/components/dark-mode-toggle"
 import NavbarScroll from "@modules/layout/components/navbar-scroll"
+import FullScreenToggle from "@modules/layout/components/full-screen-toggle"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -19,7 +20,8 @@ export default async function Nav() {
       <NavbarScroll>
         <header className="relative h-12 md:h-16 mx-auto border-b duration-200 border-ui-border-base dark:border-gray-700 bg-white/50 dark:bg-gray-900/50 backdrop-blur-lg rounded-lg">
           <nav className="content-container txt-xsmall-plus md:text-base-regular text-ui-fg-subtle dark:text-ui-fg-muted flex items-center justify-between w-full h-full">
-            <div className="flex-1 basis-0 h-full flex items-center">
+            <div className="flex-1 basis-0 h-full flex items-center gap-x-2">
+              <FullScreenToggle />
               <Suspense
                 fallback={
                   <LocalizedClientLink

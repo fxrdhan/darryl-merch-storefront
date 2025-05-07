@@ -1,25 +1,21 @@
 "use client"
 
 import { Button, Heading } from "@medusajs/ui"
+import { motion, AnimatePresence } from "framer-motion";
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { useState } from "react"
+import { useState } from "react";
 import OrbBackground from "./background"
 
 const Hero = () => {
   const emotes = ["🥳", "🤩", "😎", "😋", "🙌", "🔥", "🎉", "🫶"];
   const [currentEmote, setCurrentEmote] = useState(emotes[0]);
-  const [animate, setAnimate] = useState(false);
 
   const handleEmoteClick = () => {
-    setAnimate(true);
-
     setCurrentEmote(prevEmote => {
       const currentIndex = emotes.indexOf(prevEmote);
       const nextIndex = (currentIndex + 1) % emotes.length;
       return emotes[nextIndex];
     });
-
-    setTimeout(() => setAnimate(false), 500);
   };
 
   return (
@@ -45,13 +41,19 @@ const Hero = () => {
           className="text-xl md:text-3xl leading-8 font-medium text-gray-700 dark:text-gray-300 flex flex-wrap justify-center items-center"
         >
           Belanja Merchandise Darryl disini{" "}
-          <span 
-            onClick={handleEmoteClick} 
-            className={`cursor-pointer inline-block ${animate ? 'animate-bounce' : ''} md:inline block w-full mt-2 md:mt-0 md:w-auto ml-2`}
-            style={{ transition: "transform 0.3s" }}
-          >
-            {currentEmote}
-          </span>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={currentEmote} // Key changes when emote changes
+              onClick={handleEmoteClick}
+              className={`cursor-pointer inline-block md:inline block w-full mt-2 md:mt-0 md:w-auto ml-2`}
+              initial={{ opacity: 0, y: -10, scale: 0.8, rotate: -15 }}
+              animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+              exit={{ opacity: 0, y: 10, scale: 0.8, rotate: 15 }}
+              transition={{ duration: 0.3 }}
+            >
+              {currentEmote}
+            </motion.span>
+          </AnimatePresence>
         </Heading>
         
         <LocalizedClientLink href="/store" className="relative group">

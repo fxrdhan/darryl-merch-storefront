@@ -75,7 +75,6 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
       {type === "full" && (
         <Table.Cell>
           <div className="flex gap-2 items-center w-28">
-            <DeleteButton id={item.id} data-testid="product-delete-button" />
             <CartItemSelect
               value={item.quantity}
               onChange={(value) => changeQuantity(parseInt(value.target.value))}
@@ -137,6 +136,11 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           />
         </span>
       </Table.Cell>
+      {type === "full" && (
+        <Table.Cell className="!p-0 text-center">
+          <DeleteButton id={item.id} data-testid="product-delete-button" />
+        </Table.Cell>
+      )}
     </Table.Row>
   )
 }

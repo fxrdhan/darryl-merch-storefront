@@ -28,8 +28,11 @@ export default async function Home(props: {
 
   let fallbackProducts = null
   if (collectionsWithProducts.length === 0) {
-    const { response } = await listProducts({ regionId: region?.id})
-    fallbackProducts = response.products
+    // Hanya ambil produk fallback jika region tersedia
+    if (region?.id) {
+      const { response } = await listProducts({ regionId: region.id })
+      fallbackProducts = response.products
+    }
   }
 
   if (!region) {

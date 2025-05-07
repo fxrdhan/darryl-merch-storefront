@@ -6,7 +6,6 @@ import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
 import FooterCountrySelect from "@modules/layout/components/footer-country-select"
-import FullScreenToggle from "@modules/layout/components/full-screen-toggle"
 
 const MenuItems = {
   Home: "/",
@@ -154,11 +153,6 @@ export default async function Footer({ regions }: { regions?: HttpTypes.StoreReg
         </div>
         <div className="flex w-full mb-8 justify-between text-ui-fg-muted dark:text-ui-fg-muted">
           <div className="flex flex-col gap-y-4 flex-1">
-            {regions && (
-              <div className="flex items-center pb-2">
-                <FullScreenToggle />
-              </div>
-            )}
             {regions && (
               <div className="flex items-center pb-8">
                 <FooterCountrySelect regions={regions} />

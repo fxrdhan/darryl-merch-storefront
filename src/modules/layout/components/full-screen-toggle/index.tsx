@@ -1,49 +1,80 @@
 "use client"
 
 import { useState, useEffect, useCallback } from 'react';
-import { clx } from '@medusajs/ui';
+import { Button } from '@medusajs/ui';
+import { ArrowsPointingOut } from '@medusajs/icons';
 
 const FullScreenToggle = () => {
     const [isFullScreen, setIsFullScreen] = useState(false);
 
     const checkFullScreenStatus = useCallback(() => {
-        const isCurrentlyFullScreen = !!document.fullscreenElement;
+        const isCurrentlyFullScreen = !!(
+            document.fullscreenElement ||
+            (document as any).webkitFullscreenElement ||
+            (document as any).mozFullScreenElement ||
+            (document as any).msFullscreenElement
+        );
         setIsFullScreen(isCurrentlyFullScreen);
     }, []);
 
     useEffect(() => {
-        checkFullScreenStatus(); // Check on mount
+        checkFullScreenStatus();
         document.addEventListener('fullscreenchange', checkFullScreenStatus);
+        document.addEventListener('webkitfullscreenchange', checkFullScreenStatus);
+        document.addEventListener('mozfullscreenchange', checkFullScreenStatus);
+        document.addEventListener('MSFullscreenChange', checkFullScreenStatus);
 
         return () => {
             document.removeEventListener('fullscreenchange', checkFullScreenStatus);
+            document.removeEventListener('webkitfullscreenchange', checkFullScreenStatus);
+            document.removeEventListener('mozfullscreenchange', checkFullScreenStatus);
+            document.removeEventListener('MSFullscreenChange', checkFullScreenStatus);
         };
     }, [checkFullScreenStatus]);
 
     const toggleFullScreen = () => {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-            });
+            const element = document.documentElement;
+            if (element.requestFullscreen) {
+                element.requestFullscreen().catch(err => {
+                    console.error(`FS Error: ${err.message} (${err.name})`);
+                });
+            } else if ((element as any).webkitRequestFullscreen) {
+                (element as any).webkitRequestFullscreen();
+            } else if ((element as any).mozRequestFullScreen) {
+                (element as any).mozRequestFullScreen();
+            } else if ((element as any).msRequestFullscreen) {
+                (element as any).msRequestFullscreen();
+            }
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
+            } else if ((document as any).webkitExitFullscreen) {
+                (document as any).webkitExitFullscreen();
+            } else if ((document as any).mozCancelFullScreen) {
+                (document as any).mozCancelFullScreen();
+            } else if ((document as any).msExitFullscreen) {
+                (document as any).msExitFullscreen();
             }
         }
     };
 
+    const Icon = ArrowsPointingOut;
+    const label = isFullScreen ? 'Exit full screen' : 'Enter full screen';
+
     return (
-        <button
+        <Button
             onClick={toggleFullScreen}
-            className={clx(
-                "text-xs md:text-sm cursor-pointer text-ui-fg-muted hover:text-ui-fg-interactive focus:outline-none hover:underline",
-                "dark:text-ui-fg-muted dark:hover:text-ui-fg-interactive-hover"
-            )}
+            variant="transparent"
+            className="text-ui-fg-base flex items-center gap-x-1 outline-none group-[.navbar-shrunk]:px-2 hover:bg-transparent active:bg-transparent focus:shadow-none"
+            onMouseDown={(e) => e.preventDefault()}
+            tabIndex={0}
+            aria-label={label}
             aria-pressed={isFullScreen}
             data-testid="fullscreen-toggle-button"
         >
-            {isFullScreen ? 'Exit full screen' : 'Enter full screen'}
-        </button>
+            <Icon />
+        </Button>
     );
 };
 

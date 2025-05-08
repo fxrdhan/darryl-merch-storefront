@@ -6735,11 +6735,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^12.10.0":
-  version: 12.10.0
-  resolution: "framer-motion@npm:12.10.0"
+"framer-motion@npm:^12.10.4":
+  version: 12.10.4
+  resolution: "framer-motion@npm:12.10.4"
   dependencies:
-    motion-dom: ^12.10.0
+    motion-dom: ^12.10.4
     motion-utils: ^12.9.4
     tslib: ^2.4.0
   peerDependencies:
@@ -6753,7 +6753,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 87720885b0d4ac8383a89bdb3aba268f3be67269a5573236be70838f9840c81f0933f1d0141d8b0cfd2bde5eba7a3d109df3f91d536334f9dc5aad075fab8065
+  checksum: 306b5abeaf9e3a70377fcd3f2080e0e2f99e1cf15108a30c3d778c1e0229e9d07164ca27821f97c7fb9314f025ea9283ec1ff2ef0ca3d0eaa5943c1526a96afd
   languageName: node
   linkType: hard
 
@@ -7881,7 +7881,7 @@ __metadata:
     babel-loader: ^10.0.0
     eslint: 9.26.0
     eslint-config-next: 15.3.1
-    framer-motion: ^12.10.0
+    framer-motion: ^12.10.4
     lodash: ^4.17.21
     next: 15.3.1
     pg: ^8.15.6
@@ -8087,12 +8087,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^12.10.0":
-  version: 12.10.0
-  resolution: "motion-dom@npm:12.10.0"
+"motion-dom@npm:^12.10.4":
+  version: 12.10.4
+  resolution: "motion-dom@npm:12.10.4"
   dependencies:
     motion-utils: ^12.9.4
-  checksum: 8799a4605a8709aafde231a3b21fd4e49b4eafa25d1892986971319da77579a249cf03558b4e0a2a59cd2423baa29087ceb76ed2a4dd29f91a6d2fc0e4d4fb86
+  checksum: 831bb2425e69bcfba2619115fe59147652595e5dc7497c0e8fb3b93e8c294bb58801c85fae6d46463d42bdc1808f12e9aadaa1748cd27cc79c7441691e29d081
   languageName: node
   linkType: hard
 

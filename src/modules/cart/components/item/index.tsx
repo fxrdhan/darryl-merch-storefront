@@ -2,10 +2,9 @@
 
 import { Text, clx, Button, IconButton, Tooltip } from "@medusajs/ui"
 import { motion } from "framer-motion"
-import { updateLineItem } from "@lib/data/cart"
+import { deleteLineItem, updateLineItem } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import ErrorMessage from "@modules/checkout/components/error-message"
-import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import { MinusMini, PlusMini } from "@medusajs/icons"
@@ -42,20 +41,18 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
       })
   }
 
-  // TODO: Update this to grab the actual max inventory
   const maxQtyFromInventory = 10
   const maxQuantity = item.variant?.manage_inventory ? 10 : maxQtyFromInventory
 
   return (
     <MotionDiv
-      layout // Enable layout animation
-      initial={{ opacity: 1, height: 'auto' }} // Start visible with auto height
-      animate={{ opacity: 1, height: 'auto' }} // Stay visible
-      exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }} // Fade out and collapse height
+      layout
+      initial={{ opacity: 1, height: 'auto' }}
+      animate={{ opacity: 1, height: 'auto' }}
+      exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }}
       className="flex gap-x-4 w-full border-b border-gray-200 dark:border-gray-700 last:border-b-0"
       data-testid="product-row"
     >
-      {/* Thumbnail */}
       <LocalizedClientLink
         href={`/products/${item.product_handle}`}
         className="py-2"
@@ -68,9 +65,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         />
       </LocalizedClientLink>
 
-      {/* Item Details */}
       <div className="flex flex-col justify-between flex-1 py-2">
-        {/* Top Row: Title and Unit Price */}
         <div className="flex flex-col">
           <LocalizedClientLink href={`/products/${item.product_handle}`}>
             <Text
@@ -81,18 +76,33 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
             </Text>
           </LocalizedClientLink>
           <LineItemOptions variant={item.variant} data-testid="product-variant" />
-          {/* Unit Price - Placed below Title/Options */}
           <LineItemUnitPrice item={item} currencyCode={currencyCode} style="tight" />
         </div>
+        
+        <ErrorMessage error={error} data-testid="product-error-message" />
+      </div>
 
-        {/* Bottom Row: Quantity Selector and Delete Button */}
-        <div className="flex items-end justify-between text-small-regular">
-          {/* Quantity Selector */}
+      <div className="flex flex-col items-end justify-end py-2">
+        <div className="flex items-center mb-2">
           <div className="flex items-center border dark:border-gray-600 rounded-full overflow-hidden max-w-[100px]">
             <IconButton
               variant="transparent"
-              onClick={() => changeQuantity(item.quantity - 1)}
-              disabled={item.quantity <= 1 || updating}
+              onClick={() => {
+                if (item.quantity - 1 < 1) {
+                  setError(null);
+                  setUpdating(true);
+                  deleteLineItem(item.id)
+                    .catch((err) => {
+                      setError(err.message);
+                    })
+                    .finally(() => {
+                      setUpdating(false);
+                    });
+                } else {
+                  changeQuantity(item.quantity - 1);
+                }
+              }}
+              disabled={updating}
               className="p-1 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white disabled:text-gray-400 dark:disabled:text-gray-500"
               data-testid="quantity-minus-button"
             >
@@ -111,13 +121,8 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
               <PlusMini />
             </IconButton>
           </div>
-          <DeleteButton id={item.id} data-testid="product-delete-button" className="!text-xs md:!text-sm" />
         </div>
-        <ErrorMessage error={error} data-testid="product-error-message" />
-      </div>
-
-      {/* Total Price (Aligned to the right edge) */}
-      <div className="flex items-center justify-end flex-shrink-0 py-2 pl-2 pr-0 md:pr-4">
+        
         <LineItemPrice
           item={item}
           style="tight"

@@ -96,9 +96,8 @@ const CartDropdown = ({
                   ? {
                       scale: [1, 1.3, 1.3, 1.3, 1.3, 1.3, 1],
                       rotate: [0, 0, -10, 10, -10, 10, 0],
-                      fontWeight: ["normal", "bold", "bold", "bold", "bold", "bold", "normal"] as any,
                     }
-                  : { scale: 1, rotate: 0, fontWeight: "normal" }
+                  : { scale: 1, rotate: 0 }
               }
               transition={{
                 duration: 0.6,

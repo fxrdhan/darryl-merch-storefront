@@ -45,10 +45,6 @@ export const listProducts = async ({
     }
   }
 
-  const headers = {
-    ...(await getAuthHeaders()),
-  }
-
   const next = {
     ...(await getCacheOptions("products")),
   }
@@ -66,7 +62,6 @@ export const listProducts = async ({
             "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
           ...queryParams,
         },
-        headers,
         next,
         cache: 'no-store',
       }

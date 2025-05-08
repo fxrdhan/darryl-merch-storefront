@@ -165,45 +165,41 @@ const CartDropdown = ({
                           </LocalizedClientLink>
                           <div className="flex flex-col justify-between flex-1">
                             <div className="flex flex-col flex-1">
-                              <div className="flex items-start justify-between">
-                                <div className="flex flex-col overflow-ellipsis whitespace-nowrap w-[180px]">
-                                  <h3 className="text-base-regular overflow-hidden text-ellipsis">
-                                    <LocalizedClientLink
-                                      href={`/products/${item.product_handle}`}
-                                      data-testid="product-link"
-                                    >
-                                      {item.title}
-                                    </LocalizedClientLink>
-                                  </h3>
-                                  <LineItemOptions
-                                    variant={item.variant}
-                                    data-testid="cart-item-variant"
-                                    data-value={item.variant}
-                                  />
-                                  <span
-                                    data-testid="cart-item-quantity"
-                                    data-value={item.quantity}
+                              <div className="flex flex-col overflow-ellipsis whitespace-nowrap w-[180px]">
+                                <h3 className="text-base-regular overflow-hidden text-ellipsis">
+                                  <LocalizedClientLink
+                                    href={`/products/${item.product_handle}`}
+                                    data-testid="product-link"
                                   >
-                                    Quantity: {item.quantity}
-                                  </span>
-                                </div>
-                                <div className="flex justify-end">
-                                  <DeleteButton
-                                    id={item.id}
-                                    className="mt-1"
-                                    data-testid="cart-item-remove-button"
-                                  >
-                                    Remove
-                                  </DeleteButton>
-                                </div>
+                                    {item.title}
+                                  </LocalizedClientLink>
+                                </h3>
+                                <LineItemOptions
+                                  variant={item.variant}
+                                  data-testid="cart-item-variant"
+                                  data-value={item.variant}
+                                />
+                                <span
+                                  data-testid="cart-item-quantity"
+                                  data-value={item.quantity}
+                                >
+                                  Quantity: {item.quantity}
+                                </span>
                               </div>
-                            </div>
-                            <div className="flex justify-end mt-1">
-                              <LineItemPrice
-                                item={item}
-                                style="tight"
-                                currencyCode={cartState.currency_code}
-                              />
+                              <div className="flex justify-between items-center mt-1">
+                                <DeleteButton
+                                  id={item.id}
+                                  className="text-left"
+                                  data-testid="cart-item-remove-button"
+                                >
+                                  Remove
+                                </DeleteButton>
+                                <LineItemPrice
+                                  item={item}
+                                  style="tight"
+                                  currencyCode={cartState.currency_code}
+                                />
+                              </div>
                             </div>
                           </div>
                         </motion.div>

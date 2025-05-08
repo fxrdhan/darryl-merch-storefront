@@ -9,6 +9,7 @@ import OrbBackground from "./background"
 const Hero = () => {
   const emotes = ["🥳", "🤩", "😎", "😋", "🙌", "🔥", "🎉", "🫶"];
   const [currentEmote, setCurrentEmote] = useState(emotes[0]);
+  const [isInitialAnimationComplete, setIsInitialAnimationComplete] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -86,7 +87,10 @@ const Hero = () => {
             </AnimatePresence>
           </Heading>
         </motion.div>
-        <motion.div variants={itemVariants}>
+        <motion.div
+          variants={itemVariants}
+          onAnimationComplete={() => setIsInitialAnimationComplete(true)}
+        >
           <LocalizedClientLink href="/store" className="relative group">
             <span className="liquid-btn inline-block relative text-black dark:text-white px-6 py-2 outline-none border-none">
               <span className="liquid-bg"></span>
@@ -95,7 +99,7 @@ const Hero = () => {
                 className="relative z-10 text-base md:text-lg bg-transparent outline-none border-none shadow-none transition-duration-0 liquid-btn-text tracking-widest font-weight-animate"
                 style={{ background: "none", transition: "font-weight 0.3s cubic-bezier(0.4,0,0.2,1)" }}
               >
-                <span className="shake-tilt text-black dark:text-white group-hover:font-bold group-hover:text-white dark:group-hover:text-zinc-200">Explore Products</span>
+                <span className={`group-hover:font-bold group-hover:text-white dark:group-hover:text-zinc-200 text-black dark:text-white ${isInitialAnimationComplete ? 'shake-tilt' : ''}`}>Explore Products</span>
               </Button>
             </span>
           </LocalizedClientLink>

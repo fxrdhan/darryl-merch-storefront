@@ -23,10 +23,7 @@ const LineItemPrice = ({
 
   return (
     <div
-      className={clx(
-        "flex flex-col gap-x-2 text-ui-fg-subtle items-end",
-        className
-      )}
+      className="flex flex-col gap-x-2 text-ui-fg-subtle items-end"
     >
       <div className="text-left">
         {hasReducedPrice && (
@@ -55,7 +52,7 @@ const LineItemPrice = ({
         <span
           className={clx("text-base-regular", {
             "text-ui-fg-interactive": hasReducedPrice,
-          })}
+          }, className)} // Apply the className directly to the price text
           data-testid="product-price"
         >
           {convertToLocale({

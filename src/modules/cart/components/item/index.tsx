@@ -127,6 +127,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           item={item}
           style="tight"
           currencyCode={currencyCode}
+          className="text-md"
         />
       </div>
     </MotionDiv>

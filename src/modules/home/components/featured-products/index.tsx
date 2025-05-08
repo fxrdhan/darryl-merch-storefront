@@ -1,7 +1,6 @@
 import { HttpTypes } from "@medusajs/types"
 import { getProductPrice } from "@lib/util/get-product-price"
-import ProductPreview from "@modules/products/components/product-preview"
-import ProductCarousel from "./product-carousel";
+import FeaturedProductsAnimator from "./animator";
 
 export default async function FeaturedProducts({
   collections,
@@ -22,9 +21,7 @@ export default async function FeaturedProducts({
     });
 
     return (
-      <div className="relative">
-        <ProductCarousel products={productsWithPrice} region={region} />
-      </div>
+      <FeaturedProductsAnimator products={productsWithPrice} region={region} />
     );
   } else if (collections && collections.length > 0) {
     const firstCollectionWithProducts = collections.find(col => (col.products?.length ?? 0) > 0);
@@ -33,13 +30,19 @@ export default async function FeaturedProducts({
       return null;
     }
 
+    const productsWithPriceFromCollection = firstCollectionWithProducts.products.map(product => {
+      const { cheapestPrice } = getProductPrice({ product });
+      return {
+        ...product,
+        cheapestPrice,
+      };
+    });
+
     return (
-      <div className="relative">
-        <div className="content-container">
-          <h2 className="text-2xl-regular mb-8 lg:text-4xl text-center">{firstCollectionWithProducts.title}</h2>
-        </div>
-        <ProductCarousel products={firstCollectionWithProducts.products as HttpTypes.StoreProduct[]} region={region} />
-      </div>
+      <FeaturedProductsAnimator products={productsWithPriceFromCollection}
+        region={region}
+        collectionTitle={firstCollectionWithProducts.title}
+      />
     );
   }
   return null

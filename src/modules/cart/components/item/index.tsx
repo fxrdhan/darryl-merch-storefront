@@ -103,22 +103,22 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
                 }
               }}
               disabled={updating}
-              className="p-1 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white disabled:text-gray-400 dark:disabled:text-gray-500"
+              className="p-1 small:p-1 text-xs small:text-sm text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white disabled:text-gray-400 dark:disabled:text-gray-500"
               data-testid="quantity-minus-button"
             >
-              <MinusMini />
+              <MinusMini className="w-3 h-3 small:w-4 small:h-4" />
             </IconButton>
-            <span className="px-2 text-center min-w-[30px]">
-              {updating ? <Spinner size={16} /> : item.quantity}
+            <span className="px-1 small:px-2 text-center text-xs small:text-sm min-w-[20px] small:min-w-[30px]">
+              {updating ? <Spinner size={14} className="small:size-[16px]" /> : item.quantity}
             </span>
             <IconButton
               variant="transparent"
               onClick={() => changeQuantity(item.quantity + 1)}
               disabled={updating || item.quantity >= maxQuantity}
-              className="p-1 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white disabled:text-gray-400 dark:disabled:text-gray-500"
+              className="p-1 small:p-1 text-xs small:text-sm text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white disabled:text-gray-400 dark:disabled:text-gray-500"
               data-testid="quantity-plus-button"
             >
-              <PlusMini />
+              <PlusMini className="w-3 h-3 small:w-4 small:h-4" />
             </IconButton>
           </div>
         </div>

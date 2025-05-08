@@ -10,6 +10,7 @@ import Nav from "@modules/layout/templates/nav"
 
 import { listRegions } from "@lib/data/regions"
 import FreeShippingPriceNudge from "@modules/shipping/components/free-shipping-price-nudge"
+import ScrollToTop from "@components/utility/ScrollToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -34,6 +35,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
         <CartMismatchBanner customer={customer} cart={cart} />
       )}
 
+      <ScrollToTop /> 
       {cart && (
         <FreeShippingPriceNudge
           variant="popup"

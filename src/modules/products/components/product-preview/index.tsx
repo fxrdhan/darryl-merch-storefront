@@ -6,6 +6,7 @@ import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
+import { motion } from "framer-motion"
 
 export default function ProductPreview({
   product: initialProduct,
@@ -18,9 +19,22 @@ export default function ProductPreview({
 }) {
   const { cheapestPrice } = getProductPrice({ product: initialProduct });
 
+  // Animation variants for the thumbnail wrapper
+  const thumbnailVariants = {
+    initial: { opacity: 0, y: 20, scale: 0.95 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    transition: { duration: 0.5, ease: "easeOut" }
+  };
+
   return (
     <LocalizedClientLink href={`/products/${initialProduct.handle}`} className="group">
-      <div data-testid="product-wrapper">
+      <motion.div
+        data-testid="product-wrapper"
+        variants={thumbnailVariants}
+        initial="initial"
+        animate="animate"
+        transition={thumbnailVariants.transition}
+      >
         <Thumbnail
           thumbnail={initialProduct.thumbnail}
           images={initialProduct.images}
@@ -35,7 +49,7 @@ export default function ProductPreview({
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>
-      </div>
+      </motion.div>
     </LocalizedClientLink>
   )
 }

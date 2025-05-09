@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-
+import StoreMotionWrapper from "./StoreMotionWrapper"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
 
@@ -18,16 +18,18 @@ type Params = {
   }>
 }
 
-export default async function StorePage(props: Params) {
+export default async function StorePageLayout(props: Params) {
   const params = await props.params;
   const searchParams = await props.searchParams;
   const { sortBy, page } = searchParams
 
   return (
-    <StoreTemplate
-      sortBy={sortBy}
-      page={page}
-      countryCode={params.countryCode}
-    />
+    <StoreMotionWrapper animateOnlyThumbnails={true}>
+      <StoreTemplate
+        sortBy={sortBy}
+        page={page}
+        countryCode={params.countryCode}
+      />
+    </StoreMotionWrapper>
   )
 }

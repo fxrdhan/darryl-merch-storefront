@@ -1,0 +1,2026 @@
+commit 6cff87f3d3fd8a987a8888acb0e0f5d5379d573f (HEAD -> main, origin/main)
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 13:03:00 2025 +0700
+
+    feat(globals): update background gradient and add animation effect
+
+commit aa717e93978b15bb17311347780b10c4615870b5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 10:50:35 2025 +0700
+
+    feat(overview): add mobile view with profile completion and recent orders
+
+commit 299ccfa448ea63640accdbc4781d69225486a0b0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 10:05:00 2025 +0700
+
+    feat(image-gallery): add motion effects to image transitions in gallery
+
+commit b855962972ba36be8c6042eae00b561d14cecbcd
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 09:54:18 2025 +0700
+
+    feat(cart-dropdown): enhance button styling for dark mode in product exploration
+
+commit 200bdf24b36c5134c20abce8b69dfae4c6c838b1
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 09:51:12 2025 +0700
+
+    feat(thumbnail): add subtle bounce animation on hover for thumbnail container
+
+commit 43bbfcca1aa6bcca7759bab7ea632d2296ca3dae
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 09:51:07 2025 +0700
+
+    feat(product-preview): add animation to product thumbnail wrapper
+
+commit 763988e1205103d928130abf9afbaccfb5d08939
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 09:51:02 2025 +0700
+
+    feat(store): wrap StoreTemplate in StoreMotionWrapper for animated transitions
+
+commit f89e4ff4c4d5a92a208ff5293d8cf730cd22db66
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 09:50:53 2025 +0700
+
+    feat(store): add StoreMotionWrapper component for animated transitions
+
+commit 6163e3c0727f6d2ad6ae1cd9b8af2ca77d6e064b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 9 09:50:46 2025 +0700
+
+    feat(tailwind): add new animation utilities for blur-zoom-in, subtle-bounce, and shimmer effects
+
+commit f1067f63d100ca0c31cdf5866cdf4de9e37f793c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 21:54:00 2025 +0700
+
+    fix(dependencies): update eslint-config-next to version 15.3.2
+
+commit aaf2b0a6c0c71c2f62d5df4cfd6f0a0c4552509b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 20:06:52 2025 +0700
+
+    fix(dependencies): update @radix-ui/react-accordion and related types to latest versions
+
+commit 557eebf0fbc91dd52167b09533f9274b7b75cda6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 20:05:40 2025 +0700
+
+    fix(dependencies): update framer-motion to version 12.10.4
+
+commit 296760907d3d789536f69760bceb79fadb034409
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 20:05:01 2025 +0700
+
+    feat(featured-products): refactor to use FeaturedProductsAnimator for improved animation and structure
+
+commit 60fd0d5fe7af2e7fecefb92d2002db382c89002e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 19:38:32 2025 +0700
+
+    feat(hero): delay button text animation until initial load complete
+    
+    The 'shake-tilt' animation on the 'Explore Products' button text now starts only after the parent container's initial zoom-in animation completes. This prevents the text from shaking while the button is still scaling up, providing a smoother visual sequence.
+
+commit 54503e9ff90e395ea2c87a53ab9933cb1707a4ec
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 19:32:48 2025 +0700
+
+    fix(ui): ensure scroll to top on page refresh
+    
+    The ScrollToTop component was inconsistent on browser refresh.
+    The useEffect hook with an empty dependency array executed window.scrollTo(0, 0)
+    before the browser's native scroll restoration, causing the page to sometimes
+    scroll back down.
+    
+    This change introduces usePathname to trigger the effect on navigation
+    and uses setTimeout with a 0ms delay within the useEffect. This ensures
+    the scrollTo command executes after the browser's potential scroll restoration
+    on refresh and also works correctly during client-side navigation.
+
+commit 789ae9818cd2a5b2df56187eaec5c84936e2c6bf
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 19:18:56 2025 +0700
+
+    fix(layout): ensure scroll position is top on load without client directive
+    
+    Previous attempt added `useEffect` directly to the layout, requiring "use client" which conflicted with metadata export.
+    
+    This commit extracts the scroll-to-top logic into a dedicated client component (`ScrollToTop.tsx`). This component is then rendered within the main layout (`(main)/layout.tsx`), which can now remain a Server Component and correctly export its metadata. This resolves the build error and ensures the scroll position is reset on initial client-side load.
+
+commit 96e661f16139de349c6b183292f80f664ea88a3e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 19:08:31 2025 +0700
+
+    feat(home): add entrance animation to hero section content
+    
+    Implemented a staggered entrance animation for the main heading, subheading, and action button in the hero section using Framer Motion. Elements now animate in sequentially on load, starting small/blurred and scaling/focusing into view, enhancing initial user engagement.
+
+commit 4c9e04fd0f82ecfdafd1044bd01f95227f7948d5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 18:55:23 2025 +0700
+
+    fix(storefront): resolve 401 errors on product fetch and cart animation warning
+    
+    - Removed authentication headers from the `listProducts` API call in `src/lib/data/products.ts`. Product listings should generally be public, and sending unnecessary headers was causing 401 Unauthorized errors.
+    - Removed the `fontWeight` animation from the cart button (`src/modules/layout/components/cart-dropdown/index.tsx`) to resolve a Framer Motion warning about animating non-animatable values (`400` vs `normal`).
+
+commit 73e9c691b8d3a2b6273274790dd22592be873b51
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 10:37:23 2025 +0700
+
+    refactor(cart-dropdown): improve layout and structure of cart item display
+
+commit 038acc2ba5690b83581dec961841cebae2efc671
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 10:27:52 2025 +0700
+
+    refactor(line-item-price): simplify className usage in LineItemPrice component
+
+commit 7470e52322d5da90fe4ec62849bb22892bb4ba58
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 10:25:09 2025 +0700
+
+    feat(cart): add className prop to line item price components for better styling flexibility
+
+commit d556d59ef89da38c53254de4ef6cd9d189c6590b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 10:18:18 2025 +0700
+
+    fix(cart-item): enhance button and text sizes for better accessibility
+
+commit bcccb386b002801e4e78e292a86573fdea28ce3e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 10:13:06 2025 +0700
+
+    feat(cart): implement delete functionality for cart items and improve error handling
+
+commit cd5821e0e3648f54f38950e751fed9a8b00561a0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 09:48:41 2025 +0700
+
+    refactor(cart): simplify cart item layout and remove table structure
+
+commit fe9efac961d7af2d11c59f13ba41f85531f713b0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 02:02:26 2025 +0700
+
+    feat(cart): add delete animation to cart page items
+    
+    Implement framer-motion's AnimatePresence and motion components
+    to animate the removal of items from the main cart page table.
+
+commit 8d3f84a11a2bd1cf06959c81c282e437e1e64692
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 01:54:07 2025 +0700
+
+    feat(overview): add animated profile completion indicator
+
+commit 7d4a0209f5cb17cb5865e3459c87d1d1fd3400bd
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 01:39:39 2025 +0700
+
+    feat(cart-dropdown): add animation to cart items on render and exit
+
+commit 74b3a0d91279c22e466c2e66388bc86a02c27d9d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 01:09:37 2025 +0700
+
+    fix(cart-dropdown): adjust item layout and replace delete button position
+
+commit 47501581330890bf2cb2ff6d5f81f0bb6180790e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 8 01:01:10 2025 +0700
+
+    fix(cart-dropdown): adjust font weight for cart icon animation
+
+commit fd6cd06889800058201b323898df54fe845bae7b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 21:38:04 2025 +0700
+
+    fix(cart): ensure cart icon animates consistently on item add
+    
+    The cart icon animation was inconsistent, sometimes failing to trigger
+    when the first item was added to an empty cart. This was likely due to
+    timing issues in tracking the previous item count using useRef within
+    the component's update cycle.
+    
+    This commit refines the useEffect hook responsible for the animation:
+    - Simplifies the dependency array to primarily react to changes in 'totalItems'.
+    - Adds a condition to only trigger the animation if the cart dropdown is not currently open, improving user experience.
+    - Ensures the item count reference (itemRef) is updated after the animation logic, making the comparison more reliable for subsequent updates.
+
+commit 80cd7473dd813cc75114cb0cd4e593d14c661de5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 21:31:20 2025 +0700
+
+    feat(cart-dropdown): add animation to cart icon on item change
+
+commit 49562b1bb3da1aaa0c6f6e8eb0bc810ab706b2fe
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 20:40:02 2025 +0700
+
+    feat(scrollbar): enhance scrollbar styles for light and dark themes
+
+commit 330245732633ce8be0fde35b21fdeb577ff4de99
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 20:04:28 2025 +0700
+
+    feat(hero): animate emote transition with framer motion
+    
+    Replace simple CSS bounce animation on hero emote with a smoother Framer Motion transition. This provides a better user experience when cycling through emotes.
+
+commit 4019409bf66029035e1677e1d4824c5bee1d9884
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 19:33:30 2025 +0700
+
+    fix(items-template): adjust header cell classes for better alignment
+
+commit ae2ae83fb1ff2e91d252f56465ec24ebaa3fe1c3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 19:33:26 2025 +0700
+
+    fix(cart-item): move DeleteButton to a new cell for better layout
+
+commit a5bcc1282502089a3c6847f4c27fee210bdf537e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 17:10:53 2025 +0700
+
+    fix(cart-table): adjust padding for cart item table on iPhone 12 Pro
+
+commit 970711dbaddc0cdd0a38faebc38255693741b368
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 17:02:34 2025 +0700
+
+    fix(items-template): remove extraneous character from table row definition
+
+commit 20c46ef48f5cf921b7506360ee256f5e887f6e65
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 16:57:01 2025 +0700
+
+    fix(items-template): remove extraneous character from table row definition
+
+commit eef8c7f635ff963cd39e93db257a5e553e00e4cd
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 15:46:02 2025 +0700
+
+    fix(cart-table): add responsive padding adjustments for iPhone 12 Pro
+
+commit 882fade549d078b5a9ab5fbd8c92ee953f0168da
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 15:36:30 2025 +0700
+
+    fix(page): ensure fallback products are only fetched if region is available
+
+commit b972410b512885ff3adb2abe937d0d88537416bc
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 15:19:35 2025 +0700
+
+    feat(dark-mode-toggle): enhance theme toggle with animated icons and improved layout
+
+commit f44d637136b8ccdb65027b868160d89ab7f6b40b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 15:10:23 2025 +0700
+
+    fix(cart-dropdown): hide cart label on smaller screens for better responsiveness
+
+commit e30d89a394c51c19d6176eb6de94ae88f5417081
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 15:04:01 2025 +0700
+
+    feat(full-screen-toggle): replace icon with animated framer-motion icons for full screen toggle
+
+commit 8c4c05844d26f14a24eba85d2bf60ac1bb5d416c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 15:03:56 2025 +0700
+
+    feat(dependencies): add framer-motion and react-icons to package.json
+
+commit b83b36ae9181978b93ff5cab10e700a787c81c1f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 14:56:18 2025 +0700
+
+    feat(nav): add FullScreenToggle component to Nav layout
+
+commit a93ac9f709b53fa2ec6919144748a64a24985a99
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 14:56:10 2025 +0700
+
+    fix(footer): remove FullScreenToggle component from footer layout
+
+commit e374c9af12ec9f80356fe802125c4dfff0f00cc8
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 14:56:06 2025 +0700
+
+    feat(full-screen-toggle): enhance full screen functionality and update button rendering
+
+commit b05f3dce3c1add3a2482c6d4aa88f2f19c1d4f84
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 14:42:28 2025 +0700
+
+    fix(navbar-scroll): adjust margin-top for improved spacing in NavbarScroll component
+
+commit 0cbc1eaf46eb00f0ccebf854982bbe30a84940ea
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Wed May 7 14:39:24 2025 +0700
+
+    feat(footer): add FullScreenToggle component and integrate into footer layout
+
+commit cc48e6a9ffdca35f3f96d0d813b298ccb9974ac7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 22:07:58 2025 +0700
+
+    fix(page): replace fragment with div for consistent layout structure
+
+commit 5a7040f3a0a827274b4d8464d130ee76776ca662
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 21:24:24 2025 +0700
+
+    fix(nav): add user icon link to account page in navigation
+
+commit 586c3c85b839fd0e6894c6530ee56228cafe762e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 21:06:37 2025 +0700
+
+    fix(dark-mode-toggle): simplify button rendering by removing text span and updating aria-label
+
+commit 11b412a584837d275b965c20ced91b9c8cceace5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:50:50 2025 +0700
+
+    fix(nav): update text color for improved visibility in Navbar component
+
+commit 75154c9258b54c90867a2399f7b28f27add52750
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:50:45 2025 +0700
+
+    fix(navbar-scroll): enhance shadow styling for improved visual depth in NavbarScroll component
+
+commit eb4d40a8b093c2a1be562359fc6b553d1b21eefb
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:36:07 2025 +0700
+
+    fix(footer-country-select): remove unnecessary comment line from index.tsx
+
+commit f6bfddc5d8fb9c9939fa0eaf177ad9f10c69dd7a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:36:02 2025 +0700
+
+    fix(country-select): enhance dark mode styling for ListboxOptions and ListboxOption components
+
+commit c0547165d4165ffe809f478b9970ce159b41d664
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:14:37 2025 +0700
+
+    fix(product-actions): update button styling for improved visibility in dark mode
+
+commit 0fe3ec08e75a9ae92d9ec1403099cccb0b517d86
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:11:44 2025 +0700
+
+    fix(featured-products): update layout for FeaturedProducts component to enhance styling consistency
+
+commit 9f31e2c1d3c63d192564bbcd1528d316cf9f00b7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:11:38 2025 +0700
+
+    fix(product-carousel): adjust slidesToShow and enhance layout for better responsiveness
+
+commit e5d9c0ac2c6585eb170934be8b3b6f8f4b630072
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 20:11:34 2025 +0700
+
+    fix(carousel): adjust spacing and responsiveness for product carousel layout
+
+commit 3d57fd87cf69aca1b2a30e72c5aa152a36171796
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 19:47:40 2025 +0700
+
+    fix(price): enhance text styling for original and calculated prices in PreviewPrice component
+
+commit b724d4e46f04ef402dc7c5f8154d4cc334e95103
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 19:47:35 2025 +0700
+
+    refactor(product-preview): clarify price handling and improve layout in ProductPreview component
+
+commit 76c761d652b0c23fcfe9fb3604186a49d7fc0918
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 19:47:28 2025 +0700
+
+    fix(featured-products): adjust padding for improved layout in FeaturedProducts component
+
+commit e528c8207bb08ed042499f929a096a320e172c25
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:53:32 2025 +0700
+
+    feat(featured-products): implement ProductCarousel for enhanced product display
+
+commit 8bbcaf478a3dc9fb741ac04060ccab76682e996c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:53:23 2025 +0700
+
+    feat(globals.css): add slick-carousel styles and adjustments for product carousel
+
+commit ad6089c0c858dc8cf929196ebeec55edf7f8fb78
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:25:15 2025 +0700
+
+    feat(package.json, yarn.lock): add @types/react-slick for TypeScript support
+
+commit a38ca049413013efe97eeada0a5b450b172c90b2
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:24:40 2025 +0700
+
+    feat(package.json, yarn.lock): add react-slick dependency for enhanced carousel functionality
+
+commit 93669cd5da865309557b84cc6034562ba4c2217a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:17:06 2025 +0700
+
+    refactor(featured-products): replace ProductCarousel with ProductPreview for better product display
+
+commit 81886d9802d5571bbc705dcd0a8af778dfb6922c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:17:00 2025 +0700
+
+    refactor(product-carousel): remove carousel features
+
+commit e6e4be086a338ff0e26efbae2284df19deb99da6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 18:11:42 2025 +0700
+
+    feat(package.json, yarn.lock): add slick-carousel dependency
+
+commit e6d893daf9beb9dc8ddd4881ccd673a1ceaec377
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 14:01:10 2025 +0700
+
+    feat(product-carousel): integrate AutoScroll extension and enhance pagination styles
+
+commit 8dbb55ead83f1c0eb3a68783fb947adf41aed789
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 14:00:52 2025 +0700
+
+    feat(package.json, yarn.lock): add @splidejs/splide-extension-auto-scroll dependency
+
+commit 897ef5cba83ee6796bea4ec7eb123e347b75d741
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 13:32:58 2025 +0700
+
+    feat(yarn.lock): add @fortawesome/react-fontawesome dependency
+
+commit bacfe386e1e3f3e44f93a77f9d1b19941d0f8d90
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 13:32:49 2025 +0700
+
+    fix(package.json): add missing dependency for fontawesome
+
+commit 196afa526ea0fe2a02ac3642bb96a4fc8061f7b9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 13:32:44 2025 +0700
+
+    style(yarnrc): reorganize packageExtensions for improved clarity
+
+commit 6f4f279fa8b2b2356eb630a912366ad5c438a7fc
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:55:47 2025 +0700
+
+    style(footer): enhance text size for improved readability across navigation and links
+
+commit 33fd67698cb776ade6e89fa8601da2b5b07336ed
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:55:39 2025 +0700
+
+    style(medusa-cta): add responsive text size for improved readability
+
+commit ee6d5c018e4ffd9b68927d79613f80062bc71885
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:55:35 2025 +0700
+
+    style(country-select): enhance text styling for improved readability
+
+commit 546c5778d6da61bda2db100c034b4936207f3dda
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:35 2025 +0700
+
+    style(globals): remove redundant transition classes for cleaner styling
+
+commit 96478b06733a2fb5e368b031ab77d21dea7b9436
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:30 2025 +0700
+
+    style(order-details): update shadow color for improved contrast in dark mode
+
+commit 8e1e6cac3ceaa21b94c0022f382bf116e866e6ff
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:26 2025 +0700
+
+    style(order-details): enhance background styling for improved readability
+
+commit cefa58c6cd38eafd622e10c664eedc9602942d53
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:22 2025 +0700
+
+    style(nav): remove redundant transition-colors class for cleaner styling
+
+commit 229b53ec7b6e1acad49250b4d4ccec8e41a13575
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:18 2025 +0700
+
+    style(profile-dropdown): remove redundant transition-colors class for cleaner styling
+
+commit 71e2385b56d24654d9ba424573fdf516c8cf2269
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:14 2025 +0700
+
+    style(dark-mode-toggle): remove redundant transition-colors class for cleaner styling
+
+commit cbe95b8ebdfe8e123ad2c147b922f71282121541
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:10 2025 +0700
+
+    style(product-carousel): remove redundant transition-colors class for cleaner styling
+
+commit 1ac6ca67e0f20e8c0b4013df128c0b68d337b659
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:06 2025 +0700
+
+    style(cart-dropdown): update button styling for improved visibility in dark mode
+
+commit 2f6a8455458a129e472f76a1031b84db4a267764
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:41:02 2025 +0700
+
+    style(native-select): remove redundant transition-colors class for cleaner styling
+
+commit f7c8a3474955de6a72808d5eef4db04ba4f43ab7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:40:58 2025 +0700
+
+    style(summary): update checkout button styling for better visibility in dark mode
+
+commit b3302c81218d667f66ec49a99fc65c266509bd00
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:40:54 2025 +0700
+
+    style(cart-item-select): remove redundant transition-colors class for cleaner styling
+
+commit 366fdeeca6139846f14c1f2ec688f8b0daf8c8f3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:40:50 2025 +0700
+
+    style(overview): enhance order container styling for better visibility in dark mode
+
+commit a9be428e4be41f02a64f0cb6eb275e6a262f9d85
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:40:45 2025 +0700
+
+    style(login): enhance SubmitButton styling for better visibility in dark mode
+
+commit 4dce2001013cdeb40d9ec473c03b085e5125b6cb
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:40:40 2025 +0700
+
+    style(edit-address-modal): remove redundant transition-colors class for cleaner styling
+
+commit aaa3b402e16ae7719bd62357a3fd6e353ca47419
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 12:40:34 2025 +0700
+
+    style(account-nav): update logout button and list item colors to enhance visibility
+
+commit 1376a3cdff9e682add4a0c60247e0abfbdcb405a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 10:14:57 2025 +0700
+
+    feat(setup): enhance setup script with Redis connection check and command validation
+
+commit d5efea546e41d8a4ee133107c389be045046b2d3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Mon May 5 10:14:46 2025 +0700
+
+    fix(hero): adjust margin for emote click span in Hero component
+
+commit 8e6d6cafb74fd153cc80b9618f1c7c387de6517d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:58:34 2025 +0700
+
+    feat(setup): add comprehensive setup script for backend and storefront initialization
+
+commit cb23ec2fb8a162abc2c99fccaec25ba8c6eecdeb
+Author: Firdaus Arif R <firdausarief65@gmail.com>
+Date:   Sun May 4 14:49:45 2025 +0700
+
+    Update README.md
+
+commit 5d91777c7193271d7f0015c78652b9b69e6ca782
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:48:22 2025 +0700
+
+    feat(env): add initial environment configuration template
+
+commit 0549a14a2ad211d54c35e56403acc53818287059
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:46:04 2025 +0700
+
+    fix(package): update development and start script ports to 8000
+
+commit 6d3312e111aa9804f9091fdeffa81cacb1a4a0b7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:36:48 2025 +0700
+
+    fix(checkout): resolve client component event handler error
+    
+    Convert CheckoutLayout to a Client Component by adding the "use client"
+    directive. This resolves the "Event handlers cannot be passed to Client
+    Component props" error that occurred when navigating back from the
+    checkout page to the cart page, caused by passing an event handler
+    (likely onClick implicitly) from the server-rendered layout to the
+    client-side LocalizedClientLink component.
+
+commit 6a89c91a57731eb4604404a9eb7cad758de55f61
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:32:23 2025 +0700
+
+    fix(globals): enhance dark mode styles for smoother transitions and improved color application
+
+commit db7dbf66486e1f0b4d1b0791d8a027d3d63cc564
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:32:18 2025 +0700
+
+    fix(mobile-actions): enhance dark mode support in mobile actions component styles
+
+commit 3b0945f3cfd339934ffd7b9f2f77edf34fa313fe
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:32:14 2025 +0700
+
+    fix(product-actions): enhance dark mode support in add to cart button styles
+
+commit e16711f6515e7343f55aaee64d2f66d0e6f208e1
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:32:09 2025 +0700
+
+    fix(order-details): enhance dark mode support in order details container
+
+commit bd64663a8f0ffeb3ef361ef5a2152e3bdceb5be8
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:32:05 2025 +0700
+
+    fix(shipping-details): enhance dark mode support in contact and method text styles
+
+commit 7cff75458cacf454d3f2cea76297db9e16031e16
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:59 2025 +0700
+
+    fix(order-summary): enhance dark mode support in text and border colors
+
+commit f1b3484d6a87890de52bbaae0bbf2d2846b34b52
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:55 2025 +0700
+
+    fix(order-details): enhance dark mode support in email text color
+
+commit 67d468185a7c046281089f675d63bf00ddf78d67
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:51 2025 +0700
+
+    fix(item): enhance dark mode support in table row background
+
+commit 33dd637f0e4845c0a73056655a5b74024e2d7d54
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:47 2025 +0700
+
+    fix(help): enhance dark mode support in text and link styles
+
+commit 07b9d57f09ffc10b2429118ab39cf4914bac39e0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:42 2025 +0700
+
+    fix(cart-dropdown): enhance dark mode support in button styles
+
+commit 51ca640405436b930d86065de3e3ff88f06e8f64
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:38 2025 +0700
+
+    fix(modal): enhance dark mode support in background and text colors
+
+commit 209df074fa35afaef0b37d00d5cfc632330165a6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:33 2025 +0700
+
+    fix(divider): enhance dark mode support in border styles
+
+commit 948dac43818bb4e76a203379573538adfe6b788c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:29 2025 +0700
+
+    fix(checkout-summary): enhance dark mode support in background styles
+
+commit d8acc0c3fac08c949cf28d8909d89f9f9e31b8b9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:24 2025 +0700
+
+    fix(review): enhance dark mode support in background styles
+
+commit 3b2a21a1446ea69962c6fb66a5d5be1bcf2b8199
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:20 2025 +0700
+
+    fix(payment-container): enhance dark mode support in styles and text colors
+
+commit eeea9b97957d3c3a1c0fa2ecba88778fd8a8c766
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:16 2025 +0700
+
+    fix(payment): enhance dark mode support in background and divider styles
+
+commit a986b7aaae7b3c87ced9ce75849b3eaf1114103e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:13 2025 +0700
+
+    fix(summary): enhance dark mode support for checkout button styles
+
+commit 8ea35099997556d50c6de2332df2abf3a9523852
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:08 2025 +0700
+
+    fix(addresses): enhance dark mode support in background and divider styles
+
+commit 1fb0a6ca224beea5d4fa1c05c5d608c163571744
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:04 2025 +0700
+
+    fix(transfer-request-form): enhance dark mode support in text and background colors
+
+commit a206353d3385ce095a3a1827fd324132c9f19e01
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:31:01 2025 +0700
+
+    fix(profile-password): enhance dark mode support in password visibility message
+
+commit 7ad9cf94ba798de013cf2a08d305139d96a990ac
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:57 2025 +0700
+
+    fix(profile-billing-address): enhance dark mode support in billing address display
+
+commit 2829642d89571cf92ecd81407733200563d58bab
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:53 2025 +0700
+
+    fix(overview): enhance dark mode support in overview component styles
+
+commit da4d7d0e31ad4dad58b3bd5f06e487abefb7f068
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:48 2025 +0700
+
+    fix(order-card): enhance dark mode support in order card styles
+
+commit 13af6ae4eb5d179c4934fe4263b60f60fa82065f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:44 2025 +0700
+
+    fix(edit-address-modal): enhance dark mode support in edit address modal styles
+
+commit 9a7f913871ba1d98848627d1f8b10120d2ad5963
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:38 2025 +0700
+
+    fix(add-address): enhance dark mode support in add address button styles
+
+commit 3e98af0d11eb63da00cd0a0af2f4885f549cb76e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:34 2025 +0700
+
+    fix(checkout-layout): enhance dark mode support in checkout layout styles
+
+commit b34f52ce374766a5efc5aaf28bbca01a550318c7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 14:30:30 2025 +0700
+
+    fix(shipping): enhance type safety and improve address formatting in shipping component
+
+commit 1538c0fd45d4650b034b9f8e4891cd87adf5995b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 12:41:17 2025 +0700
+
+    fix(account-layout): enhance dark mode support in account layout styles
+
+commit fdfe6aaee0765f656c103e8a8a0b96e64c726866
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 12:35:42 2025 +0700
+
+    fix(line-item-options): adjust text size for better readability in line item options
+
+commit 811d6898e4c1d4ef818a837e4f1c37d61bcc2dcc
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 12:35:38 2025 +0700
+
+    fix(items-template): enhance dark mode support in items template styles
+
+commit a98f6241812da4577e5b412ad224e5be17cc9cf4
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 12:35:34 2025 +0700
+
+    fix(cart-template): adjust whitespace in cart template component
+
+commit 4188568b6719302ae0e07dd73af6f4dd4693fdaa
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 12:35:29 2025 +0700
+
+    fix(item): enhance dark mode support and adjust styling for item component
+
+commit a287436906362a2bf104ec2e8dede7bd885b9a38
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:43:56 2025 +0700
+
+    feat(checkout): ensure correct type for discount amount
+    
+    Converts the promotion application method value to a float before passing it to the localization function. This resolves a TypeScript error where a string was being assigned to a number type.
+
+commit 782f784d8d09b906436c4dee94e5651877a7fbcf
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:36:52 2025 +0700
+
+    fix(discount-code): enhance dark mode support in discount code component styles
+
+commit b09cd1f773ea8999fc55e96f82e7eb6d7cd6c855
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:36:48 2025 +0700
+
+    fix(items-template): enhance dark mode support in items template component styles
+
+commit 35f8738d3f014174d1376098a074b9ee40ed4068
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:36:45 2025 +0700
+
+    fix(cart-template): enhance dark mode support in cart template component styles
+
+commit a81c2e61b181a2fbd7c9c4203ff5a5af4e1c1911
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:36:38 2025 +0700
+
+    fix(sign-in-prompt): enhance dark mode support in sign-in prompt component styles
+
+commit 4cfb8ba23a4ffb35881e66a4cf7d61ea809f26b1
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:12:08 2025 +0700
+
+    fix(nav): add mouse event handling to blur active element on cart link click
+
+commit 84151fb1385186a9b8562094e50804969b611f9a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:10:12 2025 +0700
+
+    fix(nav): Update the LocalizedClientLink for the store title with mobile-friendly hover/active states
+
+commit 55a4ec6092b21821124df056d68355ce6e552d02
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 11:01:08 2025 +0700
+
+    fix(profile-dropdown): enhance dark mode support in profile dropdown component styles
+
+commit 4227948927433d08f1931ed84768234ff2e6a824
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:58:55 2025 +0700
+
+    fix(cart-dropdown): update styles for dark mode support in cart dropdown component
+
+commit d0c16bd708d46d82deb6ba82b6387c2cbcba065e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:56:20 2025 +0700
+
+    fix(layout): ensure navbar brand link inactive state respects theme
+
+commit a25e77a955d58e344cd8d5d2dd06e822ed8c5ba9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:50:06 2025 +0700
+
+    feat(product-carousel): enhance carousel functionality with navigation buttons and track support
+
+commit c2001f136a1672f8f8571e32fd1795608c6cf88b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:49:58 2025 +0700
+
+    fix(featured-products): update heading style for improved consistency
+
+commit 23640afc25240f6bf58c773331dde7a248c6a7c9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:37:00 2025 +0700
+
+    feat(carousel): adjust carousel breakpoints for mobile
+    
+    Modified the SplideJS breakpoints configuration within the product carousel component.
+    Changed the `perPage` setting for the 640px breakpoint from 1 to 2.
+    This change ensures two products are displayed per slide on smaller mobile devices (640px and below), aligning with the requirement and potentially improving product discovery on these screen sizes.
+
+commit 4e5f71bc3f58dccc53d7ce24d5c79df1a9324d8b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:33:56 2025 +0700
+
+    fix(price): remove async keyword from PreviewPrice function for proper execution
+
+commit 8e83150f1aa8a4eff67079e12430e218e2427e0a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:33:51 2025 +0700
+
+    feat(product-rail): refactor product rail component to include cheapest price in product mapping
+
+commit 065c9a27035acc0052c1b229e8174272ab9cbd68
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:33:46 2025 +0700
+
+    feat(product-preview): refactor product preview component to use initialProduct for improved clarity and maintainability
+
+commit b3c8ebe31bda289eb7cf9b95f95f08fa2fa1d98f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:33:41 2025 +0700
+
+    feat(product-carousel): enhance product type to include cheapest price for improved display
+
+commit 7579f0f2ccf54bd83f0aa8df0ba41a24f3dfe1f0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:33:36 2025 +0700
+
+    feat(featured-products): enhance product display by including cheapest price in product carousel
+
+commit 1f9f66fca35383f23572e00b7c170bada5aa2cd3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:18:20 2025 +0700
+
+    feat(product-preview): enable client-side rendering for product preview component
+
+commit bc7d0437e62f686bc619a8d76a26322ff571c974
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:18:15 2025 +0700
+
+    feat(product-carousel): add product carousel component for enhanced product display
+
+commit 6a2df1bb55d1528ac17b4737638994e7f0817f7e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:18:10 2025 +0700
+
+    feat(featured-products): replace product preview with product carousel for improved display
+
+commit 784bebd1f262d191d6c345fcd6785c4a23c47b45
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:18:05 2025 +0700
+
+    feat(dependencies): add react-splide-ts
+
+commit 8c6d7157925f160dacd705a35eab110b76664de5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 10:17:56 2025 +0700
+
+    feat(dependencies): add react-splide-ts for enhanced carousel functionality
+
+commit 56126e3f76307ea7950cdfcb2cb4dfebb7d8644f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 09:58:37 2025 +0700
+
+    feat(dependencies): add @splidejs/react-splide
+
+commit 104e6328e4c02e97ce8dc2717a1c5365a8bb9522
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 09:54:40 2025 +0700
+
+    feat(product-rail): update collection_id to an array format for compatibility with listProducts
+
+commit 0ca492320bf0a00efba3a2150d9ebcee15ecdd0a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 09:54:35 2025 +0700
+
+    feat(featured-products): enhance product rendering logic to display products or collections based on availability
+
+commit c71398383f28dda523569a5f48dd2ef943e939e4
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 09:54:30 2025 +0700
+
+    feat(home): enhance product listing logic to include fallback products when collections are empty
+
+commit 10080d9c62e87cd9fe1085bfa4374a61075c0424
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 06:15:43 2025 +0700
+
+    feat(nav): adjust header height and update store link text size for improved layout
+
+commit 33b1e1b957f9f1e0ec125e5182aa97a6b9072fdc
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 06:11:06 2025 +0700
+
+    feat(hero): adjust font sizes and improve layout for better visibility
+
+commit 06b585258a9826b0c385d48149d18a025d39a8fa
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 06:03:47 2025 +0700
+
+    feat(profile-dropdown): enhance account link visibility with transition effects
+
+commit 378279f6ea09141d27990234b82f229a59070af0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 06:01:09 2025 +0700
+
+    feat(dark-mode-toggle): enhance text visibility with transition effects in navbar
+
+commit 8a22759647890b5a7ebe350c03b2a60f205543c5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 06:01:05 2025 +0700
+
+    feat(cart-dropdown): enhance cart label visibility with transition effects
+
+commit d08004ebd792b68b83803534c0cfac09b9f14950
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 06:00:44 2025 +0700
+
+    feat(tailwind): extend transition properties for improved animations
+
+commit f90eef24890885884446868eeaef241aa7d502b0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 05:52:08 2025 +0700
+
+    feat(profile-dropdown): enhance account link visibility in dark mode
+
+commit 7bca20310cd1c6aeea15a6ec4379d10ceda7307b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 05:26:23 2025 +0700
+
+    feat(dropdown): update dark mode link hover color for improved visibility
+
+commit f749a6b56465d3d4cd414da3acee02a5c1f3eaec
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 05:17:05 2025 +0700
+
+    feat(nav): update dark mode link hover color
+
+commit 62e5344f5251f6d679d36894642c67702589bcd2
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 05:14:33 2025 +0700
+
+    feat(navbar-scroll): adjust margin for improved layout on larger screens
+
+commit a26b8fcf166680ccc96ed71fcc9d5aada5bd3b1d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:58:37 2025 +0700
+
+    feat(nav): update dark mode link hover color for improved visibility
+
+commit bbe02f12d66da52c03787bae85bef1e6c0ae0c70
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:58:32 2025 +0700
+
+    feat(profile-dropdown): enhance link styles for better dark mode support
+
+commit 5e6d8dc81e16ca80c2d4fdf967cf6e3f735b25fe
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:58:27 2025 +0700
+
+    feat(dark-mode-toggle): update button text color for improved visibility
+
+commit 537c66b37d73d1ab6644f7c9afc04b3c0d84d9df
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:58:22 2025 +0700
+
+    feat(cart-dropdown): enhance link styles for better dark mode support
+
+commit 5b451090e8b4008eebe5e8dc30cd17f88bb0262b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:53:20 2025 +0700
+
+    feat(layout): update navbar text size for desktop mode
+
+commit 28df315969c77469d01adc6b0d3c34ce18c1a11d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:48:08 2025 +0700
+
+    feat(dark-mode-toggle): Improving the button with better style handling to prevent hover state persistence:
+
+commit a0036f416e83d46ff2cba369ad77c3df301e45bf
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:46:17 2025 +0700
+
+    feat(layout): enhance dark mode toggle with icon and text
+    
+    Adds text label (Light/Dark) alongside the icon (Sun/Moon) to the dark mode toggle button, similar to the cart button's display mechanism. The text label is hidden when the navbar is shrunk to maintain a compact appearance.
+
+commit 4ed20cf4d7ad6eff9b85b4b0a5510fec2a04179f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:42:18 2025 +0700
+
+    feat(layout): add state class and group to navbar scroll container
+
+commit f635e1269294ed03fafbaccb790c90193804c799
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:41:49 2025 +0700
+
+    feat(cart-dropdown): add label to shopping cart icon
+
+commit a09e5bef981f2d5ef13530846de9e650878d4c6f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:38:49 2025 +0700
+
+    feat(cart-dropdown): add shopping cart icon
+
+commit 512e29dc92d42ff544a4ee044e6d9a128038b9f9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:18:17 2025 +0700
+
+    refactor(navbar-scroll): simplify return structure
+
+commit 63662109da12b8b365ba0333b39f25cc6220e9fe
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:10:56 2025 +0700
+
+    style(layout): adjust initial navbar border and text color
+
+commit 129fd8aa85e4e89473d27862ba24f3b61f88b659
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:10:49 2025 +0700
+
+    feat(layout): make navbar background conditional on scroll
+
+commit 63a56ae677a7afeff028abd93dd90658fe43653b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 04:01:53 2025 +0700
+
+    feat(layout): improve navbar scroll animation trigger
+
+commit 2e578b4575a96bbaec2ed0a4488b2fe61f718407
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:58:36 2025 +0700
+
+    fix(navbar-scroll): update scroll threshold to trigger at 20px
+
+commit 94424f9ff13da9d2f49eb6f38955e2fd9c33f9b6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:53:09 2025 +0700
+
+    fix(globals): update dark mode background color
+
+commit e1aba3a08e57f7481a46c33ff8858a9dde884b38
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:52:52 2025 +0700
+
+    fix(navbar-scroll): update scroll threshold
+
+commit 0e273a1a9112be332c245388b3f6f3f6dc3129f6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:48:41 2025 +0700
+
+    fix(orb-background): refactor orb initialization logic and improve color handling
+
+commit f7dbbf84df4d38cebcce57cf8c89951f7625909a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:39:59 2025 +0700
+
+    fix(cookies): re-enable server-only import
+
+commit 7f07c0146f4a62e2b5937d6acd5081485e71de6a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:25:56 2025 +0700
+
+    fix(cart-dropdown): update Timer type to Timeout for consistency
+
+commit 51035454880aabddf6aecaa1dacb5f1459d3d5ea
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:24:08 2025 +0700
+
+    fix(cookies): comment out server-only import to prevent build errors in non-server context
+
+commit f8355e2c4ba7bd44d10ae2aed196d4ab43906868
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:13:07 2025 +0700
+
+    fix(profile-dropdown): center PopoverPanel horizontally in dropdown
+
+commit 3bc27298a25d07bd1a1ef8c13029a1a03543b060
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:13:02 2025 +0700
+
+    fix(cart-dropdown): adjust position of PopoverPanel to align with left edge
+
+commit 85234d6b8c71e8b91e6eacfecc1799672f40e6da
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:03:18 2025 +0700
+
+    refactor(nav): move CartButton into Suspense for improved loading state
+
+commit d4a32af9b667b593c65d2d23970a57827e27e13a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 03:01:29 2025 +0700
+
+    feat(layout): re-position of FooterCountrySelect
+
+commit 65912f734c4ab643c77c9813bce919bc496c196a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:55:45 2025 +0700
+
+    style(footer-country-select): format code
+
+commit 77f63eef577511053af4493b608aa24196df653a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:55:14 2025 +0700
+
+    refactor(nav): remove SideMenu component from Nav
+
+commit 49e13c6987062251465c29b739b6ad9195690a7c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:51:54 2025 +0700
+
+    feat(footer): add navigation menu and FooterCountrySelect component
+
+commit cc34308db4630e57e7e9c78aae430ca8ef6c50ee
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:51:48 2025 +0700
+
+    feat(footer): add FooterCountrySelect component for region selection
+
+commit 08c6252bc318775433414c830683d7c530d52a15
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:51:42 2025 +0700
+
+    fix(layout): pass regions to Footer component for improved functionality
+
+commit 6a89f38db3aba970dfd7df2a2b7cfd1a624afb3a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:07:16 2025 +0700
+
+    fix(nav): add rounded-lg class to header for improved styling
+
+commit cd9a159130cef591beee1c824425b4a57045978a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:07:10 2025 +0700
+
+    fix(navbar-scroll): add overflow-hidden to prevent content overflow in scrolled state
+
+commit 6f3bbb1901913c0e08508418e79f6cc535a4c672
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 02:02:03 2025 +0700
+
+    fix(side-menu): remove backdrop blur from transition effects for cleaner appearance
+
+commit 1ab93f5264e31ac55ef5b4b07e4d34554a700477
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 01:12:07 2025 +0700
+
+    fix(styles): update dark mode background color
+
+commit 57835f69be44b05f4e77078ddf85507944b507a0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 01:10:40 2025 +0700
+
+    fix(layout): resolve hydration mismatch in DarkModeToggle
+    
+    The hydration mismatch occurred because the DarkModeToggle component
+    conditionally rendered null on the server (`typeof window === 'undefined'`)
+    but rendered the IconButton and its inner button on the client.
+    This structural difference between server-rendered HTML and the initial
+    client render caused the hydration error.
+    
+    This fix removes the conditional server-side null rendering. The component
+    now consistently renders the IconButton structure on both server and client.
+    The theme determination logic remains within `useEffect`, ensuring it runs
+    only on the client after the initial hydration, thus preventing the mismatch.
+
+commit 8038785bccf32af66ee38a6d6655cc79304ae2c4
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 01:06:30 2025 +0700
+
+    fix(layout): add suppressHydrationWarning to html tag
+
+commit 5d0cfc7f06b3acb321e29887d88230642369e6f0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 01:04:48 2025 +0700
+
+    feat(nav): wrap navigation in NavbarScroll component for improved scroll-based styling
+
+commit a452435de7b6fe58810ffbbeb5242d183fc57a0e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 01:04:40 2025 +0700
+
+    feat(navbar): add NavbarScroll component for scroll-based styling
+
+commit 0e97aa521dfccbfd599259adfc247ab870201e95
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:47:02 2025 +0700
+
+    fix(styles): update dark mode background color for improved contrast
+
+commit 0ba7aecd2a034d65ebebd5dc22774f6ecf404021
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:46:57 2025 +0700
+
+    fix(nav): enhance header styling for better visibility in dark mode
+
+commit 3a832fc93710ae8c4e5fda59c07f1705da57ee54
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:37:09 2025 +0700
+
+    fix(nav): add dark mode support to header and store link styles
+
+commit 004ee87ac5bf995a6e6871838cb8a2186d5f7ac2
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:37:02 2025 +0700
+
+    fix(styles): add dark mode support for body background and text colors
+
+commit cbd69c8491d3f631d5adee917b86abe824e20d49
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:31:39 2025 +0700
+
+    refactor(hero): utilize Orb component
+    
+    Updates the Hero component to import and use the newly created Orb component for rendering the background orb animation. Removes the orb logic directly from the Hero component.
+
+commit 9e1b1262e53f6b9dbfc64ca3b85f2057fcbd5252
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:31:31 2025 +0700
+
+    feat(hero): create separate Orb component
+    
+    Extracts the orb rendering logic and state management into a dedicated Orb component to improve modularity and readability of the Hero component.
+
+commit 289e1676b578e842fa4b26a0ff4894fab96477a0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:26:02 2025 +0700
+
+    fix(hero): refactor orb initialization logic for improved performance and visual variety
+
+commit ae2a1bbac3e9da9489956d3099a73e61d4d59aee
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:20:43 2025 +0700
+
+    fix(hero): add dark mode support to Hero component styles
+
+commit c1da3ca29e9b9904bb379a4e93b0423a6cf225c8
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sun May 4 00:07:33 2025 +0700
+
+    fix(footer): reduce padding in footer layout for improved spacing
+
+commit e5b985781777d26f22f3b9f0a0945b8dea25c1b8
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:57:50 2025 +0700
+
+    fix(page): adjust padding of the featured products section
+
+commit dcc020de924abd8da6133881b17b8c0c6f9cc256
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:52:38 2025 +0700
+
+    fix(nav): move DarkModeToggle component to the right side of the navigation
+
+commit 5376e0e0701d2b74bbc0137be5dd4ca367d3f5fd
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:50:50 2025 +0700
+
+    feat(nav): add DarkModeToggle component to navigation
+
+commit d2ae134faeee9101805b5be8a524bfd8d3c3426c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:50:46 2025 +0700
+
+    fix(footer): remove DarkModeToggle component from footer
+
+commit 9536eace0e5ea1e723d96d79949d753e68fe6bb4
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:47:08 2025 +0700
+
+    fix(footer): adjust layout of copyright and MedusaCTA components
+
+commit 4a29339749199dbb8e0915facf3441c7ec98f2b3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:47:03 2025 +0700
+
+    fix(medusa-cta): update text from "Powered by" to "Built with"
+
+commit 71e27f8f75a0b3ad8936305d4eb4decefdde0f19
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:40:22 2025 +0700
+
+    feat(styles): enhance dark mode styles for body in globals.css
+
+commit f8d647fa3315a224c1486dd94c60007368aaf49e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:40:17 2025 +0700
+
+    feat(layout): integrate DarkModeToggle and enhance footer styling for dark mode
+
+commit 82ed59f9bab9b2beb46ef64caef9be4230cbb659
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:40:13 2025 +0700
+
+    feat(layout): add DarkModeToggle component for theme switching
+
+commit bab162b6660b730febd3401fb9d7aa32c4c31286
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:40:08 2025 +0700
+
+    feat(theme): add ThemeScript component to manage initial theme based on user preference
+
+commit 88883cb5441b4761ee5e8a51bbb5bf2045ee65e1
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:40:02 2025 +0700
+
+    fix(layout): remove data-mode attribute from html tag and ensure ThemeScript is imported
+
+commit 59aeb9fd4211681d7bc7f00a10b1f555c36669a2
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 23:39:56 2025 +0700
+
+    fix(tsconfig): add path mapping for components in tsconfig.json
+
+commit 255e8202e20baaaaab06bae57e42c27b3115e08b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:27:45 2025 +0700
+
+    fix(types): correct type from NodeJS.Timer to NodeJS.Timeout in ProfileDropdown
+
+commit 2971eb1e39406d8b3fa4cb57744046e689ba671b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:26:58 2025 +0700
+
+    feat(ui): close sign out modal on confirm
+    
+    Ensure the sign out confirmation modal is explicitly closed
+    when the user confirms the action, preventing it from
+    reappearing after redirection and navigation.
+
+commit 73c93b805141767d8adf23b660de44eaad173b69
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:17:29 2025 +0700
+
+    fix(dependencies): update @radix-ui/react-accordion to version 1.2.8 and @types/node to version 22.15.3
+
+commit de8344ee266a60a2cb8164dd5c54838603e78ba0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:14:17 2025 +0700
+
+    fix(dependencies): update qs to version 6.14.0
+
+commit f1c60844e9a31012c81e4e2e4474624bb8072cce
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:11:29 2025 +0700
+
+    fix(dependencies): update postcss to version 8.5.3
+
+commit cd7cc053f35fcce398bb7217e776b51a0f77db98
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:09:51 2025 +0700
+
+    fix(dependencies): update pg to version 8.15.6
+
+commit 8aef0ae8950a1f27ed007bba91da80ff36db8b4c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:08:40 2025 +0700
+
+    fix(dependencies): add awilix as a peerDependency for @medusajs/js-sdk
+
+commit a7cb5ec28b3f23381f7bcd847dbb1999cdce13d8
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:04:59 2025 +0700
+
+    fix(dependencies): move awilix to peerDependencies
+
+commit 06539a237cacc139855486dc5137a86f81774862
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 22:00:20 2025 +0700
+
+    fix(dependencies): downgrade awilix to version 8.0.1
+
+commit f6d54fc46d8048e751cf1425e91a2b415f3be21d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:57:44 2025 +0700
+
+    fix(dependencies): update awilix to version 12.0.5
+
+commit 205792f26481e093a2da0b19b222f405a7a9e07a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:55:51 2025 +0700
+
+    fix(dependencies): add awilix version 8.0.1 to dependencies
+
+commit 6cc3e45fdd878064bf4b25f01d5bdeeafb4ce708
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:49:32 2025 +0700
+
+    fix(dependencies): update autoprefixer to version 10.4.21
+
+commit 8116245da47081f2929969662005103b2e58a6c9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:48:56 2025 +0700
+
+    fix(dependencies): update @stripe/react-stripe-js to version 3.7.0 and @stripe/stripe-js to version 7.3.0
+
+commit 85e1d457f727d79b0a2a31bb3c7c36c478356287
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:40:08 2025 +0700
+
+    fix(dependencies): update next to version 15.3.1 and sharp to version 0.34.1
+
+commit 4bc99af1f0cfeff80b551418e4c289a906d1229b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:36:16 2025 +0700
+
+    fix(dependencies): update @types/node to 17.0.45, @types/pg to 8.11.14, and @types/react-instantsearch-dom to 6.12.8
+
+commit e408f52a075828be53a48cd12ba41613725213e9
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:35:16 2025 +0700
+
+    fix(dependencies): update @types/react and @types/react-dom to versions 19.1.2 and 19.1.3
+
+commit 4a05f690e5c41678e5176ed126c5ee13385bd4d0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:34:00 2025 +0700
+
+    fix(dependencies): update eslint-config-next to version 15.3.1
+
+commit a39e9f8dfec47cba60d44f1e6aa6e523ed8eb1e3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:33:12 2025 +0700
+
+    fix(dependencies): update webpack to version 5.99.7
+
+commit d14b14f9b9e46c4422905f8c88f647eb3307d18a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:29:47 2025 +0700
+
+    fix(dependencies): update babel-loader to version 10.0.0
+
+commit 4d124b619708dd0c9304230c4616a587da107aad
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:29:08 2025 +0700
+
+    fix(dependencies): update @headlessui/react to version 2.2.2
+
+commit e0b14bd1513d9ba428d098b8ef34498747cbbe31
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:27:52 2025 +0700
+
+    Refactor code structure for improved readability and maintainability
+
+commit 03ee63502500e3a86993c9f986fbd15a4062b244
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:27:06 2025 +0700
+
+    fix(dependencies): update versions for @medusajs
+
+commit d97954935784309bd296e2baef8e6c24f23cc196
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:26:14 2025 +0700
+
+    fix(dependencies): update @babel/core to version 7.27.1
+
+commit f9c1ca882ec9c5e7408a7093e300d61ffdd6fe45
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:24:53 2025 +0700
+
+    fix(dependencies): update typescript to version 5.8.3
+
+commit 00a96d1df2dbf10b26f8871b637468b681d8b5cc
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:23:51 2025 +0700
+
+    fix(dependencies): update react and react-dom to version 19.1.0
+
+commit 145b5f3f94668d5b6f80e26c76507a0934f91432
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:22:37 2025 +0700
+
+    fix(dependencies): update prettier to version 3.5.3
+
+commit 3d97889f1180867eaff0c9dbc53377a975f936aa
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:22:06 2025 +0700
+
+    fix(hero): add outline-none and border-none to button styles for better accessibility
+
+commit 4bc635e70b12a115f4c99d19208ae00bdbdd4848
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:13:40 2025 +0700
+
+    fix(medusa-cta): update Tailwind CSS link to version 3 documentation
+
+commit 2fa81351bdd5da47983b743acc23be297187a9a6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:12:26 2025 +0700
+
+    fix(dependencies): update tailwindcss to version 3.4.17
+
+commit c3d310ed40e739671c20406696d17783b3e4374b
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:07:13 2025 +0700
+
+    fix(dependencies): update @types/lodash to version 4.17.16
+
+commit 62c96691bfe91cb08c45ec0b36c264451034ae44
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:05:16 2025 +0700
+
+    feat(medusa-cta): add TypeScript icon to MedusaCTA component
+
+commit f4fa9555cc2b437aab8950649fc857ab5052417d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:03:55 2025 +0700
+
+    feat(icon): add TypeScript icon component
+
+commit fd697f102e9d57f97de7056c5daa9d0e4d42fb82
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:03:50 2025 +0700
+
+    feat(yarn): update dependencies for @emnapi, @tailwindcss, and lightningcss
+
+commit f59b8c5d97f46600618d20f4b9455115e25955e3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:03:42 2025 +0700
+
+    feat(package): add @tailwindcss/postcss as a dev dependency
+
+commit aa3c24e10b2111cac88db959682f69433cf27ba8
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 21:03:36 2025 +0700
+
+    feat(yarn): add interactive tools plugin configuration
+
+commit 11765df98c9cb2a9ae09c5ca87f2141948eefcc3
+Author: Firdaus Arif R <firdausarief65@gmail.com>
+Date:   Sat May 3 19:04:27 2025 +0700
+
+    Update README.md
+
+commit 503a9b81783ba922d06f53e4816ea3660cf8c08f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 18:59:21 2025 +0700
+
+    fix(hero): add select-none class to prevent text selection in hero component
+
+commit 5a7d9127f27af8d0f3f8fbcde64bc59933efb67c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 18:54:51 2025 +0700
+
+    feat(hero): update emote change handler logic
+
+commit 9008b0829dac8d2b5261dfcd424ac1b7d947fd10
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 18:45:37 2025 +0700
+
+    feat(hero): add interactive emote feature with click animation
+
+commit 6d951d6ae9da3844a44de7dc399a065508a37d4a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 18:40:33 2025 +0700
+
+    fix(hero): adjust gap in hero component and enhance button hover effect
+
+commit d67b193428d1dafa3ba41ad8ae9c7b4c517ae4d2
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 16:43:58 2025 +0700
+
+    fix(profileDropdown): close account dropdown on route change
+    
+    The account dropdown menu in the main navigation remained open after navigating away from the page (e.g., to the profile page) and returning.
+    
+    This change introduces a `useEffect` hook within the `ProfileDropdown` component that listens for changes in the `pathname` using the `usePathname` hook. When the path changes, the dropdown's `close` function is called, ensuring it resets its state upon navigation.
+
+commit 079c795919b01a9748e49e3610c67d437c543d2a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 14:18:14 2025 +0700
+
+    fix(profile-dropdown): wrap account link in LocalizedClientLink for proper navigation
+
+commit 22ff8bb7ac33e153697671769c6c81af70b13787
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 14:07:44 2025 +0700
+
+    feat(account): add logout confirmation modal to account navigation
+    
+    Adds a confirmation modal that appears when the user clicks the logout button within the main account navigation sidebar. This prevents accidental logouts by requiring user confirmation.
+
+commit 631389a271e50614db38f0f913297419516da6cf
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:58:06 2025 +0700
+
+    feat(common): extend size prop options in Modal component to include 'xsmall'
+
+commit e09f3bed2835db8122427f75e8625b3d98bb9ccf
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:58:00 2025 +0700
+
+    feat(common): add size prop to ConfirmationModal for customizable dimensions
+
+commit 0a9d701c4a9401a690efa48fb67264442a3937e7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:50:15 2025 +0700
+
+    feat(common): add reusable confirmation modal component
+    
+    Adds a generic ConfirmationModal component under common components.
+    This component can be used across the application to prompt users
+    for confirmation before performing critical actions, enhancing UX
+    by preventing accidental operations. It accepts props for title,
+    message, confirm/cancel button text, and loading state.
+
+commit 8c43617122eca51c87430c36655de64586578394
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:50:06 2025 +0700
+
+    feat(layout): integrate confirmation modal for logout
+    
+    Integrates the new ConfirmationModal component into the ProfileDropdown.
+    The logout action now triggers the confirmation modal, requiring user
+    affirmation before proceeding. This prevents accidental logouts.
+    Uses useToggleState for modal visibility and useState for logout loading state.
+
+commit 42aa3de40f334de9053e3e4e06abd9a3e06a7844
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:43:21 2025 +0700
+
+    feat(nav): integrate ProfileDropdown with customer data retrieval
+
+commit 9f103def5e0d66e0b67d038c1dc6e68f3a94b88c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:43:18 2025 +0700
+
+    feat(profile-dropdown): add ProfileDropdown component with user account features
+
+commit d2436098a3344c67d7182bf123a308476b77b7ff
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:30:07 2025 +0700
+
+    feat(medusa-cta): enhance MedusaCTA component with additional icons
+
+commit 6d78d5315fe038714af341d1247a544cdeb85bd7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 13:30:00 2025 +0700
+
+    fix(tailwind): remove unnecessary blank line at the end of the file
+
+commit 6df53d5fdaae6039936678a32ae92e5fee6077b2
+Author: Firdaus Arif R <firdausarief65@gmail.com>
+Date:   Sat May 3 12:27:55 2025 +0700
+
+    Create nextjs.yml
+
+commit 3fb613f3878be6614bfbdcf52c72ac464c09a420
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 12:26:30 2025 +0700
+
+    feat(tailwind-icon): add Tailwind icon component with customizable size and fill
+
+commit 8771887da8dc0a3d5fc4bbc4e3b94da9b5427afe
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 12:26:25 2025 +0700
+
+    feat(medusa-cta): add Tailwind and React icons to the MedusaCTA component
+
+commit be7b62cccb890b3cb69b69f9c9b8aae8421a65c0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 12:26:11 2025 +0700
+
+    feat(icons): add ReactIcon component with customizable size and fill
+
+commit c2c0e7c2242b63ff6c7121f8dfa00dd609788c2d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 12:02:23 2025 +0700
+
+    feat(ui): add loading state to product thumbnail
+    
+    Adds a loading state to the Thumbnail component.
+    When an image source is provided but the image is still loading,
+    the component now displays a pulsing grey background as a placeholder.
+    The pulsing animation stops once the image has finished loading.
+
+commit ba9658effbd23cda25e1263629423c93bfa5be65
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 11:48:40 2025 +0700
+
+    feat(cart-dropdown): enhance dropdown styling with rounded corners and shadow effect
+
+commit c57a08eb0133b7766cc242e69e30b288dc459ce7
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 11:43:36 2025 +0700
+
+    feat(side-menu): refactor side menu component for improved hover functionality and animation
+
+commit 9a8d20362e2b639728baea75f678f37c68728fa1
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 11:31:03 2025 +0700
+
+    feat(hero): update text slide container dimensions and animation for improved visual presentation
+
+commit cf1e2661543a0d36c6d0289a30757213e6662a50
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 10:55:21 2025 +0700
+
+    feat(register): update store name from "Medusa" to "Darryl" in registration agreement
+
+commit 0146c88799e1bcb8d78cbd35f2304f4e7102ee8c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 10:52:37 2025 +0700
+
+    feat(register): update membership references from "Medusa" to "Darryl" in registration component
+
+commit 1acb7ddaec32e676c15dcaef3228ee9294c0ee3c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Sat May 3 10:51:42 2025 +0700
+
+    feat(footer): update link and label from "Medusa" to "Darryl" in footer section
+
+commit 49023c9c6e3ef141fbf387065d4da1f540e73887
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 12:43:05 2025 +0700
+
+    feat(footer): update label from "Darryl" to "Medusa" in footer section
+
+commit 74ada57fbca5a5de9f82c513845bd56a4795e794
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 12:11:14 2025 +0700
+
+    feat: remove yarn.lock from .gitignore
+
+commit 7b4b09a59e0287a394c629d04f45a2cfeb8500ef
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 12:09:03 2025 +0700
+
+    feat(hero): add shake animation to "Explore Products" button text
+
+commit 7aaaeaf6d6c0223bec629317157b980b82b68a42
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 11:54:11 2025 +0700
+
+    feat(hero): enhance hero section with animated text and improved styles
+
+commit a6ec2626af466145bfad4b6b675d58ae908d9b0c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 05:00:23 2025 +0700
+
+    feat: update store name references from Medusa Store to Darryl Store in footer and nav
+
+commit bc23479f5665e5948f48c21439ec329361a87bf1
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 04:34:16 2025 +0700
+
+    feat: update store name references from Medusa Store to Darryl Store
+
+commit 42d9654d1ae11557781e65b97326d7392f3b9884
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 02:57:11 2025 +0700
+
+    feat(hero): update hero section height
+
+commit 266ba2455c9fc2061125138a53fa30d2953c4a56
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Fri May 2 02:09:42 2025 +0700
+
+    feat(styles): remove gradient text slide animation keyframes
+
+commit 8c2f3ec9bb2abda3b03694d10a0ab54913642016
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 22:53:32 2025 +0700
+
+    feat(middleware): add logging for region map population details
+
+commit 4226e41863aedb6b60eb0000fa6340b89fbe45f5
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 22:44:50 2025 +0700
+
+    feat(middleware): add detailed logging for region map fetching and middleware processing
+
+commit 302335083ca91df2c4a547e2270dad60ce8770b3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 22:16:44 2025 +0700
+
+    feat(button): add liquid button animation with hover effects and transitions
+
+commit c59d3861df62b72c92aefafeaa8079bfe0e0de6a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 22:16:39 2025 +0700
+
+    refactor(hero): improve comments for clarity and adjust orb size and animation logic
+
+commit 90afa308bb6f96050457621fc64e4775f9a3ad9a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:55:40 2025 +0700
+
+    refactor(hero): Rewrite comments for clarity and remove unnecessary or unclear comments.
+
+commit 08a88def80179ead5688a808e3bece8fe2004a4f
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:53:54 2025 +0700
+
+    feat(animation): add orb and orbital animations for enhanced visual effects
+
+commit 5407e8c9d85e38aa00c31a227788a4d04d0c3eae
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:53:48 2025 +0700
+
+    feat(hero): enhance orb generation and animation for improved visual effects
+
+commit e772d799e5ee1345aea62fe448f514ed24e8899d
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:53:42 2025 +0700
+
+    feat(config): add new animation keyframes and corresponding animations to tailwind
+
+commit a9ebacb9d1e82fb100f4a76114603a9dd1916846
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:02:52 2025 +0700
+
+    feat(config): add gradient animation to tailwind
+    
+    Introduce 'gradient-xy' animation keyframes and utility class to tailwind configuration for dynamic background effects.
+
+commit 5d2e4074692f55209a33bec2895e4f675d8d202a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:02:44 2025 +0700
+
+    style(css): add gradient animation keyframes
+    
+    Define keyframes for the 'gradient-xy' animation to be used for dynamic backgrounds.
+
+commit 08598a874f86ac5d9f9e91dd7f23848b35236438
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 21:02:34 2025 +0700
+
+    feat(ui): enhance hero section with larger fonts and animation
+    
+    Increase heading font sizes in the Hero component for better visual impact. Implement an animated gradient background for a dynamic feel. Adjust text color and add overlay for readability.
+
+commit 284a93492a513e339f0b30c95047e8ce2f6d8193
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 20:46:39 2025 +0700
+
+    feat(hero): update hero section content for Darryl Store
+    
+    Modifies the Hero component (`src/modules/home/components/hero/index.tsx`) by:
+    - Changing the main heading to "Welcome to Darryl Store".
+    - Adding a relevant subheading "Discover the Best Products Here".
+    - Replacing the GitHub link with a primary "Explore Products" button linking to the store page.
+
+commit 74231db156305471894773f719d6fbb4dcd4a30a
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 20:46:38 2025 +0700
+
+    feat(home): update main page metadata for Darryl Store
+    
+    Updates the title and description metadata in the main home page file (`src/app/[countryCode]/(main)/page.tsx`) to better reflect the Darryl Store brand and improve SEO.
+
+commit b6ca52a1da805343f14c31cd6d19c1e683e969e0
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 19:06:41 2025 +0700
+
+    fix(middleware): remove favicon.ico from matcher regex
+
+commit 9e8bff5fc2e8cb2f088e22dac858f5a1d0b648b3
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 17:00:12 2025 +0700
+
+    fix(.gitignore): correct .github directory exclusion
+
+commit 0947bce7fcc30022e68b1197aaa5b85b4583eb2e
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:55:54 2025 +0700
+
+    feat(frontend): disable caching for cart and product data fetching
+    
+    Disable Next.js fetch cache for cart retrieval and product listing to ensure frontend data syncs faster with backend changes. This addresses potential data staleness issues caused by caching.
+
+commit 59a9c1fdbfb701ef26bfe9b05a5afed9b0fe8e08
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:47:52 2025 +0700
+
+    Update .gitignore to replace project_snapshot.txt with storefront_snapshot.txt
+
+commit ef9b4b1057906c5b9effcc180400e989065b55d6
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:42:23 2025 +0700
+
+    Rename output file in create_snapshot.sh to storefront_snapshot.txt
+
+commit 0581c9995d00b7d772c6c9d5dc27170494c5108c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:33:44 2025 +0700
+
+    Add create_snapshot.sh script and update .gitignore to exclude it
+
+commit 19cccf45828ceea2abfa54acfd47bcd455df4d5c
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:30:20 2025 +0700
+
+    Update .gitignore to include create_snapshot.sh and project_snapshot.txt
+
+commit d042d30e30548d3e28196cac0f60751c86e51258
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:17:08 2025 +0700
+
+    Update .gitignore to include yarn.lock and .github directory
+
+commit a579e3bbbd8049c3dfae851e2a723675303f9257
+Author: fxrdhan <firdausarief65@gmail.com>
+Date:   Thu May 1 16:03:08 2025 +0700
+
+    Initial commit
